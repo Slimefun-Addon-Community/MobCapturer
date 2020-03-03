@@ -6,6 +6,10 @@ import com.google.gson.JsonObject;
 
 public class PigAdapter extends AnimalsAdapter<Pig> {
 	
+	public PigAdapter() {
+		super(Pig.class);
+	}
+
 	@Override
 	public void apply(Pig entity, JsonObject json) {
 		super.apply(entity, json);

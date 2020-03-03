@@ -8,6 +8,12 @@ import io.github.thebusybiscuit.mobcapturer.MobAdapter;
 
 public class AnimalsAdapter<T extends Animals> implements MobAdapter<T> {
 	
+	private final Class<T> entityClass;
+	
+	public AnimalsAdapter(Class<T> entityClass) {
+		this.entityClass = entityClass;
+	}
+	
 	@Override
 	public JsonObject save(T entity) {
 		JsonObject json = MobAdapter.super.save(entity);
@@ -28,6 +34,11 @@ public class AnimalsAdapter<T extends Animals> implements MobAdapter<T> {
 		entity.setLoveModeTicks(json.get("_loveModeTicks").getAsInt());
 		entity.setAgeLock(json.get("_ageLock").getAsBoolean());
 		entity.setBreed(json.get("_breedable").getAsBoolean());
+	}
+
+	@Override
+	public Class<T> getEntityClass() {
+		return entityClass;
 	}
 
 }

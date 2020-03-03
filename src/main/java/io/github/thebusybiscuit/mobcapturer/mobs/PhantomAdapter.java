@@ -24,4 +24,9 @@ public class PhantomAdapter implements MobAdapter<Phantom> {
 		return json;
 	}
 
+	@Override
+	public Class<Phantom> getEntityClass() {
+		return Phantom.class;
+	}
+
 }

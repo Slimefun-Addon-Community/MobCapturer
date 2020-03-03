@@ -25,4 +25,9 @@ public class ShulkerAdapter implements MobAdapter<Shulker> {
 		return json;
 	}
 
+	@Override
+	public Class<Shulker> getEntityClass() {
+		return Shulker.class;
+	}
+
 }

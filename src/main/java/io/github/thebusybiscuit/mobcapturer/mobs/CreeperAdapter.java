@@ -28,4 +28,9 @@ public class CreeperAdapter implements MobAdapter<Creeper> {
 		return json;
 	}
 
+	@Override
+	public Class<Creeper> getEntityClass() {
+		return Creeper.class;
+	}
+
 }

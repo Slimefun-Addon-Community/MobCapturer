@@ -7,6 +7,10 @@ import com.google.gson.JsonObject;
 
 public class RabbitAdapter extends AnimalsAdapter<Rabbit> {
 	
+	public RabbitAdapter() {
+		super(Rabbit.class);
+	}
+
 	@Override
 	public void apply(Rabbit entity, JsonObject json) {
 		super.apply(entity, json);

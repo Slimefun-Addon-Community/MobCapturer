@@ -30,6 +30,8 @@ import com.google.gson.JsonParser;
  */
 public interface MobAdapter<T extends LivingEntity> extends PersistentDataType<String, JsonObject> {
 	
+	Class<T> getEntityClass();
+	
 	default Class<String> getPrimitiveType() {
 		return String.class;
 	}

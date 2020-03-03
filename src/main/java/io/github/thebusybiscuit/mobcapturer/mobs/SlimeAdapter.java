@@ -8,6 +8,12 @@ import io.github.thebusybiscuit.mobcapturer.MobAdapter;
 
 public class SlimeAdapter<T extends Slime> implements MobAdapter<T> {
 	
+	private final Class<T> entityClass;
+	
+	public SlimeAdapter(Class<T> entityClass) {
+		this.entityClass = entityClass;
+	}
+	
 	@Override
 	public void apply(T entity, JsonObject json) {
 		MobAdapter.super.apply(entity, json);
@@ -22,6 +28,11 @@ public class SlimeAdapter<T extends Slime> implements MobAdapter<T> {
 		json.addProperty("size", entity.getSize());
 		
 		return json;
+	}
+
+	@Override
+	public Class<T> getEntityClass() {
+		return entityClass;
 	}
 
 }
