@@ -2,6 +2,7 @@ package io.github.thebusybiscuit.mobcapturer.items;
 
 import org.bukkit.inventory.ItemStack;
 
+import io.github.thebusybiscuit.slimefun4.api.events.PlayerRightClickEvent;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.Objects.Category;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SimpleSlimefunItem;
@@ -17,7 +18,7 @@ public class MobPellet extends SimpleSlimefunItem<ItemUseHandler> implements Not
 
 	@Override
 	public ItemUseHandler getItemHandler() {
-		return e -> e.cancel();
+		return PlayerRightClickEvent::cancel;
 	}
 
 }

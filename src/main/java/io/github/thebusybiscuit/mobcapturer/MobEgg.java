@@ -16,6 +16,7 @@ import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SimpleSlimefunItem;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.interfaces.NotPlaceable;
 import me.mrCookieSlime.Slimefun.Objects.handlers.ItemUseHandler;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
+import me.mrCookieSlime.Slimefun.cscorelib2.inventory.ItemUtils;
 
 public class MobEgg<T extends LivingEntity> extends SimpleSlimefunItem<ItemUseHandler> implements NotPlaceable {
 	
@@ -48,9 +49,16 @@ public class MobEgg<T extends LivingEntity> extends SimpleSlimefunItem<ItemUseHa
 			Optional<Block> block = e.getClickedBlock();
 			
 			if (block.isPresent()) {
+				ItemUtils.consumeItem(e.getItem(), false);
+				
 				Block b = block.get();
 				T entity = b.getWorld().spawn(b.getRelative(e.getClickedFace()).getLocation(), adapter.getEntityClass());
-				adapter.apply(entity, e.getItem().getItemMeta().getPersistentDataContainer().get(key, adapter));
+				
+				JsonObject json = e.getItem().getItemMeta().getPersistentDataContainer().get(key, adapter);
+				
+				if (json != null) {
+					adapter.apply(entity, json);
+				}
 			}
 		};
 	}
