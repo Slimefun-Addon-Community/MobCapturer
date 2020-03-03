@@ -1,10 +1,10 @@
-name: SlimefunAddon
+name: MobCapturer
 version: ${project.version}
-author: CHANGEME
-description: A generic Slimefun4-Addon
-website: https://github.com/TheBusyBiscuit/Slimefun4-Addon
+author: TheBusyBiscuit
+description: A Slimefun Addon that adds a tool that allows you to capture mobs
+website: https://github.com/TheBusyBiscuit/MobCapturer
 
-main: me.CHANGEME.slimefunaddon.ExampleAddon
+main: io.github.thebusybiscuit.mobcapturer.MobCapturer
 depend: [Slimefun]
 
 api-version: 1.14
