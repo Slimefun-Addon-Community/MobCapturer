@@ -19,6 +19,7 @@ import org.bukkit.entity.Ghast;
 import org.bukkit.entity.Guardian;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.MagmaCube;
+import org.bukkit.entity.Ocelot;
 import org.bukkit.entity.PolarBear;
 import org.bukkit.entity.Salmon;
 import org.bukkit.entity.Silverfish;
@@ -32,6 +33,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import io.github.thebusybiscuit.mobcapturer.items.MobCannon;
 import io.github.thebusybiscuit.mobcapturer.items.MobPellet;
 import io.github.thebusybiscuit.mobcapturer.mobs.AnimalsAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.CatAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.CreeperAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.EndermiteAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.IronGolemAdapter;
@@ -47,6 +49,7 @@ import io.github.thebusybiscuit.mobcapturer.mobs.SlimeAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.SnowmanAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.StandardMobAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.TropicalFishAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.WolfAdapter;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.Lists.SlimefunItems;
@@ -125,6 +128,10 @@ public class MobCapturer extends JavaPlugin implements SlimefunAddon {
 		register("Guardian", EntityType.GUARDIAN, new StandardMobAdapter<>(Guardian.class), "fe119aaa4999648a75b978efafa97edab1cdca1ff1d8301ba61cdc2db1606e22");
 		register("Elder Guardian", EntityType.ELDER_GUARDIAN, new StandardMobAdapter<>(ElderGuardian.class), "9a839d8256c81cf1db8da8ff3f7b80cce2f865b80c9f66aea5340e697ea3e219");
 		register("Phantom", EntityType.PHANTOM, new PhantomAdapter(), "9381dfeac8a050d330fde058bad5f5e6f228f28cd379761c1147e17c4ed605b");
+		
+		register("Wolf", EntityType.WOLF, new WolfAdapter(), "4399c973d6496d1d258492c28d4c95956ac3a253762bf15f7644af1f5728dd");
+		register("Ocelot", EntityType.OCELOT, new AnimalsAdapter<>(Ocelot.class), "c579a743b66bd0b4d559898ed1b9857a49f1127d9d237bed3dc97bceb9379a5");
+		register("Cat", EntityType.CAT, new CatAdapter(), "f2154e385f9ccb187b53cf290fe9a24f98c7d583c368986c7806c312c3f29d79");
 		
 		register("Creeper", EntityType.CREEPER, new CreeperAdapter(), "87c63d9079b75f90979783cf07ca726f65e3024415ac622a7c906cd25082af");
 		register("Blaze", EntityType.BLAZE, new StandardMobAdapter<>(Blaze.class), "533acae6e075a578ccfc7dc2d5a15dbccfa8f59c609f9703889ef54c742c56");
