@@ -79,7 +79,7 @@ public class MobCapturer extends JavaPlugin implements SlimefunAddon {
 		
 		new CapturingListener(this);
 		
-		category = new Category(new NamespacedKey(this, "mob_capturer"), new CustomItem(SkullItem.fromHash("d429ff1d2015cb11398471bb2f895f7b4c3ccec201e4ad7a86ff24b744878c"), "&dMobCapturer"));
+		category = new Category(new NamespacedKey(this, "mob_capturer"), new CustomItem(SkullItem.fromHash("d429ff1d2015cb11398471bb2f895f7b4c3ccec201e4ad7a86ff24b744878c"), "&dMob Capturer"));
 		research = new Research(new NamespacedKey(this, "mob_capturing"), 32652, "Capturing Mobs", 28);
 		
 		SlimefunItemStack cannon = new SlimefunItemStack("MOB_CANNON", Material.BLAZE_ROD, "&6Mob Capturing Cannon", "", "&eRight Click &7to shoot a &rMob Caging Pellet");

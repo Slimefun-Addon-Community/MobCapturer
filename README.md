@@ -14,8 +14,8 @@ The captured mobs will retain attributes, potion effects, fire ticks, custom nam
 
 [Read more...](https://github.com/TheBusyBiscuit/Slimefun4/wiki/MobCapturer)
 
-## Download MiningLasers
-You can download MiningLasers right here: [Development Builds](https://thebusybiscuit.github.io/builds/TheBusyBiscuit/MobCapturer/master/)
+## Download MobCapturer
+You can download MobCapturer right here: [Development Builds](https://thebusybiscuit.github.io/builds/TheBusyBiscuit/MobCapturer/master/)
 
 <p align="center">
   <a href="https://thebusybiscuit.github.io/builds/TheBusyBiscuit/MobCapturer/master/">
