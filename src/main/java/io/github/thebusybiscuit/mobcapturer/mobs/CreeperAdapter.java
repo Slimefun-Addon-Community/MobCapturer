@@ -1,5 +1,8 @@
 package io.github.thebusybiscuit.mobcapturer.mobs;
 
+import java.util.List;
+
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Creeper;
 
 import com.google.gson.JsonObject;
@@ -7,6 +10,15 @@ import com.google.gson.JsonObject;
 import io.github.thebusybiscuit.mobcapturer.MobAdapter;
 
 public class CreeperAdapter implements MobAdapter<Creeper> {
+	
+	@Override
+	public List<String> getLore(JsonObject json) {
+		List<String> lore = MobAdapter.super.getLore(json);
+
+		lore.add(ChatColor.GRAY + "Powered: " + ChatColor.RESET + json.get("powered").getAsBoolean());
+		
+		return lore;
+	}
 	
 	@Override
 	public void apply(Creeper entity, JsonObject json) {

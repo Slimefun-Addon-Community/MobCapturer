@@ -1,5 +1,8 @@
 package io.github.thebusybiscuit.mobcapturer.mobs;
 
+import java.util.List;
+
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Animals;
 
 import com.google.gson.JsonObject;
@@ -15,9 +18,19 @@ public class AnimalsAdapter<T extends Animals> implements MobAdapter<T> {
 	}
 	
 	@Override
+	public List<String> getLore(JsonObject json) {
+		List<String> lore = MobAdapter.super.getLore(json);
+
+		lore.add(ChatColor.GRAY + "Baby: " + ChatColor.RESET + json.get("baby").getAsBoolean());
+		
+		return lore;
+	}
+	
+	@Override
 	public JsonObject save(T entity) {
 		JsonObject json = MobAdapter.super.save(entity);
-		
+
+		json.addProperty("baby", !entity.isAdult());
 		json.addProperty("_age", entity.getAge());
 		json.addProperty("_ageLock", entity.getAgeLock());
 		json.addProperty("_breedable", entity.canBreed());

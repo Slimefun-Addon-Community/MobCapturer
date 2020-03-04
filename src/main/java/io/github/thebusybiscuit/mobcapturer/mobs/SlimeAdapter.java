@@ -1,5 +1,8 @@
 package io.github.thebusybiscuit.mobcapturer.mobs;
 
+import java.util.List;
+
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Slime;
 
 import com.google.gson.JsonObject;
@@ -12,6 +15,15 @@ public class SlimeAdapter<T extends Slime> implements MobAdapter<T> {
 	
 	public SlimeAdapter(Class<T> entityClass) {
 		this.entityClass = entityClass;
+	}
+	
+	@Override
+	public List<String> getLore(JsonObject json) {
+		List<String> lore = MobAdapter.super.getLore(json);
+
+		lore.add(ChatColor.GRAY + "Size: " + ChatColor.RESET + json.get("size").getAsInt());
+		
+		return lore;
 	}
 	
 	@Override

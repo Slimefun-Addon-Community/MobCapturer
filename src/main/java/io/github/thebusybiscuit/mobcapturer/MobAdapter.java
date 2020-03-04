@@ -1,9 +1,12 @@
 package io.github.thebusybiscuit.mobcapturer;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import org.bukkit.ChatColor;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.attribute.AttributeModifier;
@@ -19,6 +22,8 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import me.mrCookieSlime.Slimefun.cscorelib2.math.DoubleHandler;
+
 /**
  * This is a simple Adapter that allows conversion between a {@link LivingEntity} and
  * a {@link JsonObject}.
@@ -31,6 +36,25 @@ import com.google.gson.JsonParser;
 public interface MobAdapter<T extends LivingEntity> extends PersistentDataType<String, JsonObject> {
 	
 	Class<T> getEntityClass();
+	
+	default List<String> getLore(JsonObject json) {
+		List<String> lore = new LinkedList<>();
+		
+		lore.add("");
+		lore.add(ChatColor.GRAY + "Health: " + ChatColor.GREEN + DoubleHandler.fixDouble(json.get("_health").getAsDouble()));
+		
+		if (!json.get("_customName").isJsonNull()) {
+			lore.add(ChatColor.GRAY + "Name: " + ChatColor.RESET + json.get("_customName").getAsString());
+		}
+
+		int fireTicks = json.get("_fireTicks").getAsInt();
+		
+		if (fireTicks > 0) {
+			lore.add(ChatColor.GRAY + "On Fire: " + ChatColor.RESET + "true");
+		}
+		
+		return lore;
+	}
 	
 	default Class<String> getPrimitiveType() {
 		return String.class;
@@ -49,19 +73,7 @@ public interface MobAdapter<T extends LivingEntity> extends PersistentDataType<S
 	}
 	
 	default void apply(T entity, JsonObject json) {
-		entity.setHealth(json.get("_health").getAsDouble());
-		entity.setAbsorptionAmount(json.get("_absorption").getAsDouble());
-		entity.setRemoveWhenFarAway(json.get("_removeWhenFarAway").getAsBoolean());
-		entity.setCustomName(json.get("_customName").getAsString());
-		entity.setCustomNameVisible(json.get("_customNameVisible").getAsBoolean());
-		entity.setAI(json.get("_ai").getAsBoolean());
-		entity.setSilent(json.get("_silent").getAsBoolean());
-		entity.setGlowing(json.get("_glowing").getAsBoolean());
-		entity.setInvulnerable(json.get("_invulnerable").getAsBoolean());
-		entity.setCollidable(json.get("_collidable").getAsBoolean());
-		entity.setGravity(json.get("_gravity").getAsBoolean());
-		entity.setFireTicks(json.get("_fireTicks").getAsInt());
-		
+		// We need to apply Attributes before the health.
 		JsonObject attributes = json.getAsJsonObject("_attributes");
 		
 		for (Map.Entry<String, JsonElement> entry : attributes.entrySet()) {
@@ -90,6 +102,23 @@ public interface MobAdapter<T extends LivingEntity> extends PersistentDataType<S
 				}
 			}
 		}
+		
+		entity.setHealth(json.get("_health").getAsDouble());
+		entity.setAbsorptionAmount(json.get("_absorption").getAsDouble());
+		entity.setRemoveWhenFarAway(json.get("_removeWhenFarAway").getAsBoolean());
+		
+		if (!json.get("_customName").isJsonNull()) {
+			entity.setCustomName(json.get("_customName").getAsString());
+		}
+		
+		entity.setCustomNameVisible(json.get("_customNameVisible").getAsBoolean());
+		entity.setAI(json.get("_ai").getAsBoolean());
+		entity.setSilent(json.get("_silent").getAsBoolean());
+		entity.setGlowing(json.get("_glowing").getAsBoolean());
+		entity.setInvulnerable(json.get("_invulnerable").getAsBoolean());
+		entity.setCollidable(json.get("_collidable").getAsBoolean());
+		entity.setGravity(json.get("_gravity").getAsBoolean());
+		entity.setFireTicks(json.get("_fireTicks").getAsInt());
 		
 		JsonObject effects = json.getAsJsonObject("_effects");
 		

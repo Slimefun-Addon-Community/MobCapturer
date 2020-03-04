@@ -1,14 +1,28 @@
 package io.github.thebusybiscuit.mobcapturer.mobs;
 
+import java.util.List;
+
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Rabbit;
 import org.bukkit.entity.Rabbit.Type;
 
 import com.google.gson.JsonObject;
 
+import me.mrCookieSlime.CSCoreLibPlugin.general.String.StringUtils;
+
 public class RabbitAdapter extends AnimalsAdapter<Rabbit> {
 	
 	public RabbitAdapter() {
 		super(Rabbit.class);
+	}
+	
+	@Override
+	public List<String> getLore(JsonObject json) {
+		List<String> lore = super.getLore(json);
+
+		lore.add(ChatColor.GRAY + "Variant: " + ChatColor.RESET + StringUtils.format(json.get("rabbitType").getAsString()));
+		
+		return lore;
 	}
 
 	@Override

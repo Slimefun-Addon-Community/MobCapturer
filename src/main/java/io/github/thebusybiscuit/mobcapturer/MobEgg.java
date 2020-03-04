@@ -35,7 +35,10 @@ public class MobEgg<T extends LivingEntity> extends SimpleSlimefunItem<ItemUseHa
 		
 		ItemStack item = this.item.clone();
 		ItemMeta meta = item.getItemMeta();
+		
+		meta.setLore(adapter.getLore(json));
 		meta.getPersistentDataContainer().set(key, adapter, json);
+		
 		item.setItemMeta(meta);
 		
 		return item;
@@ -49,12 +52,11 @@ public class MobEgg<T extends LivingEntity> extends SimpleSlimefunItem<ItemUseHa
 			Optional<Block> block = e.getClickedBlock();
 			
 			if (block.isPresent()) {
-				ItemUtils.consumeItem(e.getItem(), false);
-				
 				Block b = block.get();
 				T entity = b.getWorld().spawn(b.getRelative(e.getClickedFace()).getLocation(), adapter.getEntityClass());
 				
 				JsonObject json = e.getItem().getItemMeta().getPersistentDataContainer().get(key, adapter);
+				ItemUtils.consumeItem(e.getItem(), false);
 				
 				if (json != null) {
 					adapter.apply(entity, json);
