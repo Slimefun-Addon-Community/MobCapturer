@@ -9,11 +9,12 @@ import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SimpleSlimefunItem;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.interfaces.NotPlaceable;
 import me.mrCookieSlime.Slimefun.Objects.handlers.ItemUseHandler;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
+import me.mrCookieSlime.Slimefun.cscorelib2.item.CustomItem;
 
 public class MobPellet extends SimpleSlimefunItem<ItemUseHandler> implements NotPlaceable {
 
 	public MobPellet(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
-		super(category, item, recipeType, recipe);
+		super(category, item, recipeType, recipe, new CustomItem(item, 2));
 	}
 
 	@Override

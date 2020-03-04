@@ -9,11 +9,11 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
 
-public class CapturingListener implements Listener {
+public class PelletListener implements Listener {
 	
 	private final MobCapturer plugin;
 	
-	public CapturingListener(MobCapturer plugin) {
+	public PelletListener(MobCapturer plugin) {
 		plugin.getServer().getPluginManager().registerEvents(this, plugin);
 		
 		this.plugin = plugin;

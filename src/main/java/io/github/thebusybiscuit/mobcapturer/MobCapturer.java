@@ -21,12 +21,15 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.MagmaCube;
 import org.bukkit.entity.Ocelot;
 import org.bukkit.entity.PolarBear;
+import org.bukkit.entity.Ravager;
 import org.bukkit.entity.Salmon;
 import org.bukkit.entity.Silverfish;
 import org.bukkit.entity.Slime;
 import org.bukkit.entity.Spider;
 import org.bukkit.entity.Squid;
 import org.bukkit.entity.Turtle;
+import org.bukkit.entity.Vindicator;
+import org.bukkit.entity.Witch;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -36,19 +39,23 @@ import io.github.thebusybiscuit.mobcapturer.mobs.AnimalsAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.CatAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.CreeperAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.EndermiteAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.EvokerAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.IronGolemAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.MooshroomAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.PandaAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.ParrotAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.PhantomAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.PigAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.PufferFishAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.RabbitAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.RaiderAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.SheepAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.ShulkerAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.SlimeAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.SnowmanAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.StandardMobAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.TropicalFishAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.VexAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.WolfAdapter;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
@@ -80,7 +87,7 @@ public class MobCapturer extends JavaPlugin implements SlimefunAddon {
 			new GitHubBuildsUpdater(this, getFile(), "TheBusyBiscuit/MobCapturer/master").start();
 		}
 		
-		new CapturingListener(this);
+		new PelletListener(this);
 		
 		category = new Category(new NamespacedKey(this, "mob_capturer"), new CustomItem(SkullItem.fromHash("d429ff1d2015cb11398471bb2f895f7b4c3ccec201e4ad7a86ff24b744878c"), "&dMob Capturer"));
 		research = new Research(new NamespacedKey(this, "mob_capturing"), 32652, "Capturing Mobs", 28);
@@ -102,15 +109,14 @@ public class MobCapturer extends JavaPlugin implements SlimefunAddon {
 			SlimefunItems.STEEL_INGOT, SlimefunItems.POWER_CRYSTAL, SlimefunItems.STEEL_INGOT,
 			SlimefunItems.ADVANCED_CIRCUIT_BOARD, SlimefunItems.STEEL_INGOT, null
 		});
-			
+		
 		research.addItems(mobCannon);
 		mobCannon.register(this);
 		
 		recipeType = new RecipeType(new NamespacedKey(this, "mob_capturing"), new CustomItem(cannon, "&6Mob Capturing Cannon", "&7Use a &6Mob Capturing Cannon", "&7to catch the given Mob."));
 		
-		register("Bat", EntityType.BAT, new StandardMobAdapter<>(Bat.class), "93c8aa3fde295fa9f9c27f734bdbab11d33a2e43e855accd7465352377413b");
-		register("Squid", EntityType.SQUID, new StandardMobAdapter<>(Squid.class), "449088861fc1e14b605a5154d79fa7dd65e041a5c635d24744b3e152535");
 		
+		// Animals
 		register("Cow", EntityType.COW, new AnimalsAdapter<>(Cow.class), "9419f15ff54dae5d040f9b9d8eb2a8989e676710922a0ca164da613ca61e9");
 		register("Chicken", EntityType.CHICKEN, new AnimalsAdapter<>(Chicken.class), "d429ff1d2015cb11398471bb2f895f7b4c3ccec201e4ad7a86ff24b744878c");
 		register("Pig", EntityType.PIG, new PigAdapter(), "527ad51dd773b72dca1c13e6f3547a83181aad91165282999bbdf13a3b3c9");
@@ -119,31 +125,50 @@ public class MobCapturer extends JavaPlugin implements SlimefunAddon {
 		register("Sheep", EntityType.SHEEP, new SheepAdapter(), "ff481f77347fe59c083665c9efbb49071d493ea2027454aee87735d63bf3b");
 		register("Turtle", EntityType.TURTLE, new AnimalsAdapter<>(Turtle.class), "15a45e24cadc18f305291af45a22fc8b3607a675baa31ed583d3a56b15223c5c");
 		register("Polar Bear", EntityType.POLAR_BEAR, new AnimalsAdapter<>(PolarBear.class), "291abcab7a20b28195c0f1786db28c7670c2979243de71703b04e9d93f59aa8d");
-		register("Dolphin", EntityType.DOLPHIN, new StandardMobAdapter<>(Dolphin.class), "2480cd9577e2173e1c9de5e41318bd859696215a0a7de9242f01c01b8e6c06bf");
 		register("Panda", EntityType.PANDA, new PandaAdapter(), "1ab24611bb37ce3971fdbf01ba3f11bd2e4c72f5d40b6d8d8d536d69e695cd0c");
 		
+		// Mobs
 		register("Slime", EntityType.SLIME, new SlimeAdapter<>(Slime.class), "9330af17f8512ed3b49e78bca7ef2d83f2dc1e598a8cb542ecc3b6becee9f57");
 		register("Spider", EntityType.SPIDER, new StandardMobAdapter<>(Spider.class), "5d59aa78cb7e9b6ca6fee4121329059dd68afddc0c8b53a906b7953994e8a76");
 		register("Cave Spider", EntityType.CAVE_SPIDER, new StandardMobAdapter<>(CaveSpider.class), "16617131250e578333a441fdf4a5b8c62163640a9d06cd67db89031d03accf6");
+		register("Creeper", EntityType.CREEPER, new CreeperAdapter(), "87c63d9079b75f90979783cf07ca726f65e3024415ac622a7c906cd25082af");
+		register("Phantom", EntityType.PHANTOM, new PhantomAdapter(), "9381dfeac8a050d330fde058bad5f5e6f228f28cd379761c1147e17c4ed605b");
+		register("Silverfish", EntityType.SILVERFISH, new StandardMobAdapter<>(Silverfish.class), "d06310a8952b265c6e6bed4348239ddea8e5482c8c68be6fff981ba8056bf2e");
+		register("Bat", EntityType.BAT, new StandardMobAdapter<>(Bat.class), "93c8aa3fde295fa9f9c27f734bdbab11d33a2e43e855accd7465352377413b");
+		
+		// Water Mobs
+		register("Squid", EntityType.SQUID, new StandardMobAdapter<>(Squid.class), "449088861fc1e14b605a5154d79fa7dd65e041a5c635d24744b3e152535");
 		register("Guardian", EntityType.GUARDIAN, new StandardMobAdapter<>(Guardian.class), "fe119aaa4999648a75b978efafa97edab1cdca1ff1d8301ba61cdc2db1606e22");
 		register("Elder Guardian", EntityType.ELDER_GUARDIAN, new StandardMobAdapter<>(ElderGuardian.class), "9a839d8256c81cf1db8da8ff3f7b80cce2f865b80c9f66aea5340e697ea3e219");
-		register("Phantom", EntityType.PHANTOM, new PhantomAdapter(), "9381dfeac8a050d330fde058bad5f5e6f228f28cd379761c1147e17c4ed605b");
+		register("Dolphin", EntityType.DOLPHIN, new StandardMobAdapter<>(Dolphin.class), "2480cd9577e2173e1c9de5e41318bd859696215a0a7de9242f01c01b8e6c06bf");
 		
+		// Tameables
 		register("Wolf", EntityType.WOLF, new WolfAdapter(), "4399c973d6496d1d258492c28d4c95956ac3a253762bf15f7644af1f5728dd");
 		register("Ocelot", EntityType.OCELOT, new AnimalsAdapter<>(Ocelot.class), "c579a743b66bd0b4d559898ed1b9857a49f1127d9d237bed3dc97bceb9379a5");
 		register("Cat", EntityType.CAT, new CatAdapter(), "f2154e385f9ccb187b53cf290fe9a24f98c7d583c368986c7806c312c3f29d79");
+		register("Parrot", EntityType.PARROT, new ParrotAdapter(), "6eabd8fffc0371877e88ffc3cd0315200534dd2fcc6034588000736fb80033e5");
 		
-		register("Creeper", EntityType.CREEPER, new CreeperAdapter(), "87c63d9079b75f90979783cf07ca726f65e3024415ac622a7c906cd25082af");
+		// Nether
 		register("Blaze", EntityType.BLAZE, new StandardMobAdapter<>(Blaze.class), "533acae6e075a578ccfc7dc2d5a15dbccfa8f59c609f9703889ef54c742c56");
 		register("Magma Cube", EntityType.MAGMA_CUBE, new SlimeAdapter<>(MagmaCube.class), "1185657c38acdd8f95e1d2cd1115bb0f11139ad2b3ce442267e69706d916e");
 		register("Ghast", EntityType.GHAST, new StandardMobAdapter<>(Ghast.class), "c442c228f099fdfc1c6b46dfc80b252d81f7fb1739deb16ee7a597c17f7c9");
-		register("Silverfish", EntityType.SILVERFISH, new StandardMobAdapter<>(Silverfish.class), "d06310a8952b265c6e6bed4348239ddea8e5482c8c68be6fff981ba8056bf2e");
+		
+		// Ender things
 		register("Shulker", EntityType.SHULKER, new ShulkerAdapter(), "d04252216231b3f744c9ff4ace7084ae9f4164f8b384c65410848a19617af4d");
 		register("Endermite", EntityType.ENDERMITE, new EndermiteAdapter(), "3beac501e97db1cc035287d068a8eb538e55ef802f5cca25683933a243136c");
 		
+		// Golems
 		register("Snow Golem", EntityType.SNOWMAN, new SnowmanAdapter(), "2e4385d58fe46dd96422f31d35bbd1568e5819bbdb7a196c9f113424582cf977");
 		register("Iron Golem", EntityType.IRON_GOLEM, new IronGolemAdapter(), "c442c228f099fdfc1c6b46dfc80b252d81f7fb1739deb16ee7a597c17f7c9");
 		
+		// Illagers
+		register("Witch", EntityType.WITCH, new RaiderAdapter<>(Witch.class), "afbdceef773d959b49ddd9615f4269c176e23154d45752667428dc4e3fd4d");
+		register("Vindicator", EntityType.VINDICATOR, new RaiderAdapter<>(Vindicator.class), "8e8e3de7718a54553dd2fc5b2415a08b05f2339b772fe181b65c507fda4e34c1");
+		register("Ravager", EntityType.RAVAGER, new RaiderAdapter<>(Ravager.class), "79b625b80cfb0baf04eebbd2cb1ff9f1010b02f4df21b3baf86eb812ab7eba8b");
+		register("Evoker", EntityType.EVOKER, new EvokerAdapter(), "ff1eeb387d55b0886a69b6ec62a6e69706f32aba2547e10583060b976341f9be");
+		register("Vex", EntityType.VEX, new VexAdapter(), "dc7eb861fd9999bf87a300e3ddd03c57313ddfba221d1c7d4bd62cef31446ca1");
+		
+		// Fish
 		register("Cod", EntityType.COD, new StandardMobAdapter<>(Cod.class), "bd29b25579f9d3a67b612ae8ef96b31feca6c9e7e6c70ac81156d778cbe7db9d");
 		register("Salmon", EntityType.SALMON, new StandardMobAdapter<>(Salmon.class), "5c46c568e8b5c55853a92869ea19c00b7720c328a2f16c5950b9e2e897fc27a1");
 		register("Pufferfish", EntityType.PUFFERFISH, new PufferFishAdapter(), "5d5e7d191478efafe23a654de802760f42a0dd83dfc9817f87d460fcf32978df");
