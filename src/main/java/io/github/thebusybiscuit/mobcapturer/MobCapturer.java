@@ -16,23 +16,29 @@ import org.bukkit.entity.Dolphin;
 import org.bukkit.entity.Donkey;
 import org.bukkit.entity.ElderGuardian;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Evoker;
 import org.bukkit.entity.Ghast;
 import org.bukkit.entity.Guardian;
+import org.bukkit.entity.Illusioner;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.MagmaCube;
 import org.bukkit.entity.Mule;
 import org.bukkit.entity.Ocelot;
+import org.bukkit.entity.Pillager;
 import org.bukkit.entity.PolarBear;
 import org.bukkit.entity.Ravager;
 import org.bukkit.entity.Salmon;
 import org.bukkit.entity.Silverfish;
+import org.bukkit.entity.Skeleton;
 import org.bukkit.entity.SkeletonHorse;
 import org.bukkit.entity.Slime;
 import org.bukkit.entity.Spider;
 import org.bukkit.entity.Squid;
+import org.bukkit.entity.Stray;
 import org.bukkit.entity.Turtle;
 import org.bukkit.entity.Vindicator;
 import org.bukkit.entity.Witch;
+import org.bukkit.entity.WitherSkeleton;
 import org.bukkit.entity.ZombieHorse;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -45,10 +51,10 @@ import io.github.thebusybiscuit.mobcapturer.mobs.CatAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.ChestedHorseAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.CreeperAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.EndermiteAdapter;
-import io.github.thebusybiscuit.mobcapturer.mobs.EvokerAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.HorseAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.IronGolemAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.LlamaAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.MagicIllagerAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.MooshroomAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.PandaAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.ParrotAdapter;
@@ -59,6 +65,7 @@ import io.github.thebusybiscuit.mobcapturer.mobs.RabbitAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.RaiderAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.SheepAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.ShulkerAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.SkeletonAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.SlimeAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.SnowmanAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.StandardMobAdapter;
@@ -166,8 +173,10 @@ public class MobCapturer extends JavaPlugin implements SlimefunAddon {
         // Illagers
         register("Witch", EntityType.WITCH, new RaiderAdapter<>(Witch.class), "afbdceef773d959b49ddd9615f4269c176e23154d45752667428dc4e3fd4d");
         register("Vindicator", EntityType.VINDICATOR, new RaiderAdapter<>(Vindicator.class), "8e8e3de7718a54553dd2fc5b2415a08b05f2339b772fe181b65c507fda4e34c1");
+        register("Pillager", EntityType.PILLAGER, new RaiderAdapter<>(Pillager.class), "8fd4983e30b277f0b97b7d8c6f8a0358201be226a2c55e2a0d390c3942ec2df5");
         register("Ravager", EntityType.RAVAGER, new RaiderAdapter<>(Ravager.class), "79b625b80cfb0baf04eebbd2cb1ff9f1010b02f4df21b3baf86eb812ab7eba8b");
-        register("Evoker", EntityType.EVOKER, new EvokerAdapter(), "ff1eeb387d55b0886a69b6ec62a6e69706f32aba2547e10583060b976341f9be");
+        register("Evoker", EntityType.EVOKER, new MagicIllagerAdapter<>(Evoker.class), "ff1eeb387d55b0886a69b6ec62a6e69706f32aba2547e10583060b976341f9be");
+        register("Illusioner", EntityType.ILLUSIONER, new MagicIllagerAdapter<>(Illusioner.class), "ff1eeb387d55b0886a69b6ec62a6e69706f32aba2547e10583060b976341f9be");
         register("Vex", EntityType.VEX, new VexAdapter(), "dc7eb861fd9999bf87a300e3ddd03c57313ddfba221d1c7d4bd62cef31446ca1");
 
         // Fish
@@ -183,6 +192,11 @@ public class MobCapturer extends JavaPlugin implements SlimefunAddon {
         register("Zombie Horse", EntityType.ZOMBIE_HORSE, new UndeadHorseAdapter<>(ZombieHorse.class), "ec5b6f8ef1d75f73a5290c9367d2b9b823bc963de2a366fd6550bcace2751205");
         register("Skeleton Horse", EntityType.SKELETON_HORSE, new UndeadHorseAdapter<>(SkeletonHorse.class), "9dc084b7874268973006c897a03d8906cc9b3df8c39bce93d87ec0df507bbe0d");
         register("Llama", EntityType.LLAMA, new LlamaAdapter(), "5cbc6bd92728d79cfa6d8f23cbae9d912f495920b9e95ef691a1967fef8a4453");
+
+        // Skeletons
+        register("Skeleton", EntityType.SKELETON, new SkeletonAdapter<>(Skeleton.class), "377055cadacbb0f8f35c1d18acc2ed86e0bcc6d73dda71e4c59f7ea28b7b27b6");
+        register("Wither Skeleton", EntityType.WITHER_SKELETON, new SkeletonAdapter<>(WitherSkeleton.class), "337223d01906ab63af1a15988343b8637e85930b905c35125b545b398c59e1c5");
+        register("Stray", EntityType.STRAY, new SkeletonAdapter<>(Stray.class), "5b45aae241779f0617ffaff468f3f2cf666d2f8a803002f9ae1ba0f14ed79fdd");
 
         research.register();
     }
