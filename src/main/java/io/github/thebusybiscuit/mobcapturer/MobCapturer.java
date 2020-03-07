@@ -48,6 +48,7 @@ import io.github.thebusybiscuit.mobcapturer.mobs.EndermiteAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.EvokerAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.HorseAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.IronGolemAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.LlamaAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.MooshroomAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.PandaAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.ParrotAdapter;
@@ -181,6 +182,7 @@ public class MobCapturer extends JavaPlugin implements SlimefunAddon {
         register("Mule", EntityType.MULE, new ChestedHorseAdapter<>(Mule.class), "e4ad78f7ada7c6376449ef949c9c87fdece882b5a2f14cfbf8eac6fea657f4c7");
         register("Zombie Horse", EntityType.ZOMBIE_HORSE, new UndeadHorseAdapter<>(ZombieHorse.class), "ec5b6f8ef1d75f73a5290c9367d2b9b823bc963de2a366fd6550bcace2751205");
         register("Skeleton Horse", EntityType.SKELETON_HORSE, new UndeadHorseAdapter<>(SkeletonHorse.class), "9dc084b7874268973006c897a03d8906cc9b3df8c39bce93d87ec0df507bbe0d");
+        register("Llama", EntityType.LLAMA, new LlamaAdapter(), "5cbc6bd92728d79cfa6d8f23cbae9d912f495920b9e95ef691a1967fef8a4453");
 
         research.register();
     }
