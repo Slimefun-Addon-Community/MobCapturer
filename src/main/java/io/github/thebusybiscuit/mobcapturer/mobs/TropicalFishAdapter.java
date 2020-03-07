@@ -35,8 +35,8 @@ public class TropicalFishAdapter implements MobAdapter<TropicalFish> {
 	}
 	
 	@Override
-	public JsonObject save(TropicalFish entity) {
-		JsonObject json = MobAdapter.super.save(entity);
+	public JsonObject saveData(TropicalFish entity) {
+		JsonObject json = MobAdapter.super.saveData(entity);
 		
 		json.addProperty("baseColor", entity.getBodyColor().name());
 		json.addProperty("pattern", entity.getPattern().name());

@@ -10,7 +10,7 @@ import com.google.gson.JsonObject;
 
 import me.mrCookieSlime.CSCoreLibPlugin.general.String.StringUtils;
 
-public class WolfAdapter extends TameableAdapter<Wolf> {
+public class WolfAdapter extends AbstractTameableAdapter<Wolf> {
 	
 	public WolfAdapter() {
 		super(Wolf.class);
@@ -41,8 +41,8 @@ public class WolfAdapter extends TameableAdapter<Wolf> {
 	}
 	
 	@Override
-	public JsonObject save(Wolf entity) {
-		JsonObject json = super.save(entity);
+	public JsonObject saveData(Wolf entity) {
+		JsonObject json = super.saveData(entity);
 		
 		json.addProperty("angry", entity.isAngry());
 		json.addProperty("sitting", entity.isSitting());

@@ -35,8 +35,8 @@ public class PandaAdapter extends AnimalsAdapter<Panda> {
 	}
 	
 	@Override
-	public JsonObject save(Panda entity) {
-		JsonObject json = super.save(entity);
+	public JsonObject saveData(Panda entity) {
+		JsonObject json = super.saveData(entity);
 		
 		json.addProperty("mainGene", entity.getMainGene().name());
 		json.addProperty("hiddenGene", entity.getHiddenGene().name());

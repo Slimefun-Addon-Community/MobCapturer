@@ -28,8 +28,8 @@ public class VexAdapter implements MobAdapter<Vex> {
 	}
 	
 	@Override
-	public JsonObject save(Vex entity) {
-		JsonObject json = MobAdapter.super.save(entity);
+	public JsonObject saveData(Vex entity) {
+		JsonObject json = MobAdapter.super.saveData(entity);
 		
 		json.addProperty("charging", entity.isCharging());
 		

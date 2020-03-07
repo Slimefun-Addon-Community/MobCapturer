@@ -16,8 +16,8 @@ public class IronGolemAdapter implements MobAdapter<IronGolem> {
 	}
 	
 	@Override
-	public JsonObject save(IronGolem entity) {
-		JsonObject json = MobAdapter.super.save(entity);
+	public JsonObject saveData(IronGolem entity) {
+		JsonObject json = MobAdapter.super.saveData(entity);
 		
 		json.addProperty("playerMade", entity.isPlayerCreated());
 		

@@ -38,8 +38,8 @@ public class ShulkerAdapter implements MobAdapter<Shulker> {
 	}
 	
 	@Override
-	public JsonObject save(Shulker entity) {
-		JsonObject json = MobAdapter.super.save(entity);
+	public JsonObject saveData(Shulker entity) {
+		JsonObject json = MobAdapter.super.saveData(entity);
 		
 		DyeColor color = entity.getColor();
 		json.addProperty("color", color == null ? null: color.name());

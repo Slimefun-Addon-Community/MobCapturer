@@ -30,8 +30,8 @@ public class CreeperAdapter implements MobAdapter<Creeper> {
 	}
 	
 	@Override
-	public JsonObject save(Creeper entity) {
-		JsonObject json = MobAdapter.super.save(entity);
+	public JsonObject saveData(Creeper entity) {
+		JsonObject json = MobAdapter.super.saveData(entity);
 		
 		json.addProperty("powered", entity.isPowered());
 		json.addProperty("radius", entity.getExplosionRadius());

@@ -28,8 +28,8 @@ public class PufferFishAdapter implements MobAdapter<PufferFish> {
 	}
 	
 	@Override
-	public JsonObject save(PufferFish entity) {
-		JsonObject json = MobAdapter.super.save(entity);
+	public JsonObject saveData(PufferFish entity) {
+		JsonObject json = MobAdapter.super.saveData(entity);
 		
 		json.addProperty("puffState", entity.getPuffState());
 		

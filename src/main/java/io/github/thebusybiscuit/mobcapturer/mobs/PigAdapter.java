@@ -32,8 +32,8 @@ public class PigAdapter extends AnimalsAdapter<Pig> {
 	}
 	
 	@Override
-	public JsonObject save(Pig entity) {
-		JsonObject json = super.save(entity);
+	public JsonObject saveData(Pig entity) {
+		JsonObject json = super.saveData(entity);
 		
 		json.addProperty("saddle", entity.hasSaddle());
 		

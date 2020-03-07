@@ -12,9 +12,9 @@ import org.bukkit.entity.Tameable;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-public class TameableAdapter<T extends Animals & Tameable> extends AnimalsAdapter<T> {
+class AbstractTameableAdapter<T extends Animals & Tameable> extends AnimalsAdapter<T> {
 	
-	public TameableAdapter(Class<T> entityClass) {
+	public AbstractTameableAdapter(Class<T> entityClass) {
 		super(entityClass);
 	}
 	
@@ -32,8 +32,8 @@ public class TameableAdapter<T extends Animals & Tameable> extends AnimalsAdapte
 	}
 	
 	@Override
-	public JsonObject save(T entity) {
-		JsonObject json = super.save(entity);
+	public JsonObject saveData(T entity) {
+		JsonObject json = super.saveData(entity);
 
 		json.addProperty("ownerUUID", entity.getOwner() == null ? null: entity.getOwner().getUniqueId().toString());
 		json.addProperty("ownerName", entity.getOwner() == null ? null: entity.getOwner().getName());

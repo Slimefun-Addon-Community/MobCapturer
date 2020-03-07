@@ -33,8 +33,8 @@ public class RabbitAdapter extends AnimalsAdapter<Rabbit> {
 	}
 	
 	@Override
-	public JsonObject save(Rabbit entity) {
-		JsonObject json = super.save(entity);
+	public JsonObject saveData(Rabbit entity) {
+		JsonObject json = super.saveData(entity);
 		
 		json.addProperty("rabbitType", entity.getRabbitType().name());
 		

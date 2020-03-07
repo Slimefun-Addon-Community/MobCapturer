@@ -11,7 +11,7 @@ import com.google.gson.JsonObject;
 
 import me.mrCookieSlime.CSCoreLibPlugin.general.String.StringUtils;
 
-public class CatAdapter extends TameableAdapter<Cat> {
+public class CatAdapter extends AbstractTameableAdapter<Cat> {
 	
 	public CatAdapter() {
 		super(Cat.class);
@@ -41,8 +41,8 @@ public class CatAdapter extends TameableAdapter<Cat> {
 	}
 	
 	@Override
-	public JsonObject save(Cat entity) {
-		JsonObject json = super.save(entity);
+	public JsonObject saveData(Cat entity) {
+		JsonObject json = super.saveData(entity);
 		
 		json.addProperty("catType", entity.getCatType().name());
 		json.addProperty("sitting", entity.isSitting());

@@ -33,8 +33,8 @@ public class EvokerAdapter extends RaiderAdapter<Evoker> {
 	}
 	
 	@Override
-	public JsonObject save(Evoker entity) {
-		JsonObject json = super.save(entity);
+	public JsonObject saveData(Evoker entity) {
+		JsonObject json = super.saveData(entity);
 		
 		json.addProperty("spell", entity.getSpell().name());
 		

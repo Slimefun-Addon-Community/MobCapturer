@@ -27,8 +27,8 @@ public class AnimalsAdapter<T extends Animals> implements MobAdapter<T> {
 	}
 	
 	@Override
-	public JsonObject save(T entity) {
-		JsonObject json = MobAdapter.super.save(entity);
+	public JsonObject saveData(T entity) {
+		JsonObject json = MobAdapter.super.saveData(entity);
 
 		json.addProperty("baby", !entity.isAdult());
 		json.addProperty("_age", entity.getAge());

@@ -22,8 +22,8 @@ public class RaiderAdapter<T extends Raider> implements MobAdapter<T> {
 	}
 	
 	@Override
-	public JsonObject save(T entity) {
-		JsonObject json = MobAdapter.super.save(entity);
+	public JsonObject saveData(T entity) {
+		JsonObject json = MobAdapter.super.saveData(entity);
 		
 		json.addProperty("canJoinRaid", entity.isCanJoinRaid());
 		

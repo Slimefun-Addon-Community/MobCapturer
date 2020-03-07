@@ -33,8 +33,8 @@ public class MooshroomAdapter extends AnimalsAdapter<MushroomCow> {
 	}
 	
 	@Override
-	public JsonObject save(MushroomCow entity) {
-		JsonObject json = super.save(entity);
+	public JsonObject saveData(MushroomCow entity) {
+		JsonObject json = super.saveData(entity);
 		
 		json.addProperty("variant", entity.getVariant().name());
 		

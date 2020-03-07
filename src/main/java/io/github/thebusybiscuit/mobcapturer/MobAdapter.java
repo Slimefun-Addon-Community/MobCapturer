@@ -145,7 +145,7 @@ public interface MobAdapter<T extends LivingEntity> extends PersistentDataType<S
 		}
 	}
 	
-	default JsonObject save(T entity) {
+	default JsonObject saveData(T entity) {
 		JsonObject json = new JsonObject();
 		
 		json.addProperty("_type", entity.getType().toString());

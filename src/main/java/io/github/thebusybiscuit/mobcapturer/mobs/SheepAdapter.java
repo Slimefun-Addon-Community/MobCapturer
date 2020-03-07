@@ -34,8 +34,8 @@ public class SheepAdapter extends AnimalsAdapter<Sheep> {
 	}
 	
 	@Override
-	public JsonObject save(Sheep entity) {
-		JsonObject json = super.save(entity);
+	public JsonObject saveData(Sheep entity) {
+		JsonObject json = super.saveData(entity);
 		
 		json.addProperty("sheared", entity.isSheared());
 		json.addProperty("woolColor", entity.getColor().name());

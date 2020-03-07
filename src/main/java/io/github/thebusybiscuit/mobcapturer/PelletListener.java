@@ -10,25 +10,25 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
 
 public class PelletListener implements Listener {
-	
-	private final MobCapturer plugin;
-	
-	public PelletListener(MobCapturer plugin) {
-		plugin.getServer().getPluginManager().registerEvents(this, plugin);
-		
-		this.plugin = plugin;
-	}
-	
-	@EventHandler
-	public void onProjectileHit(EntityDamageByEntityEvent e) {
-		if (e.getDamager() instanceof Snowball && e.getEntity() instanceof LivingEntity && e.getDamager().hasMetadata("mob_capturing_cannon")) {
-			Optional<ItemStack> optional = plugin.capture((LivingEntity) e.getEntity());
-			
-			if (optional.isPresent()) {
-				e.getEntity().remove();
-				e.getEntity().getWorld().dropItemNaturally(((LivingEntity) e.getEntity()).getEyeLocation(), optional.get());
-			}
-		}
-	}
+
+    private final MobCapturer plugin;
+
+    public PelletListener(MobCapturer plugin) {
+        plugin.getServer().getPluginManager().registerEvents(this, plugin);
+
+        this.plugin = plugin;
+    }
+
+    @EventHandler
+    public void onProjectileHit(EntityDamageByEntityEvent e) {
+        if (e.getDamager() instanceof Snowball && e.getEntity() instanceof LivingEntity && e.getDamager().hasMetadata("mob_capturing_cannon")) {
+            Optional<ItemStack> optional = plugin.capture((LivingEntity) e.getEntity());
+
+            if (optional.isPresent()) {
+                e.getEntity().remove();
+                e.getEntity().getWorld().dropItemNaturally(((LivingEntity) e.getEntity()).getEyeLocation(), optional.get());
+            }
+        }
+    }
 
 }

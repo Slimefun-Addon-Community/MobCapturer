@@ -28,8 +28,8 @@ public class PhantomAdapter implements MobAdapter<Phantom> {
 	}
 	
 	@Override
-	public JsonObject save(Phantom entity) {
-		JsonObject json = MobAdapter.super.save(entity);
+	public JsonObject saveData(Phantom entity) {
+		JsonObject json = MobAdapter.super.saveData(entity);
 		
 		json.addProperty("size", entity.getSize());
 		

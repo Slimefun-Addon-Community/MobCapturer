@@ -16,8 +16,8 @@ public class SnowmanAdapter implements MobAdapter<Snowman> {
 	}
 	
 	@Override
-	public JsonObject save(Snowman entity) {
-		JsonObject json = MobAdapter.super.save(entity);
+	public JsonObject saveData(Snowman entity) {
+		JsonObject json = MobAdapter.super.saveData(entity);
 		
 		json.addProperty("derp", entity.isDerp());
 		
