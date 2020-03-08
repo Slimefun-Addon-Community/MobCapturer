@@ -10,10 +10,10 @@ import com.google.gson.JsonObject;
 
 import me.mrCookieSlime.CSCoreLibPlugin.general.String.StringUtils;
 
-public class LlamaAdapter extends ChestedHorseAdapter<Llama> {
+public class LlamaAdapter<T extends Llama> extends ChestedHorseAdapter<T> {
 
-    public LlamaAdapter() {
-        super(Llama.class);
+    public LlamaAdapter(Class<T> entityClass) {
+        super(entityClass);
     }
 
     @Override
@@ -26,7 +26,7 @@ public class LlamaAdapter extends ChestedHorseAdapter<Llama> {
     }
 
     @Override
-    public void apply(Llama entity, JsonObject json) {
+    public void apply(T entity, JsonObject json) {
         super.apply(entity, json);
 
         entity.setColor(Color.valueOf(json.get("color").getAsString()));
@@ -34,7 +34,7 @@ public class LlamaAdapter extends ChestedHorseAdapter<Llama> {
     }
 
     @Override
-    public JsonObject saveData(Llama entity) {
+    public JsonObject saveData(T entity) {
         JsonObject json = super.saveData(entity);
 
         json.addProperty("color", entity.getColor().name());
