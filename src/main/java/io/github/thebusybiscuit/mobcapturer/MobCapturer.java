@@ -14,11 +14,13 @@ import org.bukkit.entity.Cod;
 import org.bukkit.entity.Cow;
 import org.bukkit.entity.Dolphin;
 import org.bukkit.entity.Donkey;
+import org.bukkit.entity.Drowned;
 import org.bukkit.entity.ElderGuardian;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Evoker;
 import org.bukkit.entity.Ghast;
 import org.bukkit.entity.Guardian;
+import org.bukkit.entity.Husk;
 import org.bukkit.entity.Illusioner;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Llama;
@@ -41,6 +43,7 @@ import org.bukkit.entity.Turtle;
 import org.bukkit.entity.Vindicator;
 import org.bukkit.entity.Witch;
 import org.bukkit.entity.WitherSkeleton;
+import org.bukkit.entity.Zombie;
 import org.bukkit.entity.ZombieHorse;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -75,6 +78,8 @@ import io.github.thebusybiscuit.mobcapturer.mobs.TropicalFishAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.UndeadHorseAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.VexAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.WolfAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.ZombieAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.ZombieVillagerAdapter;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.Lists.SlimefunItems;
@@ -200,6 +205,12 @@ public class MobCapturer extends JavaPlugin implements SlimefunAddon {
         register("Skeleton", EntityType.SKELETON, new SkeletonAdapter<>(Skeleton.class), "377055cadacbb0f8f35c1d18acc2ed86e0bcc6d73dda71e4c59f7ea28b7b27b6");
         register("Wither Skeleton", EntityType.WITHER_SKELETON, new SkeletonAdapter<>(WitherSkeleton.class), "337223d01906ab63af1a15988343b8637e85930b905c35125b545b398c59e1c5");
         register("Stray", EntityType.STRAY, new SkeletonAdapter<>(Stray.class), "5b45aae241779f0617ffaff468f3f2cf666d2f8a803002f9ae1ba0f14ed79fdd");
+
+        // Zombies
+        register("Zombie", EntityType.ZOMBIE, new ZombieAdapter<>(Zombie.class), "77f844bfea25429d45e1fcf96ef6654dfaaa6fc902dc1b6b68c0abc1343447");
+        register("Drowned", EntityType.DROWNED, new ZombieAdapter<>(Drowned.class), "13a29552b3abaf388145be8a9067e5ea4d1af945e7bf5e2ca852cec87fd1b17b");
+        register("Husk", EntityType.HUSK, new ZombieAdapter<>(Husk.class), "40fd8d86e7057aae33f5d79dcb03685c88c8137cfcb2349bc874b9f87e934276");
+        register("Zombie Villager", EntityType.ZOMBIE_VILLAGER, new ZombieVillagerAdapter(), "364b4c94dda909ecc778db93572b847a5df51c4a49894d6a9df59b8df97842c5");
 
         research.register();
     }
