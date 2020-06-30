@@ -23,7 +23,7 @@ class AbstractHorseAdapter<T extends AbstractHorse> extends AbstractTameableAdap
     public List<String> getLore(JsonObject json) {
         List<String> lore = super.getLore(json);
 
-        lore.add(ChatColor.GRAY + "Jump Strength: " + ChatColor.RESET + DoubleHandler.fixDouble(json.get("jumpStrength").getAsDouble()));
+        lore.add(ChatColor.GRAY + "Jump Strength: " + ChatColor.WHITE + DoubleHandler.fixDouble(json.get("jumpStrength").getAsDouble()));
 
         return lore;
     }

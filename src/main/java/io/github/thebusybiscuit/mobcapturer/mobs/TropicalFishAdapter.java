@@ -18,9 +18,9 @@ public class TropicalFishAdapter implements MobAdapter<TropicalFish> {
 	public List<String> getLore(JsonObject json) {
 		List<String> lore = MobAdapter.super.getLore(json);
 
-		lore.add(ChatColor.GRAY + "Base Color: " + ChatColor.RESET + StringUtils.format( json.get("baseColor").getAsString()));
-		lore.add(ChatColor.GRAY + "Pattern: " + ChatColor.RESET + StringUtils.format( json.get("pattern").getAsString()));
-		lore.add(ChatColor.GRAY + "Pattern Color: " + ChatColor.RESET + StringUtils.format( json.get("patternColor").getAsString()));
+		lore.add(ChatColor.GRAY + "Base Color: " + ChatColor.WHITE + StringUtils.format( json.get("baseColor").getAsString()));
+		lore.add(ChatColor.GRAY + "Pattern: " + ChatColor.WHITE + StringUtils.format( json.get("pattern").getAsString()));
+		lore.add(ChatColor.GRAY + "Pattern Color: " + ChatColor.WHITE + StringUtils.format( json.get("patternColor").getAsString()));
 		
 		return lore;
 	}

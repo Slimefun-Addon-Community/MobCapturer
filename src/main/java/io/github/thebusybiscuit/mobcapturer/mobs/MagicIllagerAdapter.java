@@ -20,7 +20,7 @@ public class MagicIllagerAdapter<T extends Spellcaster> extends RaiderAdapter<T>
     public List<String> getLore(JsonObject json) {
         List<String> lore = super.getLore(json);
 
-        lore.add(ChatColor.GRAY + "Spell: " + StringUtils.format(json.get("spell").getAsString()));
+        lore.add(ChatColor.GRAY + "Spell: " + ChatColor.WHITE + StringUtils.format(json.get("spell").getAsString()));
 
         return lore;
     }

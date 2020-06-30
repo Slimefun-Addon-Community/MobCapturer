@@ -25,7 +25,7 @@ class AbstractTameableAdapter<T extends Animals & Tameable> extends AnimalsAdapt
 		JsonElement element = json.get("ownerName");
 		
 		if (!element.isJsonNull()) {
-			lore.add(ChatColor.GRAY + "Owner: " + ChatColor.RESET + element.getAsString());
+			lore.add(ChatColor.GRAY + "Owner: " + ChatColor.WHITE + element.getAsString());
 		}
 		
 		return lore;

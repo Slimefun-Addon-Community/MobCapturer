@@ -23,7 +23,7 @@ public class ZombieVillagerAdapter extends ZombieAdapter<ZombieVillager> {
     public List<String> getLore(JsonObject json) {
         List<String> lore = super.getLore(json);
 
-        lore.add(ChatColor.GRAY + "Profession: " + ChatColor.RESET + StringUtils.format(json.get("profession").getAsString()));
+        lore.add(ChatColor.GRAY + "Profession: " + ChatColor.WHITE + StringUtils.format(json.get("profession").getAsString()));
 
         return lore;
     }

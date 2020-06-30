@@ -21,7 +21,7 @@ public class ShulkerAdapter implements MobAdapter<Shulker> {
 		JsonElement color = json.get("color");
 		
 		if (!color.isJsonNull()) {
-			lore.add(ChatColor.GRAY + "Color: " + ChatColor.RESET + StringUtils.format(color.getAsString()));
+			lore.add(ChatColor.GRAY + "Color: " + ChatColor.WHITE + StringUtils.format(color.getAsString()));
 		}
 		
 		return lore;

@@ -15,7 +15,7 @@ public class CreeperAdapter implements MobAdapter<Creeper> {
 	public List<String> getLore(JsonObject json) {
 		List<String> lore = MobAdapter.super.getLore(json);
 
-		lore.add(ChatColor.GRAY + "Powered: " + ChatColor.RESET + json.get("powered").getAsBoolean());
+		lore.add(ChatColor.GRAY + "Powered: " + ChatColor.WHITE + json.get("powered").getAsBoolean());
 		
 		return lore;
 	}

@@ -25,6 +25,7 @@ public class PelletListener implements Listener {
             Optional<ItemStack> optional = plugin.capture((LivingEntity) e.getEntity());
 
             if (optional.isPresent()) {
+                e.getDamager().removeMetadata("mob_capturing_cannon", plugin);
                 e.getEntity().remove();
                 e.getEntity().getWorld().dropItemNaturally(((LivingEntity) e.getEntity()).getEyeLocation(), optional.get());
             }

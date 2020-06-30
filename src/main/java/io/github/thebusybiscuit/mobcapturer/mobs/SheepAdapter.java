@@ -20,7 +20,7 @@ public class SheepAdapter extends AnimalsAdapter<Sheep> {
 	public List<String> getLore(JsonObject json) {
 		List<String> lore = super.getLore(json);
 
-		lore.add(ChatColor.GRAY + "Color: " + ChatColor.RESET + StringUtils.format(json.get("woolColor").getAsString()));
+		lore.add(ChatColor.GRAY + "Color: " + ChatColor.WHITE + StringUtils.format(json.get("woolColor").getAsString()));
 		
 		return lore;
 	}

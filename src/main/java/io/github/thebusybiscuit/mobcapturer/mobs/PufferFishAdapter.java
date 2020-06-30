@@ -15,7 +15,7 @@ public class PufferFishAdapter implements MobAdapter<PufferFish> {
 	public List<String> getLore(JsonObject json) {
 		List<String> lore = MobAdapter.super.getLore(json);
 
-		lore.add(ChatColor.GRAY + "Puffiness: " + ChatColor.RESET + json.get("puffState").getAsInt());
+		lore.add(ChatColor.GRAY + "Puffiness: " + ChatColor.WHITE + json.get("puffState").getAsInt());
 		
 		return lore;
 	}

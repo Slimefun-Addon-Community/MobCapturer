@@ -15,7 +15,7 @@ public class PhantomAdapter implements MobAdapter<Phantom> {
 	public List<String> getLore(JsonObject json) {
 		List<String> lore = MobAdapter.super.getLore(json);
 
-		lore.add(ChatColor.GRAY + "Size: " + ChatColor.RESET + (json.get("size").getAsInt() + 1));
+		lore.add(ChatColor.GRAY + "Size: " + ChatColor.WHITE + (json.get("size").getAsInt() + 1));
 		
 		return lore;
 	}

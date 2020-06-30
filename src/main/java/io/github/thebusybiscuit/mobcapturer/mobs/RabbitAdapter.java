@@ -20,7 +20,7 @@ public class RabbitAdapter extends AnimalsAdapter<Rabbit> {
 	public List<String> getLore(JsonObject json) {
 		List<String> lore = super.getLore(json);
 
-		lore.add(ChatColor.GRAY + "Variant: " + ChatColor.RESET + StringUtils.format(json.get("rabbitType").getAsString()));
+		lore.add(ChatColor.GRAY + "Variant: " + ChatColor.WHITE + StringUtils.format(json.get("rabbitType").getAsString()));
 		
 		return lore;
 	}

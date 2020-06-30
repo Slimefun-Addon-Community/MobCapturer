@@ -20,7 +20,7 @@ public class MooshroomAdapter extends AnimalsAdapter<MushroomCow> {
 	public List<String> getLore(JsonObject json) {
 		List<String> lore = super.getLore(json);
 
-		lore.add(ChatColor.GRAY + "Variant: " + ChatColor.RESET + StringUtils.format(json.get("variant").getAsString()));
+		lore.add(ChatColor.GRAY + "Variant: " + ChatColor.WHITE + StringUtils.format(json.get("variant").getAsString()));
 		
 		return lore;
 	}

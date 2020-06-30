@@ -20,7 +20,7 @@ public class ChestedHorseAdapter<T extends ChestedHorse> extends AbstractHorseAd
     public List<String> getLore(JsonObject json) {
         List<String> lore = super.getLore(json);
 
-        lore.add(ChatColor.GRAY + "Chest: " + ChatColor.RESET + json.get("chest").getAsBoolean());
+        lore.add(ChatColor.GRAY + "Chest: " + ChatColor.WHITE + json.get("chest").getAsBoolean());
 
         return lore;
     }

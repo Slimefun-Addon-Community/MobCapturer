@@ -21,7 +21,7 @@ public class SlimeAdapter<T extends Slime> implements MobAdapter<T> {
 	public List<String> getLore(JsonObject json) {
 		List<String> lore = MobAdapter.super.getLore(json);
 
-		lore.add(ChatColor.GRAY + "Size: " + ChatColor.RESET + json.get("size").getAsInt());
+		lore.add(ChatColor.GRAY + "Size: " + ChatColor.WHITE + json.get("size").getAsInt());
 		
 		return lore;
 	}

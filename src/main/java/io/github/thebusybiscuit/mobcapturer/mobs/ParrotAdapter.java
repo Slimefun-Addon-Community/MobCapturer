@@ -20,10 +20,10 @@ public class ParrotAdapter extends AbstractTameableAdapter<Parrot> {
 	public List<String> getLore(JsonObject json) {
 		List<String> lore = super.getLore(json);
 
-		lore.add(ChatColor.GRAY + "Variant: " + ChatColor.RESET + StringUtils.format(json.get("variant").getAsString()));
+		lore.add(ChatColor.GRAY + "Variant: " + ChatColor.WHITE + StringUtils.format(json.get("variant").getAsString()));
 		
 		if (!json.get("ownerUUID").isJsonNull()) {
-			lore.add(ChatColor.GRAY + "Sitting: " + ChatColor.RESET + json.get("sitting").getAsBoolean());
+			lore.add(ChatColor.GRAY + "Sitting: " + ChatColor.WHITE + json.get("sitting").getAsBoolean());
 		}
 		
 		return lore;

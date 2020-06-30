@@ -15,7 +15,7 @@ public class VexAdapter implements MobAdapter<Vex> {
 	public List<String> getLore(JsonObject json) {
 		List<String> lore = MobAdapter.super.getLore(json);
 
-		lore.add(ChatColor.GRAY + "Charging: " + ChatColor.RESET + json.get("charging").getAsBoolean());
+		lore.add(ChatColor.GRAY + "Charging: " + ChatColor.WHITE + json.get("charging").getAsBoolean());
 		
 		return lore;
 	}
