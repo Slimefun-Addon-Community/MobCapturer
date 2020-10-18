@@ -16,39 +16,39 @@ import me.mrCookieSlime.Slimefun.cscorelib2.inventory.ItemUtils;
 
 public class MobCannon extends SimpleSlimefunItem<ItemUseHandler> {
 
-	private final MobCapturer plugin;
-	private final MobPellet pellet;
-	
-	public MobCannon(MobCapturer plugin, Category category, SlimefunItemStack item, MobPellet pellet, RecipeType recipeType, ItemStack[] recipe) {
-		super(category, item, recipeType, recipe);
-		
-		this.plugin = plugin;
-		this.pellet = pellet;
-	}
+    private final MobCapturer plugin;
+    private final MobPellet pellet;
 
-	@Override
-	public ItemUseHandler getItemHandler() {
-		return e -> {
-			if (consumeAmmo(e.getPlayer(), pellet)) {
-				Snowball projectile = e.getPlayer().launchProjectile(Snowball.class);
-				projectile.setMetadata("mob_capturing_cannon", new FixedMetadataValue(plugin, e.getPlayer().getUniqueId()));
-			}
-		};
-	}
+    public MobCannon(MobCapturer plugin, Category category, SlimefunItemStack item, MobPellet pellet, RecipeType recipeType, ItemStack[] recipe) {
+        super(category, item, recipeType, recipe);
 
-	private boolean consumeAmmo(Player p, MobPellet pellet) {
-		if (p.getGameMode() == GameMode.CREATIVE) {
-			return true;
-		}
-		
-		for (ItemStack item : p.getInventory()) {
-			if (pellet.isItem(item)) {
-				ItemUtils.consumeItem(item, false);
-				return true;
-			}
-		}
-		
-		return false;
-	}
+        this.plugin = plugin;
+        this.pellet = pellet;
+    }
+
+    @Override
+    public ItemUseHandler getItemHandler() {
+        return e -> {
+            if (consumeAmmo(e.getPlayer(), pellet)) {
+                Snowball projectile = e.getPlayer().launchProjectile(Snowball.class);
+                projectile.setMetadata("mob_capturing_cannon", new FixedMetadataValue(plugin, e.getPlayer().getUniqueId()));
+            }
+        };
+    }
+
+    private boolean consumeAmmo(Player p, MobPellet pellet) {
+        if (p.getGameMode() == GameMode.CREATIVE) {
+            return true;
+        }
+
+        for (ItemStack item : p.getInventory()) {
+            if (pellet.isItem(item)) {
+                ItemUtils.consumeItem(item, false);
+                return true;
+            }
+        }
+
+        return false;
+    }
 
 }

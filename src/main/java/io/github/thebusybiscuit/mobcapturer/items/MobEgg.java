@@ -47,7 +47,7 @@ public class MobEgg<T extends LivingEntity> extends SimpleSlimefunItem<ItemUseHa
     public ItemStack getEggItem(T entity) {
         JsonObject json = adapter.saveData(entity);
 
-        ItemStack item = this.item.clone();
+        ItemStack item = getItem().clone();
         ItemMeta meta = item.getItemMeta();
 
         meta.setLore(adapter.getLore(json));
@@ -100,8 +100,7 @@ public class MobEgg<T extends LivingEntity> extends SimpleSlimefunItem<ItemUseHa
                                     inventory.put(key, (ItemStack) obj);
                                 }
                             }
-                        }
-                        catch (IOException x) {
+                        } catch (IOException x) {
                             x.printStackTrace();
                         }
 
