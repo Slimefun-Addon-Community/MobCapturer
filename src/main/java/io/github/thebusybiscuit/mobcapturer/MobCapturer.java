@@ -54,6 +54,7 @@ import io.github.thebusybiscuit.mobcapturer.items.MobCannon;
 import io.github.thebusybiscuit.mobcapturer.items.MobEgg;
 import io.github.thebusybiscuit.mobcapturer.items.MobPellet;
 import io.github.thebusybiscuit.mobcapturer.mobs.AnimalsAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.BeeAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.CatAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.ChestedHorseAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.CreeperAdapter;
@@ -80,6 +81,7 @@ import io.github.thebusybiscuit.mobcapturer.mobs.SkeletonAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.SlimeAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.SnowmanAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.StandardMobAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.StriderAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.TropicalFishAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.UndeadHorseAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.VexAdapter;
@@ -150,6 +152,7 @@ public class MobCapturer extends JavaPlugin implements SlimefunAddon {
         register("Polar Bear", EntityType.POLAR_BEAR, new AnimalsAdapter<>(PolarBear.class), "291abcab7a20b28195c0f1786db28c7670c2979243de71703b04e9d93f59aa8d");
         register("Panda", EntityType.PANDA, new PandaAdapter(), "1ab24611bb37ce3971fdbf01ba3f11bd2e4c72f5d40b6d8d8d536d69e695cd0c");
         register("Fox", EntityType.FOX, new FoxAdapter(), "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTZiNTQzNDY0OTMwZThkMzg2NzZkYjZiZTk5MjBkZDgyYTU0ODU5YzM0OTdkOWZlMzFlZjkyYTg4NGM4NCJ9fX0=");
+        register("Bee", EntityType.BEE, new BeeAdapter(), "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTZiNTQzNDY0OTMwZThkMzg2NzZkYjZiZTk5MjBkZDgyYTU0ODU5YzM0OTdkOWZlMzFlZjkyYTg4NGM4NCJ9fX0=");
 
         // Mobs
         register("Slime", EntityType.SLIME, new SlimeAdapter<>(Slime.class), "9330af17f8512ed3b49e78bca7ef2d83f2dc1e598a8cb542ecc3b6becee9f57");
@@ -181,6 +184,7 @@ public class MobCapturer extends JavaPlugin implements SlimefunAddon {
         register("Zombified Piglin", EntityType.ZOMBIFIED_PIGLIN, new ZombifiedPiglinAdapter(), "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTZiNTQzNDY0OTMwZThkMzg2NzZkYjZiZTk5MjBkZDgyYTU0ODU5YzM0OTdkOWZlMzFlZjkyYTg4NGM4NCJ9fX0=");
         register("Hoglin", EntityType.HOGLIN, new HoglinAdapter(), "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTZiNTQzNDY0OTMwZThkMzg2NzZkYjZiZTk5MjBkZDgyYTU0ODU5YzM0OTdkOWZlMzFlZjkyYTg4NGM4NCJ9fX0=");
         register("Zoglin", EntityType.ZOGLIN, new StandardMobAdapter<>(Zoglin.class), "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTZiNTQzNDY0OTMwZThkMzg2NzZkYjZiZTk5MjBkZDgyYTU0ODU5YzM0OTdkOWZlMzFlZjkyYTg4NGM4NCJ9fX0=");
+        register("Strider", EntityType.STRIDER, new StriderAdapter(), "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTZiNTQzNDY0OTMwZThkMzg2NzZkYjZiZTk5MjBkZDgyYTU0ODU5YzM0OTdkOWZlMzFlZjkyYTg4NGM4NCJ9fX0=");
 
         // Ender things
         register("Shulker", EntityType.SHULKER, new ShulkerAdapter(), "d04252216231b3f744c9ff4ace7084ae9f4164f8b384c65410848a19617af4d");
