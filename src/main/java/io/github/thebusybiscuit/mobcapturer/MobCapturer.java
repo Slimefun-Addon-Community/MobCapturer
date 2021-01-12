@@ -151,8 +151,8 @@ public class MobCapturer extends JavaPlugin implements SlimefunAddon {
         register("Turtle", EntityType.TURTLE, new AnimalsAdapter<>(Turtle.class), "15a45e24cadc18f305291af45a22fc8b3607a675baa31ed583d3a56b15223c5c");
         register("Polar Bear", EntityType.POLAR_BEAR, new AnimalsAdapter<>(PolarBear.class), "291abcab7a20b28195c0f1786db28c7670c2979243de71703b04e9d93f59aa8d");
         register("Panda", EntityType.PANDA, new PandaAdapter(), "1ab24611bb37ce3971fdbf01ba3f11bd2e4c72f5d40b6d8d8d536d69e695cd0c");
-        register("Fox", EntityType.FOX, new FoxAdapter(), "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTZiNTQzNDY0OTMwZThkMzg2NzZkYjZiZTk5MjBkZDgyYTU0ODU5YzM0OTdkOWZlMzFlZjkyYTg4NGM4NCJ9fX0=");
-        register("Bee", EntityType.BEE, new BeeAdapter(), "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTZiNTQzNDY0OTMwZThkMzg2NzZkYjZiZTk5MjBkZDgyYTU0ODU5YzM0OTdkOWZlMzFlZjkyYTg4NGM4NCJ9fX0=");
+        register("Fox", EntityType.FOX, new FoxAdapter(), "4e2ce3372a3ac97fdda5638bef24b3bc49f4facf751fe9cad645f15a7fb8397c");
+        register("Bee", EntityType.BEE, new BeeAdapter(), "4e2ce3372a3ac97fdda5638bef24b3bc49f4facf751fe9cad645f15a7fb8397c");
 
         // Mobs
         register("Slime", EntityType.SLIME, new SlimeAdapter<>(Slime.class), "9330af17f8512ed3b49e78bca7ef2d83f2dc1e598a8cb542ecc3b6becee9f57");
@@ -179,12 +179,12 @@ public class MobCapturer extends JavaPlugin implements SlimefunAddon {
         register("Blaze", EntityType.BLAZE, new StandardMobAdapter<>(Blaze.class), "533acae6e075a578ccfc7dc2d5a15dbccfa8f59c609f9703889ef54c742c56");
         register("Magma Cube", EntityType.MAGMA_CUBE, new SlimeAdapter<>(MagmaCube.class), "1185657c38acdd8f95e1d2cd1115bb0f11139ad2b3ce442267e69706d916e");
         register("Ghast", EntityType.GHAST, new StandardMobAdapter<>(Ghast.class), "c442c228f099fdfc1c6b46dfc80b252d81f7fb1739deb16ee7a597c17f7c9");
-        register("Piglin", EntityType.PIGLIN, new PiglinAdapter(), "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTZiNTQzNDY0OTMwZThkMzg2NzZkYjZiZTk5MjBkZDgyYTU0ODU5YzM0OTdkOWZlMzFlZjkyYTg4NGM4NCJ9fX0=");
-        register("Piglin Brute", EntityType.PIGLIN_BRUTE, new PiglinBruteAdapter(), "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTZiNTQzNDY0OTMwZThkMzg2NzZkYjZiZTk5MjBkZDgyYTU0ODU5YzM0OTdkOWZlMzFlZjkyYTg4NGM4NCJ9fX0=");
-        register("Zombified Piglin", EntityType.ZOMBIFIED_PIGLIN, new ZombifiedPiglinAdapter(), "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTZiNTQzNDY0OTMwZThkMzg2NzZkYjZiZTk5MjBkZDgyYTU0ODU5YzM0OTdkOWZlMzFlZjkyYTg4NGM4NCJ9fX0=");
-        register("Hoglin", EntityType.HOGLIN, new HoglinAdapter(), "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTZiNTQzNDY0OTMwZThkMzg2NzZkYjZiZTk5MjBkZDgyYTU0ODU5YzM0OTdkOWZlMzFlZjkyYTg4NGM4NCJ9fX0=");
-        register("Zoglin", EntityType.ZOGLIN, new StandardMobAdapter<>(Zoglin.class), "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTZiNTQzNDY0OTMwZThkMzg2NzZkYjZiZTk5MjBkZDgyYTU0ODU5YzM0OTdkOWZlMzFlZjkyYTg4NGM4NCJ9fX0=");
-        register("Strider", EntityType.STRIDER, new StriderAdapter(), "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTZiNTQzNDY0OTMwZThkMzg2NzZkYjZiZTk5MjBkZDgyYTU0ODU5YzM0OTdkOWZlMzFlZjkyYTg4NGM4NCJ9fX0=");
+        register("Piglin", EntityType.PIGLIN, new PiglinAdapter(), "4e2ce3372a3ac97fdda5638bef24b3bc49f4facf751fe9cad645f15a7fb8397c");
+        register("Piglin Brute", EntityType.PIGLIN_BRUTE, new PiglinBruteAdapter(), "4e2ce3372a3ac97fdda5638bef24b3bc49f4facf751fe9cad645f15a7fb8397c");
+        register("Zombified Piglin", EntityType.ZOMBIFIED_PIGLIN, new ZombifiedPiglinAdapter(), "4e2ce3372a3ac97fdda5638bef24b3bc49f4facf751fe9cad645f15a7fb8397c");
+        register("Hoglin", EntityType.HOGLIN, new HoglinAdapter(), "4e2ce3372a3ac97fdda5638bef24b3bc49f4facf751fe9cad645f15a7fb8397c");
+        register("Zoglin", EntityType.ZOGLIN, new StandardMobAdapter<>(Zoglin.class), "4e2ce3372a3ac97fdda5638bef24b3bc49f4facf751fe9cad645f15a7fb8397c");
+        register("Strider", EntityType.STRIDER, new StriderAdapter(), "4e2ce3372a3ac97fdda5638bef24b3bc49f4facf751fe9cad645f15a7fb8397c");
 
         // Ender things
         register("Shulker", EntityType.SHULKER, new ShulkerAdapter(), "d04252216231b3f744c9ff4ace7084ae9f4164f8b384c65410848a19617af4d");

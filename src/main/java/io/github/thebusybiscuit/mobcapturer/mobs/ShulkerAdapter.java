@@ -10,7 +10,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import io.github.thebusybiscuit.mobcapturer.MobAdapter;
-import me.mrCookieSlime.CSCoreLibPlugin.general.String.StringUtils;
+import io.github.thebusybiscuit.mobcapturer.utils.FormatUtil;
 
 public class ShulkerAdapter implements MobAdapter<Shulker> {
 
@@ -21,7 +21,7 @@ public class ShulkerAdapter implements MobAdapter<Shulker> {
         JsonElement color = json.get("color");
 
         if (!color.isJsonNull()) {
-            lore.add(ChatColor.GRAY + "Color: " + ChatColor.WHITE + StringUtils.format(color.getAsString()));
+            lore.add(ChatColor.GRAY + "Color: " + ChatColor.WHITE + FormatUtil.format(color.getAsString()));
         }
 
         return lore;

@@ -9,7 +9,7 @@ import org.bukkit.entity.Cat.Type;
 
 import com.google.gson.JsonObject;
 
-import me.mrCookieSlime.CSCoreLibPlugin.general.String.StringUtils;
+import io.github.thebusybiscuit.mobcapturer.utils.FormatUtil;
 
 public class CatAdapter extends AbstractTameableAdapter<Cat> {
 
@@ -21,10 +21,10 @@ public class CatAdapter extends AbstractTameableAdapter<Cat> {
     public List<String> getLore(JsonObject json) {
         List<String> lore = super.getLore(json);
 
-        lore.add(ChatColor.GRAY + "Variant: " + ChatColor.WHITE + StringUtils.format(json.get("catType").getAsString()));
+        lore.add(ChatColor.GRAY + "Variant: " + ChatColor.WHITE + FormatUtil.format(json.get("catType").getAsString()));
 
         if (!json.get("ownerUUID").isJsonNull()) {
-            lore.add(ChatColor.GRAY + "Collar Color: " + ChatColor.WHITE + StringUtils.format(json.get("collarColor").getAsString()));
+            lore.add(ChatColor.GRAY + "Collar Color: " + ChatColor.WHITE + FormatUtil.format(json.get("collarColor").getAsString()));
             lore.add(ChatColor.GRAY + "Sitting: " + ChatColor.WHITE + json.get("sitting").getAsBoolean());
         }
 

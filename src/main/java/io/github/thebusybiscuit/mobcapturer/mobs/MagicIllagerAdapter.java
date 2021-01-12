@@ -8,7 +8,7 @@ import org.bukkit.entity.Spellcaster.Spell;
 
 import com.google.gson.JsonObject;
 
-import me.mrCookieSlime.CSCoreLibPlugin.general.String.StringUtils;
+import io.github.thebusybiscuit.mobcapturer.utils.FormatUtil;
 
 public class MagicIllagerAdapter<T extends Spellcaster> extends RaiderAdapter<T> {
 
@@ -20,7 +20,7 @@ public class MagicIllagerAdapter<T extends Spellcaster> extends RaiderAdapter<T>
     public List<String> getLore(JsonObject json) {
         List<String> lore = super.getLore(json);
 
-        lore.add(ChatColor.GRAY + "Spell: " + ChatColor.WHITE + StringUtils.format(json.get("spell").getAsString()));
+        lore.add(ChatColor.GRAY + "Spell: " + ChatColor.WHITE + FormatUtil.format(json.get("spell").getAsString()));
 
         return lore;
     }

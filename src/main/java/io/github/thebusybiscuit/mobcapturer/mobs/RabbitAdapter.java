@@ -8,7 +8,7 @@ import org.bukkit.entity.Rabbit.Type;
 
 import com.google.gson.JsonObject;
 
-import me.mrCookieSlime.CSCoreLibPlugin.general.String.StringUtils;
+import io.github.thebusybiscuit.mobcapturer.utils.FormatUtil;
 
 public class RabbitAdapter extends AnimalsAdapter<Rabbit> {
 
@@ -20,7 +20,7 @@ public class RabbitAdapter extends AnimalsAdapter<Rabbit> {
     public List<String> getLore(JsonObject json) {
         List<String> lore = super.getLore(json);
 
-        lore.add(ChatColor.GRAY + "Variant: " + ChatColor.WHITE + StringUtils.format(json.get("rabbitType").getAsString()));
+        lore.add(ChatColor.GRAY + "Variant: " + ChatColor.WHITE + FormatUtil.format(json.get("rabbitType").getAsString()));
 
         return lore;
     }

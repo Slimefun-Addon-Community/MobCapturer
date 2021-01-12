@@ -10,7 +10,7 @@ import org.bukkit.entity.TropicalFish.Pattern;
 import com.google.gson.JsonObject;
 
 import io.github.thebusybiscuit.mobcapturer.MobAdapter;
-import me.mrCookieSlime.CSCoreLibPlugin.general.String.StringUtils;
+import io.github.thebusybiscuit.mobcapturer.utils.FormatUtil;
 
 public class TropicalFishAdapter implements MobAdapter<TropicalFish> {
 
@@ -18,9 +18,9 @@ public class TropicalFishAdapter implements MobAdapter<TropicalFish> {
     public List<String> getLore(JsonObject json) {
         List<String> lore = MobAdapter.super.getLore(json);
 
-        lore.add(ChatColor.GRAY + "Base Color: " + ChatColor.WHITE + StringUtils.format(json.get("baseColor").getAsString()));
-        lore.add(ChatColor.GRAY + "Pattern: " + ChatColor.WHITE + StringUtils.format(json.get("pattern").getAsString()));
-        lore.add(ChatColor.GRAY + "Pattern Color: " + ChatColor.WHITE + StringUtils.format(json.get("patternColor").getAsString()));
+        lore.add(ChatColor.GRAY + "Base Color: " + ChatColor.WHITE + FormatUtil.format(json.get("baseColor").getAsString()));
+        lore.add(ChatColor.GRAY + "Pattern: " + ChatColor.WHITE + FormatUtil.format(json.get("pattern").getAsString()));
+        lore.add(ChatColor.GRAY + "Pattern Color: " + ChatColor.WHITE + FormatUtil.format(json.get("patternColor").getAsString()));
 
         return lore;
     }

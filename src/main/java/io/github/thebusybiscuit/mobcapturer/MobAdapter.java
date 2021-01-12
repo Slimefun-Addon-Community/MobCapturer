@@ -22,14 +22,12 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-import me.mrCookieSlime.Slimefun.cscorelib2.math.DoubleHandler;
-
 /**
  * This is a simple Adapter that allows conversion between a {@link LivingEntity} and
  * a {@link JsonObject}.
- * 
+ *
  * It also requires the implementation of {@link PersistentDataType}.
- * 
+ *
  * @author TheBusyBiscuit
  *
  */
@@ -41,7 +39,7 @@ public interface MobAdapter<T extends LivingEntity> extends PersistentDataType<S
         List<String> lore = new LinkedList<>();
 
         lore.add("");
-        lore.add(ChatColor.GRAY + "Health: " + ChatColor.GREEN + DoubleHandler.fixDouble(json.get("_health").getAsDouble()));
+        lore.add(ChatColor.GRAY + "Health: " + ChatColor.GREEN + json.get("_health").getAsDouble());
 
         if (!json.get("_customName").isJsonNull()) {
             lore.add(ChatColor.GRAY + "Name: " + ChatColor.RESET + json.get("_customName").getAsString());

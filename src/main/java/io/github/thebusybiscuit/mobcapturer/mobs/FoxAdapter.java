@@ -2,19 +2,24 @@ package io.github.thebusybiscuit.mobcapturer.mobs;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Fox;
 import org.bukkit.entity.Fox.Type;
+import org.bukkit.inventory.EntityEquipment;
+import org.bukkit.inventory.ItemStack;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-import me.mrCookieSlime.CSCoreLibPlugin.general.String.StringUtils;
+import io.github.thebusybiscuit.mobcapturer.utils.FormatUtil;
+import io.github.thebusybiscuit.mobcapturer.InventoryAdapter;
 
-public class FoxAdapter extends AnimalsAdapter<Fox> {
+public class FoxAdapter extends AnimalsAdapter<Fox> implements InventoryAdapter<Fox> {
 
     public FoxAdapter() {
         super(Fox.class);
@@ -24,13 +29,13 @@ public class FoxAdapter extends AnimalsAdapter<Fox> {
     public List<String> getLore(JsonObject json) {
         List<String> lore = super.getLore(json);
 
-        lore.add(ChatColor.GRAY + "Variant: " + ChatColor.WHITE + StringUtils.format(json.get("foxType").getAsString()));
+        lore.add(ChatColor.GRAY + "Variant: " + ChatColor.WHITE + FormatUtil.format(json.get("foxType").getAsString()));
         if (json.get("crouching").getAsBoolean()){
-          lore.add(ChatColor.GRAY + "Crouching: " + ChatColor.WHITE + json.get("crouching").getAsBoolean());
+            lore.add(ChatColor.GRAY + "Crouching: " + ChatColor.WHITE + json.get("crouching").getAsBoolean());
         } else if (json.get("sitting").getAsBoolean()) {
-          lore.add(ChatColor.GRAY + "Sitting: " + ChatColor.WHITE + json.get("sitting").getAsBoolean());
+            lore.add(ChatColor.GRAY + "Sitting: " + ChatColor.WHITE + json.get("sitting").getAsBoolean());
         } else if (json.get("sleeping").getAsBoolean()) {
-          lore.add(ChatColor.GRAY + "Sleeping: " + ChatColor.WHITE + json.get("sleeping").getAsBoolean());
+            lore.add(ChatColor.GRAY + "Sleeping: " + ChatColor.WHITE + json.get("sleeping").getAsBoolean());
         }
 
 
@@ -40,7 +45,7 @@ public class FoxAdapter extends AnimalsAdapter<Fox> {
             if (secondElement.isJsonNull()) {
                 lore.add(ChatColor.GRAY + "Trusted Player: " + ChatColor.WHITE + firstElement.getAsString());
             } else {
-              lore.add(ChatColor.GRAY + "Trusted Players: " + ChatColor.WHITE + firstElement.getAsString() + ", " + secondElement.getAsString());
+                lore.add(ChatColor.GRAY + "Trusted Players: " + ChatColor.WHITE + firstElement.getAsString() + ", " + secondElement.getAsString());
             }
         }
 
@@ -83,6 +88,28 @@ public class FoxAdapter extends AnimalsAdapter<Fox> {
         json.addProperty("secondTrustedPlayerName", entity.getSecondTrustedPlayer() == null ? null : entity.getSecondTrustedPlayer().getName());
 
         return json;
+    }
+
+    @Override
+    public Map<String, ItemStack> saveInventory(Fox entity) {
+        Map<String, ItemStack> inv = new HashMap<>();
+
+        EntityEquipment equipment = entity.getEquipment();
+
+        if (equipment != null) {
+            inv.put("mainHand", equipment.getItemInMainHand());
+        }
+
+        return inv;
+    }
+
+    @Override
+    public void applyInventory(Fox entity, Map<String, ItemStack> inventory) {
+        EntityEquipment equipment = entity.getEquipment();
+
+        if (equipment != null) {
+            equipment.setItemInMainHand(inventory.get("mainHand"));
+        }
     }
 
 }
