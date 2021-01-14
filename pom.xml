@@ -121,7 +121,7 @@
         <dependency>
             <groupId>com.github.slimefun</groupId>
             <artifactId>Slimefun4</artifactId>
-            <version>RC-17</version>
+            <version>RC-19</version>
             <scope>provided</scope>
             <exclusions>
                 <exclusion>
@@ -137,7 +137,7 @@
         <dependency>
             <groupId>org.bstats</groupId>
             <artifactId>bstats-bukkit</artifactId>
-            <version>1.7</version>
+            <version>1.8</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>

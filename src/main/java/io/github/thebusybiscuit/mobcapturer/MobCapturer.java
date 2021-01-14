@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.bstats.bukkit.Metrics;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Bat;
@@ -91,7 +92,6 @@ import me.mrCookieSlime.Slimefun.cscorelib2.config.Config;
 import me.mrCookieSlime.Slimefun.cscorelib2.item.CustomItem;
 import me.mrCookieSlime.Slimefun.cscorelib2.skull.SkullItem;
 import me.mrCookieSlime.Slimefun.cscorelib2.updater.GitHubBuildsUpdater;
-import net.md_5.bungee.api.ChatColor;
 
 public class MobCapturer extends JavaPlugin implements SlimefunAddon {
 
