@@ -11,7 +11,7 @@ import org.bukkit.inventory.ItemStack;
 import com.google.gson.JsonObject;
 
 import io.github.thebusybiscuit.mobcapturer.InventoryAdapter;
-import me.mrCookieSlime.Slimefun.cscorelib2.math.DoubleHandler;
+import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
 
 class AbstractHorseAdapter<T extends AbstractHorse> extends AbstractTameableAdapter<T> implements InventoryAdapter<T> {
 
@@ -23,7 +23,7 @@ class AbstractHorseAdapter<T extends AbstractHorse> extends AbstractTameableAdap
     public List<String> getLore(JsonObject json) {
         List<String> lore = super.getLore(json);
 
-        lore.add(ChatColor.GRAY + "Jump Strength: " + ChatColor.WHITE + DoubleHandler.fixDouble(json.get("jumpStrength").getAsDouble()));
+        lore.add(ChatColor.GRAY + "Jump Strength: " + ChatColor.WHITE + NumberUtils.roundDecimalNumber(json.get("jumpStrength").getAsDouble()));
 
         return lore;
     }
