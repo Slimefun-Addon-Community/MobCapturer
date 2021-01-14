@@ -11,7 +11,7 @@ import org.bukkit.inventory.ItemStack;
 
 import com.google.gson.JsonObject;
 
-import me.mrCookieSlime.CSCoreLibPlugin.general.String.StringUtils;
+import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 
 public class HorseAdapter extends AbstractHorseAdapter<Horse> {
 
@@ -23,8 +23,8 @@ public class HorseAdapter extends AbstractHorseAdapter<Horse> {
     public List<String> getLore(JsonObject json) {
         List<String> lore = super.getLore(json);
 
-        lore.add(ChatColor.GRAY + "Style: " + ChatColor.WHITE + StringUtils.format(json.get("style").getAsString()));
-        lore.add(ChatColor.GRAY + "Color: " + ChatColor.WHITE + StringUtils.format(json.get("color").getAsString()));
+        lore.add(ChatColor.GRAY + "Style: " + ChatColor.WHITE + ChatUtils.humanize(json.get("style").getAsString()));
+        lore.add(ChatColor.GRAY + "Color: " + ChatColor.WHITE + ChatUtils.humanize(json.get("color").getAsString()));
 
         return lore;
     }
