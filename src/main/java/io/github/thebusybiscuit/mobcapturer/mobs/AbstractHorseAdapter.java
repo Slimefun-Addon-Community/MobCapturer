@@ -11,7 +11,6 @@ import org.bukkit.inventory.ItemStack;
 import com.google.gson.JsonObject;
 
 import io.github.thebusybiscuit.mobcapturer.InventoryAdapter;
-
 import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
 
 class AbstractHorseAdapter<T extends AbstractHorse> extends AbstractTameableAdapter<T> implements InventoryAdapter<T> {

@@ -11,6 +11,7 @@ import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.attribute.AttributeModifier.Operation;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.persistence.PersistentDataAdapterContext;
 import org.bukkit.persistence.PersistentDataType;
@@ -35,6 +36,11 @@ import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
  */
 public interface MobAdapter<T extends LivingEntity> extends PersistentDataType<String, JsonObject> {
 
+    /**
+     * This returns the {@link Class} of the captured {@link Entity}.
+     * 
+     * @return The {@link Class} of the {@link Entity} handled by this {@link MobAdapter}
+     */
     Class<T> getEntityClass();
 
     default List<String> getLore(JsonObject json) {
