@@ -8,7 +8,7 @@ import org.bukkit.entity.Llama.Color;
 
 import com.google.gson.JsonObject;
 
-import io.github.thebusybiscuit.mobcapturer.utils.FormatUtil;
+import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 
 public class LlamaAdapter<T extends Llama> extends ChestedHorseAdapter<T> {
 
@@ -20,7 +20,7 @@ public class LlamaAdapter<T extends Llama> extends ChestedHorseAdapter<T> {
     public List<String> getLore(JsonObject json) {
         List<String> lore = super.getLore(json);
 
-        lore.add(ChatColor.GRAY + "Color: " + ChatColor.WHITE + FormatUtil.format(json.get("color").getAsString()));
+        lore.add(ChatColor.GRAY + "Color: " + ChatColor.WHITE + ChatUtils.humanize(json.get("color").getAsString()));
 
         return lore;
     }

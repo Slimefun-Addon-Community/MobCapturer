@@ -8,7 +8,7 @@ import org.bukkit.entity.Rabbit.Type;
 
 import com.google.gson.JsonObject;
 
-import io.github.thebusybiscuit.mobcapturer.utils.FormatUtil;
+import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 
 public class RabbitAdapter extends AnimalsAdapter<Rabbit> {
 
@@ -20,7 +20,7 @@ public class RabbitAdapter extends AnimalsAdapter<Rabbit> {
     public List<String> getLore(JsonObject json) {
         List<String> lore = super.getLore(json);
 
-        lore.add(ChatColor.GRAY + "Variant: " + ChatColor.WHITE + FormatUtil.format(json.get("rabbitType").getAsString()));
+        lore.add(ChatColor.GRAY + "Variant: " + ChatColor.WHITE + ChatUtils.humanize(json.get("rabbitType").getAsString()));
 
         return lore;
     }

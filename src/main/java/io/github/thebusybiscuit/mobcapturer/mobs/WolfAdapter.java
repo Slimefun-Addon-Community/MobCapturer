@@ -8,7 +8,7 @@ import org.bukkit.entity.Wolf;
 
 import com.google.gson.JsonObject;
 
-import io.github.thebusybiscuit.mobcapturer.utils.FormatUtil;
+import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 
 public class WolfAdapter extends AbstractTameableAdapter<Wolf> {
 
@@ -21,7 +21,7 @@ public class WolfAdapter extends AbstractTameableAdapter<Wolf> {
         List<String> lore = super.getLore(json);
 
         if (!json.get("ownerUUID").isJsonNull()) {
-            lore.add(ChatColor.GRAY + "Collar Color: " + ChatColor.WHITE + FormatUtil.format(json.get("collarColor").getAsString()));
+            lore.add(ChatColor.GRAY + "Collar Color: " + ChatColor.WHITE + ChatUtils.humanize(json.get("collarColor").getAsString()));
             lore.add(ChatColor.GRAY + "Sitting: " + ChatColor.WHITE + json.get("sitting").getAsBoolean());
         } else {
             lore.add(ChatColor.GRAY + "Angry: " + ChatColor.WHITE + json.get("angry").getAsBoolean());

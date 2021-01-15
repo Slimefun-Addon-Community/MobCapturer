@@ -16,7 +16,7 @@ import org.bukkit.inventory.ItemStack;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-import io.github.thebusybiscuit.mobcapturer.utils.FormatUtil;
+import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 import io.github.thebusybiscuit.mobcapturer.InventoryAdapter;
 
 public class FoxAdapter extends AnimalsAdapter<Fox> implements InventoryAdapter<Fox> {
@@ -29,7 +29,7 @@ public class FoxAdapter extends AnimalsAdapter<Fox> implements InventoryAdapter<
     public List<String> getLore(JsonObject json) {
         List<String> lore = super.getLore(json);
 
-        lore.add(ChatColor.GRAY + "Variant: " + ChatColor.WHITE + FormatUtil.format(json.get("foxType").getAsString()));
+        lore.add(ChatColor.GRAY + "Variant: " + ChatColor.WHITE + ChatUtils.humanize(json.get("foxType").getAsString()));
         if (json.get("crouching").getAsBoolean()){
             lore.add(ChatColor.GRAY + "Crouching: " + ChatColor.WHITE + json.get("crouching").getAsBoolean());
         } else if (json.get("sitting").getAsBoolean()) {

@@ -8,7 +8,7 @@ import org.bukkit.entity.Sheep;
 
 import com.google.gson.JsonObject;
 
-import io.github.thebusybiscuit.mobcapturer.utils.FormatUtil;
+import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 
 public class SheepAdapter extends AnimalsAdapter<Sheep> {
 
@@ -20,7 +20,7 @@ public class SheepAdapter extends AnimalsAdapter<Sheep> {
     public List<String> getLore(JsonObject json) {
         List<String> lore = super.getLore(json);
 
-        lore.add(ChatColor.GRAY + "Color: " + ChatColor.WHITE + FormatUtil.format(json.get("woolColor").getAsString()));
+        lore.add(ChatColor.GRAY + "Color: " + ChatColor.WHITE + ChatUtils.humanize(json.get("woolColor").getAsString()));
 
         return lore;
     }

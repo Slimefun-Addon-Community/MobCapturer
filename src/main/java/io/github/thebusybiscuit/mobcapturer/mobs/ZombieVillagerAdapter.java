@@ -11,7 +11,7 @@ import org.bukkit.entity.ZombieVillager;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-import io.github.thebusybiscuit.mobcapturer.utils.FormatUtil;
+import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 
 public class ZombieVillagerAdapter extends ZombieAdapter<ZombieVillager> {
 
@@ -23,7 +23,7 @@ public class ZombieVillagerAdapter extends ZombieAdapter<ZombieVillager> {
     public List<String> getLore(JsonObject json) {
         List<String> lore = super.getLore(json);
 
-        lore.add(ChatColor.GRAY + "Profession: " + ChatColor.WHITE + FormatUtil.format(json.get("profession").getAsString()));
+        lore.add(ChatColor.GRAY + "Profession: " + ChatColor.WHITE + ChatUtils.humanize(json.get("profession").getAsString()));
 
         return lore;
     }

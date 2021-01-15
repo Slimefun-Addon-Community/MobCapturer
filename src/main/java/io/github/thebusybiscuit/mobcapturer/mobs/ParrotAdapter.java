@@ -8,7 +8,7 @@ import org.bukkit.entity.Parrot.Variant;
 
 import com.google.gson.JsonObject;
 
-import io.github.thebusybiscuit.mobcapturer.utils.FormatUtil;
+import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 
 public class ParrotAdapter extends AbstractTameableAdapter<Parrot> {
 
@@ -20,7 +20,7 @@ public class ParrotAdapter extends AbstractTameableAdapter<Parrot> {
     public List<String> getLore(JsonObject json) {
         List<String> lore = super.getLore(json);
 
-        lore.add(ChatColor.GRAY + "Variant: " + ChatColor.WHITE + FormatUtil.format(json.get("variant").getAsString()));
+        lore.add(ChatColor.GRAY + "Variant: " + ChatColor.WHITE + ChatUtils.humanize(json.get("variant").getAsString()));
 
         if (!json.get("ownerUUID").isJsonNull()) {
             lore.add(ChatColor.GRAY + "Sitting: " + ChatColor.WHITE + json.get("sitting").getAsBoolean());
