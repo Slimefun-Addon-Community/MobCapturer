@@ -1,16 +1,15 @@
 package io.github.thebusybiscuit.mobcapturer.mobs;
 
-import org.bukkit.ChatColor;
-import org.bukkit.entity.PiglinBrute;
-
 import com.google.gson.JsonObject;
+import org.bukkit.ChatColor;
+import org.bukkit.entity.Hoglin;
 
 import java.util.List;
 
-public class PiglinBruteAdapter extends AbstractHumanoidAdapter<PiglinBrute> {
+public class ZoglinAdapter extends AnimalsAdapter<Hoglin> {
 
-    public PiglinBruteAdapter() {
-        super(PiglinBrute.class);
+    public ZoglinAdapter() {
+        super(Hoglin.class);
     }
 
     @Override
@@ -23,22 +22,18 @@ public class PiglinBruteAdapter extends AbstractHumanoidAdapter<PiglinBrute> {
     }
 
     @Override
-    public void apply(PiglinBrute entity, JsonObject json) {
+    public void apply(Hoglin entity, JsonObject json) {
         super.apply(entity, json);
 
         entity.setAge(json.get("age").getAsInt());
-        entity.setConversionTime(json.get("conversionTime").getAsInt());
-        entity.setImmuneToZombification(json.get("immuneToZombification").getAsBoolean());
     }
 
     @Override
-    public JsonObject saveData(PiglinBrute entity) {
+    public JsonObject saveData(Hoglin entity) {
         JsonObject json = super.saveData(entity);
 
         json.addProperty("age", entity.getAge());
         json.addProperty("baby", !entity.isAdult());
-        json.addProperty("conversionTime", entity.getConversionTime());
-        json.addProperty("immuneToZombification", entity.isImmuneToZombification());
 
         return json;
     }
