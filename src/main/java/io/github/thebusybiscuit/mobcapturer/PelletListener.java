@@ -1,13 +1,17 @@
 package io.github.thebusybiscuit.mobcapturer;
 
-import java.util.Optional;
-
+import io.github.thebusybiscuit.slimefun4.implementation.SlimefunPlugin;
+import me.mrCookieSlime.Slimefun.cscorelib2.protection.ProtectableAction;
+import org.bukkit.Location;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
 import org.bukkit.entity.Snowball;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
+
+import java.util.Optional;
 
 public class PelletListener implements Listener {
 
@@ -22,14 +26,22 @@ public class PelletListener implements Listener {
     @EventHandler
     public void onProjectileHit(EntityDamageByEntityEvent e) {
         if (e.getDamager() instanceof Snowball && e.getEntity() instanceof LivingEntity && e.getDamager().hasMetadata("mob_capturing_cannon")) {
-            Optional<ItemStack> optional = plugin.capture((LivingEntity) e.getEntity());
+            Snowball s = (Snowball) e.getDamager();
 
-            if (optional.isPresent()) {
-                e.getDamager().removeMetadata("mob_capturing_cannon", plugin);
-                e.getEntity().remove();
-                e.getEntity().getWorld().dropItemNaturally(((LivingEntity) e.getEntity()).getEyeLocation(), optional.get());
+            if (canCapture((Player) s.getShooter(), e.getEntity().getLocation())) {
+                Optional<ItemStack> optional = plugin.capture((LivingEntity) e.getEntity());
+
+                if (optional.isPresent()) {
+                    e.getDamager().removeMetadata("mob_capturing_cannon", plugin);
+                    e.getEntity().remove();
+                    e.getEntity().getWorld().dropItemNaturally(((LivingEntity) e.getEntity()).getEyeLocation(), optional.get());
+                }
             }
         }
+    }
+
+    protected boolean canCapture(Player p, Location l) {
+        return SlimefunPlugin.getProtectionManager().hasPermission(p, l, ProtectableAction.ATTACK_ENTITY);
     }
 
 }
