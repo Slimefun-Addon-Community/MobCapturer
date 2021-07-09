@@ -182,11 +182,11 @@ public class MobCapturer extends JavaPlugin implements SlimefunAddon {
         register("Magma Cube", EntityType.MAGMA_CUBE, new SlimeAdapter<>(MagmaCube.class), "1185657c38acdd8f95e1d2cd1115bb0f11139ad2b3ce442267e69706d916e");
         register("Ghast", EntityType.GHAST, new StandardMobAdapter<>(Ghast.class), "c442c228f099fdfc1c6b46dfc80b252d81f7fb1739deb16ee7a597c17f7c9");
         register("Piglin", EntityType.PIGLIN, new PiglinAdapter(), "f2f621045771323d916c26bfb5ebec5738dbff8301246fe1481e9f9d25326f3b");
-        register("Piglin Brute", EntityType.PIGLIN_BRUTE, new PiglinBruteAdapter(), "4e2ce3372a3ac97fdda5638bef24b3bc49f4facf751fe9cad645f15a7fb8397c");
-        register("Zombified Piglin", EntityType.ZOMBIFIED_PIGLIN, new ZombifiedPiglinAdapter(), "4e2ce3372a3ac97fdda5638bef24b3bc49f4facf751fe9cad645f15a7fb8397c");
-        register("Hoglin", EntityType.HOGLIN, new HoglinAdapter(), "4e2ce3372a3ac97fdda5638bef24b3bc49f4facf751fe9cad645f15a7fb8397c");
-        register("Zoglin", EntityType.ZOGLIN, new ZoglinAdapter(), "4e2ce3372a3ac97fdda5638bef24b3bc49f4facf751fe9cad645f15a7fb8397c");
-        register("Strider", EntityType.STRIDER, new StriderAdapter(), "4e2ce3372a3ac97fdda5638bef24b3bc49f4facf751fe9cad645f15a7fb8397c");
+        register("Piglin Brute", EntityType.PIGLIN_BRUTE, new PiglinBruteAdapter(), "b13a4d678041dff776fffd96486e90f1b5e115af33647454caf401fd3fd00d5e");
+        register("Zombified Piglin", EntityType.ZOMBIFIED_PIGLIN, new ZombifiedPiglinAdapter(), "4db2e40571acefdcb7f15f94e1f174c3b9c299921f14da052628a0ba18e0c323");
+        register("Hoglin", EntityType.HOGLIN, new HoglinAdapter(), "a6eddc5a25d4ff8f9f3490d673613093e65b866d369a26f8ee8b93983c692be3");
+        register("Zoglin", EntityType.ZOGLIN, new ZoglinAdapter(), "31a6d71f3587ad1888d757fea265614ab7d0204daade131954fb675e92585227");
+        register("Strider", EntityType.STRIDER, new StriderAdapter(), "34f2759b413a8a645504fb5074dae1dddcc8af150b7fe06cc5832667e776b6f7");
 
         // Ender things
         register("Shulker", EntityType.SHULKER, new ShulkerAdapter(), "d04252216231b3f744c9ff4ace7084ae9f4164f8b384c65410848a19617af4d");
