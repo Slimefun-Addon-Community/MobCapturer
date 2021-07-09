@@ -1,11 +1,10 @@
 package io.github.thebusybiscuit.mobcapturer.mobs;
 
-import java.util.List;
-
+import com.google.gson.JsonObject;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Zombie;
 
-import com.google.gson.JsonObject;
+import java.util.List;
 
 public class ZombieAdapter<T extends Zombie> extends AbstractHumanoidAdapter<T> {
 
@@ -26,7 +25,8 @@ public class ZombieAdapter<T extends Zombie> extends AbstractHumanoidAdapter<T> 
     public JsonObject saveData(T entity) {
         JsonObject json = super.saveData(entity);
 
-        json.addProperty("baby", entity.isBaby());
+        json.addProperty("age", entity.getAge());
+        json.addProperty("baby", !entity.isAdult());
 
         if (entity.isConverting()) {
             json.addProperty("conversionTime", entity.getConversionTime());
@@ -39,7 +39,7 @@ public class ZombieAdapter<T extends Zombie> extends AbstractHumanoidAdapter<T> 
     public void apply(T entity, JsonObject json) {
         super.apply(entity, json);
 
-        entity.setBaby(json.get("baby").getAsBoolean());
+        entity.setAge(json.get("age").getAsInt());
 
         if (json.has("conversionTime")) {
             entity.setConversionTime(json.get("conversionTime").getAsInt());
