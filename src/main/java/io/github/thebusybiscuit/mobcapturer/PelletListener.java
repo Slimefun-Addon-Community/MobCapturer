@@ -26,9 +26,9 @@ public class PelletListener implements Listener {
     @EventHandler
     public void onProjectileHit(EntityDamageByEntityEvent e) {
         if (e.getDamager() instanceof Snowball && e.getEntity() instanceof LivingEntity && e.getDamager().hasMetadata("mob_capturing_cannon")) {
-            Snowball s = (Snowball) e.getDamager();
+            Snowball pellet = (Snowball) e.getDamager();
 
-            if (canCapture((Player) s.getShooter(), e.getEntity().getLocation())) {
+            if (pellet.getShooter() instanceof Player && canCapture((Player) pellet.getShooter(), e.getEntity().getLocation())) {
                 Optional<ItemStack> optional = plugin.capture((LivingEntity) e.getEntity());
 
                 if (optional.isPresent()) {

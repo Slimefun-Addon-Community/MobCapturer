@@ -1,100 +1,14 @@
 package io.github.thebusybiscuit.mobcapturer;
 
-import java.util.EnumMap;
-import java.util.Map;
-import java.util.Optional;
-
-
-import io.github.thebusybiscuit.mobcapturer.mobs.AnimalsAdapter;
-import io.github.thebusybiscuit.mobcapturer.mobs.BeeAdapter;
-import io.github.thebusybiscuit.mobcapturer.mobs.CatAdapter;
-import io.github.thebusybiscuit.mobcapturer.mobs.ChestedHorseAdapter;
-import io.github.thebusybiscuit.mobcapturer.mobs.CreeperAdapter;
-import io.github.thebusybiscuit.mobcapturer.mobs.EndermiteAdapter;
-import io.github.thebusybiscuit.mobcapturer.mobs.FoxAdapter;
-import io.github.thebusybiscuit.mobcapturer.mobs.HoglinAdapter;
-import io.github.thebusybiscuit.mobcapturer.mobs.HorseAdapter;
-import io.github.thebusybiscuit.mobcapturer.mobs.IronGolemAdapter;
-import io.github.thebusybiscuit.mobcapturer.mobs.LlamaAdapter;
-import io.github.thebusybiscuit.mobcapturer.mobs.MagicIllagerAdapter;
-import io.github.thebusybiscuit.mobcapturer.mobs.MooshroomAdapter;
-import io.github.thebusybiscuit.mobcapturer.mobs.PandaAdapter;
-import io.github.thebusybiscuit.mobcapturer.mobs.ParrotAdapter;
-import io.github.thebusybiscuit.mobcapturer.mobs.PhantomAdapter;
-import io.github.thebusybiscuit.mobcapturer.mobs.PigAdapter;
-import io.github.thebusybiscuit.mobcapturer.mobs.PiglinAdapter;
-import io.github.thebusybiscuit.mobcapturer.mobs.PiglinBruteAdapter;
-import io.github.thebusybiscuit.mobcapturer.mobs.PufferFishAdapter;
-import io.github.thebusybiscuit.mobcapturer.mobs.RabbitAdapter;
-import io.github.thebusybiscuit.mobcapturer.mobs.RaiderAdapter;
-import io.github.thebusybiscuit.mobcapturer.mobs.SheepAdapter;
-import io.github.thebusybiscuit.mobcapturer.mobs.ShulkerAdapter;
-import io.github.thebusybiscuit.mobcapturer.mobs.SkeletonAdapter;
-import io.github.thebusybiscuit.mobcapturer.mobs.SlimeAdapter;
-import io.github.thebusybiscuit.mobcapturer.mobs.SnowmanAdapter;
-import io.github.thebusybiscuit.mobcapturer.mobs.StandardMobAdapter;
-import io.github.thebusybiscuit.mobcapturer.mobs.StriderAdapter;
-import io.github.thebusybiscuit.mobcapturer.mobs.TropicalFishAdapter;
-import io.github.thebusybiscuit.mobcapturer.mobs.UndeadHorseAdapter;
-import io.github.thebusybiscuit.mobcapturer.mobs.VexAdapter;
-import io.github.thebusybiscuit.mobcapturer.mobs.WolfAdapter;
-import io.github.thebusybiscuit.mobcapturer.mobs.ZoglinAdapter;
-import io.github.thebusybiscuit.mobcapturer.mobs.ZombieAdapter;
-import io.github.thebusybiscuit.mobcapturer.mobs.ZombieVillagerAdapter;
-import io.github.thebusybiscuit.mobcapturer.mobs.ZombifiedPiglinAdapter;
-
-import org.bstats.bukkit.Metrics;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
-import org.bukkit.entity.Bat;
-import org.bukkit.entity.Blaze;
-import org.bukkit.entity.CaveSpider;
-import org.bukkit.entity.Chicken;
-import org.bukkit.entity.Cod;
-import org.bukkit.entity.Cow;
-import org.bukkit.entity.Dolphin;
-import org.bukkit.entity.Donkey;
-import org.bukkit.entity.Drowned;
-import org.bukkit.entity.ElderGuardian;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Evoker;
-import org.bukkit.entity.Ghast;
-import org.bukkit.entity.Guardian;
-import org.bukkit.entity.Husk;
-import org.bukkit.entity.Illusioner;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Llama;
-import org.bukkit.entity.MagmaCube;
-import org.bukkit.entity.Mule;
-import org.bukkit.entity.Ocelot;
-import org.bukkit.entity.Pillager;
-import org.bukkit.entity.PolarBear;
-import org.bukkit.entity.Ravager;
-import org.bukkit.entity.Salmon;
-import org.bukkit.entity.Silverfish;
-import org.bukkit.entity.Skeleton;
-import org.bukkit.entity.SkeletonHorse;
-import org.bukkit.entity.Slime;
-import org.bukkit.entity.Spider;
-import org.bukkit.entity.Squid;
-import org.bukkit.entity.Stray;
-import org.bukkit.entity.TraderLlama;
-import org.bukkit.entity.Turtle;
-import org.bukkit.entity.Vindicator;
-import org.bukkit.entity.Witch;
-import org.bukkit.entity.WitherSkeleton;
-import org.bukkit.entity.Zombie;
-import org.bukkit.entity.ZombieHorse;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.java.JavaPlugin;
-
 import io.github.thebusybiscuit.mobcapturer.items.MobCannon;
 import io.github.thebusybiscuit.mobcapturer.items.MobEgg;
 import io.github.thebusybiscuit.mobcapturer.items.MobPellet;
+import io.github.thebusybiscuit.mobcapturer.mobs.*;
+import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.core.researching.Research;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
+import io.github.thebusybiscuit.slimefun4.implementation.SlimefunPlugin;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.Objects.Category;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
@@ -102,6 +16,17 @@ import me.mrCookieSlime.Slimefun.cscorelib2.config.Config;
 import me.mrCookieSlime.Slimefun.cscorelib2.item.CustomItem;
 import me.mrCookieSlime.Slimefun.cscorelib2.skull.SkullItem;
 import me.mrCookieSlime.Slimefun.cscorelib2.updater.GitHubBuildsUpdater;
+import org.bstats.bukkit.Metrics;
+import org.bukkit.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
+import org.bukkit.entity.*;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.EnumMap;
+import java.util.Map;
+import java.util.Optional;
 
 public class MobCapturer extends JavaPlugin implements SlimefunAddon {
 
@@ -181,12 +106,14 @@ public class MobCapturer extends JavaPlugin implements SlimefunAddon {
         register("Blaze", EntityType.BLAZE, new StandardMobAdapter<>(Blaze.class), "533acae6e075a578ccfc7dc2d5a15dbccfa8f59c609f9703889ef54c742c56");
         register("Magma Cube", EntityType.MAGMA_CUBE, new SlimeAdapter<>(MagmaCube.class), "1185657c38acdd8f95e1d2cd1115bb0f11139ad2b3ce442267e69706d916e");
         register("Ghast", EntityType.GHAST, new StandardMobAdapter<>(Ghast.class), "c442c228f099fdfc1c6b46dfc80b252d81f7fb1739deb16ee7a597c17f7c9");
-        register("Piglin", EntityType.PIGLIN, new PiglinAdapter(), "f2f621045771323d916c26bfb5ebec5738dbff8301246fe1481e9f9d25326f3b");
-        register("Piglin Brute", EntityType.PIGLIN_BRUTE, new PiglinBruteAdapter(), "b13a4d678041dff776fffd96486e90f1b5e115af33647454caf401fd3fd00d5e");
-        register("Zombified Piglin", EntityType.ZOMBIFIED_PIGLIN, new ZombifiedPiglinAdapter(), "4db2e40571acefdcb7f15f94e1f174c3b9c299921f14da052628a0ba18e0c323");
-        register("Hoglin", EntityType.HOGLIN, new HoglinAdapter(), "a6eddc5a25d4ff8f9f3490d673613093e65b866d369a26f8ee8b93983c692be3");
-        register("Zoglin", EntityType.ZOGLIN, new ZoglinAdapter(), "31a6d71f3587ad1888d757fea265614ab7d0204daade131954fb675e92585227");
-        register("Strider", EntityType.STRIDER, new StriderAdapter(), "34f2759b413a8a645504fb5074dae1dddcc8af150b7fe06cc5832667e776b6f7");
+        if (SlimefunPlugin.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_16)) {
+            register("Piglin", EntityType.PIGLIN, new PiglinAdapter(), "f2f621045771323d916c26bfb5ebec5738dbff8301246fe1481e9f9d25326f3b");
+            register("Piglin Brute", EntityType.PIGLIN_BRUTE, new PiglinBruteAdapter(), "b13a4d678041dff776fffd96486e90f1b5e115af33647454caf401fd3fd00d5e");
+            register("Zombified Piglin", EntityType.ZOMBIFIED_PIGLIN, new ZombifiedPiglinAdapter(), "4db2e40571acefdcb7f15f94e1f174c3b9c299921f14da052628a0ba18e0c323");
+            register("Hoglin", EntityType.HOGLIN, new HoglinAdapter(), "a6eddc5a25d4ff8f9f3490d673613093e65b866d369a26f8ee8b93983c692be3");
+            register("Zoglin", EntityType.ZOGLIN, new ZoglinAdapter(), "31a6d71f3587ad1888d757fea265614ab7d0204daade131954fb675e92585227");
+            register("Strider", EntityType.STRIDER, new StriderAdapter(), "34f2759b413a8a645504fb5074dae1dddcc8af150b7fe06cc5832667e776b6f7");
+        }
 
         // Ender things
         register("Shulker", EntityType.SHULKER, new ShulkerAdapter(), "d04252216231b3f744c9ff4ace7084ae9f4164f8b384c65410848a19617af4d");
