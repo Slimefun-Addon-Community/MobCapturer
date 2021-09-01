@@ -10,6 +10,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.projectiles.ProjectileSource;
 
 import java.util.Optional;
 
@@ -27,8 +28,9 @@ public class PelletListener implements Listener {
     public void onProjectileHit(EntityDamageByEntityEvent e) {
         if (e.getDamager() instanceof Snowball && e.getEntity() instanceof LivingEntity && e.getDamager().hasMetadata("mob_capturing_cannon")) {
             Snowball pellet = (Snowball) e.getDamager();
+            ProjectileSource shooter = pellet.getShooter();
 
-            if (pellet.getShooter() instanceof Player && canCapture((Player) pellet.getShooter(), e.getEntity().getLocation())) {
+            if (shooter instanceof Player && canCapture((Player) shooter, e.getEntity().getLocation())) {
                 Optional<ItemStack> optional = plugin.capture((LivingEntity) e.getEntity());
 
                 if (optional.isPresent()) {

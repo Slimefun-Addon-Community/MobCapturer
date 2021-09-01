@@ -1,7 +1,6 @@
 package io.github.thebusybiscuit.mobcapturer.mobs;
 
 import com.google.gson.JsonObject;
-import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.PigZombie;
 

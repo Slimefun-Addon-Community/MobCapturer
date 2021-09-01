@@ -1,9 +1,96 @@
 package io.github.thebusybiscuit.mobcapturer;
 
+import java.util.EnumMap;
+import java.util.Map;
+import java.util.Optional;
+
+import org.bstats.bukkit.Metrics;
+import org.bukkit.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
+import org.bukkit.entity.Bat;
+import org.bukkit.entity.Blaze;
+import org.bukkit.entity.CaveSpider;
+import org.bukkit.entity.Chicken;
+import org.bukkit.entity.Cod;
+import org.bukkit.entity.Cow;
+import org.bukkit.entity.Dolphin;
+import org.bukkit.entity.Donkey;
+import org.bukkit.entity.Drowned;
+import org.bukkit.entity.ElderGuardian;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Evoker;
+import org.bukkit.entity.Ghast;
+import org.bukkit.entity.Guardian;
+import org.bukkit.entity.Husk;
+import org.bukkit.entity.Illusioner;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Llama;
+import org.bukkit.entity.MagmaCube;
+import org.bukkit.entity.Mule;
+import org.bukkit.entity.Ocelot;
+import org.bukkit.entity.Pillager;
+import org.bukkit.entity.PolarBear;
+import org.bukkit.entity.Ravager;
+import org.bukkit.entity.Salmon;
+import org.bukkit.entity.Silverfish;
+import org.bukkit.entity.Skeleton;
+import org.bukkit.entity.SkeletonHorse;
+import org.bukkit.entity.Slime;
+import org.bukkit.entity.Spider;
+import org.bukkit.entity.Squid;
+import org.bukkit.entity.Stray;
+import org.bukkit.entity.TraderLlama;
+import org.bukkit.entity.Turtle;
+import org.bukkit.entity.Vindicator;
+import org.bukkit.entity.Witch;
+import org.bukkit.entity.WitherSkeleton;
+import org.bukkit.entity.Zombie;
+import org.bukkit.entity.ZombieHorse;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.java.JavaPlugin;
+
+import io.github.thebusybiscuit.mobcapturer.mobs.AnimalsAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.BeeAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.CatAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.ChestedHorseAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.CreeperAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.EndermiteAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.FoxAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.HoglinAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.HorseAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.IronGolemAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.LlamaAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.MagicIllagerAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.MooshroomAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.PandaAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.ParrotAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.PhantomAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.PigAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.PiglinAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.PiglinBruteAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.PufferFishAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.RabbitAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.RaiderAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.SheepAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.ShulkerAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.SkeletonAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.SlimeAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.SnowmanAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.StandardMobAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.StriderAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.TropicalFishAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.UndeadHorseAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.VexAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.WolfAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.ZoglinAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.ZombieAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.ZombieVillagerAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.ZombifiedPiglinAdapter;
+
 import io.github.thebusybiscuit.mobcapturer.items.MobCannon;
 import io.github.thebusybiscuit.mobcapturer.items.MobEgg;
 import io.github.thebusybiscuit.mobcapturer.items.MobPellet;
-import io.github.thebusybiscuit.mobcapturer.mobs.*;
 import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.core.researching.Research;
@@ -16,17 +103,6 @@ import me.mrCookieSlime.Slimefun.cscorelib2.config.Config;
 import me.mrCookieSlime.Slimefun.cscorelib2.item.CustomItem;
 import me.mrCookieSlime.Slimefun.cscorelib2.skull.SkullItem;
 import me.mrCookieSlime.Slimefun.cscorelib2.updater.GitHubBuildsUpdater;
-import org.bstats.bukkit.Metrics;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
-import org.bukkit.entity.*;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.java.JavaPlugin;
-
-import java.util.EnumMap;
-import java.util.Map;
-import java.util.Optional;
 
 public class MobCapturer extends JavaPlugin implements SlimefunAddon {
 
@@ -164,7 +240,7 @@ public class MobCapturer extends JavaPlugin implements SlimefunAddon {
     public <T extends LivingEntity> void register(String name, EntityType type, MobAdapter<T> adapter, String eggTexture) {
         SlimefunItemStack itemstack = new SlimefunItemStack("MOB_EGG_" + type.toString(), eggTexture, "&aMob Egg &7(" + name + ")", "", "&7Right Click this Item on a Block", "&7to release your captured Mob");
 
-        MobEgg<T> egg = new MobEgg<>(category, itemstack, dataKey, inventoryKey, adapter, recipeType, new ItemStack[] { null, null, null, null, new CustomItem(SkullItem.fromHash(eggTexture), ChatColor.WHITE + name), null, null, null, null });
+        MobEgg<T> egg = new MobEgg<> (category, itemstack, dataKey, inventoryKey, adapter, recipeType, new ItemStack[] { null, null, null, null, new CustomItem(SkullItem.fromHash(eggTexture), ChatColor.WHITE + name), null, null, null, null });
 
         egg.register(this);
 
