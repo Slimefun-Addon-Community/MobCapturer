@@ -86,6 +86,10 @@ import io.github.thebusybiscuit.mobcapturer.mobs.WolfAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.ZoglinAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.ZombieAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.ZombieVillagerAdapter;
+import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import io.github.thebusybiscuit.slimefun4.api.researches.Research;
 import io.github.thebusybiscuit.mobcapturer.mobs.ZombifiedPiglinAdapter;
 
 import io.github.thebusybiscuit.mobcapturer.items.MobCannon;
@@ -93,16 +97,13 @@ import io.github.thebusybiscuit.mobcapturer.items.MobEgg;
 import io.github.thebusybiscuit.mobcapturer.items.MobPellet;
 import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
-import io.github.thebusybiscuit.slimefun4.core.researching.Research;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunPlugin;
-import me.mrCookieSlime.Slimefun.Lists.RecipeType;
-import me.mrCookieSlime.Slimefun.Objects.Category;
-import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
-import me.mrCookieSlime.Slimefun.cscorelib2.config.Config;
-import me.mrCookieSlime.Slimefun.cscorelib2.item.CustomItem;
-import me.mrCookieSlime.Slimefun.cscorelib2.skull.SkullItem;
-import me.mrCookieSlime.Slimefun.cscorelib2.updater.GitHubBuildsUpdater;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.config.Config;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerHead;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerSkin;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.updater.GitHubBuildsUpdater;
 
 public class MobCapturer extends JavaPlugin implements SlimefunAddon {
 
@@ -111,7 +112,7 @@ public class MobCapturer extends JavaPlugin implements SlimefunAddon {
 
     private final Map<EntityType, MobEgg<?>> adapters = new EnumMap<>(EntityType.class);
 
-    private Category category;
+    private ItemGroup itemGroup;
     private Research research;
     private RecipeType recipeType;
 
@@ -126,23 +127,23 @@ public class MobCapturer extends JavaPlugin implements SlimefunAddon {
 
         new PelletListener(this);
 
-        category = new Category(new NamespacedKey(this, "mob_capturer"), new CustomItem(SkullItem.fromHash("d429ff1d2015cb11398471bb2f895f7b4c3ccec201e4ad7a86ff24b744878c"), "&dMob Capturer"));
+        itemGroup = new ItemGroup(new NamespacedKey(this, "mob_capturer"), new CustomItemStack(PlayerHead.getItemStack(PlayerSkin.fromHashCode("d429ff1d2015cb11398471bb2f895f7b4c3ccec201e4ad7a86ff24b744878c")), "&dMob Capturer"));
         research = new Research(new NamespacedKey(this, "mob_capturing"), 32652, "Capturing Mobs", 28);
 
         SlimefunItemStack cannon = new SlimefunItemStack("MOB_CANNON", Material.BLAZE_ROD, "&6Mob Capturing Cannon", "", "&eRight Click &7to shoot a &fMob Caging Pellet");
         SlimefunItemStack pellet = new SlimefunItemStack("MOB_CAPTURING_PELLET", "983b30e9d135b05190eea2c3ac61e2ab55a2d81e1a58dbb26983a14082664", "&fMob Capturing Pellet", "", "&7These Pellets are used as", "&7Ammunition for your &6Mob Capturing Cannon");
 
-        MobPellet mobPellet = new MobPellet(category, pellet, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] { new ItemStack(Material.STRING), new ItemStack(Material.IRON_NUGGET), new ItemStack(Material.STRING), SlimefunItems.MAGIC_LUMP_2, new ItemStack(Material.EGG), SlimefunItems.MAGIC_LUMP_2, new ItemStack(Material.STRING), new ItemStack(Material.IRON_NUGGET), new ItemStack(Material.STRING) });
+        MobPellet mobPellet = new MobPellet(itemGroup, pellet, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] { new ItemStack(Material.STRING), new ItemStack(Material.IRON_NUGGET), new ItemStack(Material.STRING), SlimefunItems.MAGIC_LUMP_2, new ItemStack(Material.EGG), SlimefunItems.MAGIC_LUMP_2, new ItemStack(Material.STRING), new ItemStack(Material.IRON_NUGGET), new ItemStack(Material.STRING) });
 
         research.addItems(mobPellet);
         mobPellet.register(this);
 
-        MobCannon mobCannon = new MobCannon(this, category, cannon, mobPellet, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] { null, SlimefunItems.STEEL_INGOT, SlimefunItems.HOOK, SlimefunItems.STEEL_INGOT, SlimefunItems.POWER_CRYSTAL, SlimefunItems.STEEL_INGOT, SlimefunItems.ADVANCED_CIRCUIT_BOARD, SlimefunItems.STEEL_INGOT, null });
+        MobCannon mobCannon = new MobCannon(this, itemGroup, cannon, mobPellet, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] { null, SlimefunItems.STEEL_INGOT, SlimefunItems.HOOK, SlimefunItems.STEEL_INGOT, SlimefunItems.POWER_CRYSTAL, SlimefunItems.STEEL_INGOT, SlimefunItems.ADVANCED_CIRCUIT_BOARD, SlimefunItems.STEEL_INGOT, null });
 
         research.addItems(mobCannon);
         mobCannon.register(this);
 
-        recipeType = new RecipeType(new NamespacedKey(this, "mob_capturing"), new CustomItem(cannon, "&6Mob Capturing Cannon", "&7Use a &6Mob Capturing Cannon", "&7to catch the given Mob."));
+        recipeType = new RecipeType(new NamespacedKey(this, "mob_capturing"), new CustomItemStack(cannon, "&6Mob Capturing Cannon", "&7Use a &6Mob Capturing Cannon", "&7to catch the given Mob."));
 
         // Animals
         register("Cow", EntityType.COW, new AnimalsAdapter<>(Cow.class), "9419f15ff54dae5d040f9b9d8eb2a8989e676710922a0ca164da613ca61e9");
@@ -240,7 +241,7 @@ public class MobCapturer extends JavaPlugin implements SlimefunAddon {
     public <T extends LivingEntity> void register(String name, EntityType type, MobAdapter<T> adapter, String eggTexture) {
         SlimefunItemStack itemstack = new SlimefunItemStack("MOB_EGG_" + type.toString(), eggTexture, "&aMob Egg &7(" + name + ")", "", "&7Right Click this Item on a Block", "&7to release your captured Mob");
 
-        MobEgg<T> egg = new MobEgg<> (category, itemstack, dataKey, inventoryKey, adapter, recipeType, new ItemStack[] { null, null, null, null, new CustomItem(SkullItem.fromHash(eggTexture), ChatColor.WHITE + name), null, null, null, null });
+        MobEgg<T> egg = new MobEgg<>(itemGroup, itemstack, dataKey, inventoryKey, adapter, recipeType, new ItemStack[] { null, null, null, null, new CustomItemStack(PlayerHead.getItemStack(PlayerSkin.fromHashCode(eggTexture)), ChatColor.WHITE + name), null, null, null, null });
 
         egg.register(this);
 
