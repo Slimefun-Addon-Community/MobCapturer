@@ -1,7 +1,5 @@
 package io.github.thebusybiscuit.mobcapturer;
 
-import io.github.thebusybiscuit.slimefun4.implementation.SlimefunPlugin;
-import me.mrCookieSlime.Slimefun.cscorelib2.protection.ProtectableAction;
 import org.bukkit.Location;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -13,6 +11,8 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.projectiles.ProjectileSource;
 
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
 import java.util.Optional;
 
 public class PelletListener implements Listener {
@@ -44,7 +44,7 @@ public class PelletListener implements Listener {
     }
 
     protected boolean canCapture(Player p, Location l) {
-        return SlimefunPlugin.getProtectionManager().hasPermission(p, l, ProtectableAction.ATTACK_ENTITY);
+        return Slimefun.getProtectionManager().hasPermission(p, l, Interaction.ATTACK_ENTITY);
     }
 
 }

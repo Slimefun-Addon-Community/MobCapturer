@@ -7,8 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-import io.github.thebusybiscuit.slimefun4.implementation.SlimefunPlugin;
-import me.mrCookieSlime.Slimefun.cscorelib2.protection.ProtectableAction;
+
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
@@ -30,8 +29,10 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.NotPlaceable;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.ItemUtils;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
 
 public class MobEgg<T extends LivingEntity> extends SimpleSlimefunItem<ItemUseHandler> implements NotPlaceable {
 
@@ -119,7 +120,7 @@ public class MobEgg<T extends LivingEntity> extends SimpleSlimefunItem<ItemUseHa
     }
 
     protected boolean canPlaceMob(Player p, Location l) {
-        return SlimefunPlugin.getProtectionManager().hasPermission(p, l, ProtectableAction.PLACE_BLOCK);
+        return Slimefun.getProtectionManager().hasPermission(p, l, Interaction.PLACE_BLOCK);
     }
 
 }
