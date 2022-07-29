@@ -7,11 +7,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+
+import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
@@ -26,8 +29,10 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.NotPlaceable;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.ItemUtils;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
 
 public class MobEgg<T extends LivingEntity> extends SimpleSlimefunItem<ItemUseHandler> implements NotPlaceable {
 
@@ -78,37 +83,44 @@ public class MobEgg<T extends LivingEntity> extends SimpleSlimefunItem<ItemUseHa
 
             if (block.isPresent()) {
                 Block b = block.get();
-                T entity = b.getWorld().spawn(b.getRelative(e.getClickedFace()).getLocation(), adapter.getEntityClass());
 
-                PersistentDataContainer container = e.getItem().getItemMeta().getPersistentDataContainer();
-                JsonObject json = container.get(dataKey, adapter);
-                ItemUtils.consumeItem(e.getItem(), false);
+                if (canPlaceMob(e.getPlayer(), b.getRelative(e.getClickedFace()).getLocation())) {
+                    T entity = b.getWorld().spawn(b.getRelative(e.getClickedFace()).getLocation(), adapter.getEntityClass());
 
-                if (json != null) {
-                    adapter.apply(entity, json);
+                    PersistentDataContainer container = e.getItem().getItemMeta().getPersistentDataContainer();
+                    JsonObject json = container.get(dataKey, adapter);
+                    ItemUtils.consumeItem(e.getItem(), false);
 
-                    if (adapter instanceof InventoryAdapter) {
-                        Map<String, ItemStack> inventory = new HashMap<>();
+                    if (json != null) {
+                        adapter.apply(entity, json);
 
-                        try (Reader reader = new StringReader(container.get(inventoryKey, PersistentDataType.STRING))) {
-                            FileConfiguration yaml = YamlConfiguration.loadConfiguration(reader);
+                        if (adapter instanceof InventoryAdapter) {
+                            Map<String, ItemStack> inventory = new HashMap<>();
 
-                            for (String key : yaml.getKeys(true)) {
-                                Object obj = yaml.get(key);
+                            try (Reader reader = new StringReader(container.get(inventoryKey, PersistentDataType.STRING))) {
+                                FileConfiguration yaml = YamlConfiguration.loadConfiguration(reader);
 
-                                if (obj instanceof ItemStack) {
-                                    inventory.put(key, (ItemStack) obj);
+                                for (String key : yaml.getKeys(true)) {
+                                    Object obj = yaml.get(key);
+
+                                    if (obj instanceof ItemStack) {
+                                        inventory.put(key, (ItemStack) obj);
+                                    }
                                 }
+                            } catch (IOException x) {
+                                x.printStackTrace();
                             }
-                        } catch (IOException x) {
-                            x.printStackTrace();
-                        }
 
-                        ((InventoryAdapter<T>) adapter).applyInventory(entity, inventory);
+                            ((InventoryAdapter<T>) adapter).applyInventory(entity, inventory);
+                        }
                     }
                 }
             }
         };
+    }
+
+    protected boolean canPlaceMob(Player p, Location l) {
+        return Slimefun.getProtectionManager().hasPermission(p, l, Interaction.PLACE_BLOCK);
     }
 
 }
