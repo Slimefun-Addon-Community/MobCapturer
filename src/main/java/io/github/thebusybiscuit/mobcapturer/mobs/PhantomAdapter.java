@@ -2,17 +2,21 @@ package io.github.thebusybiscuit.mobcapturer.mobs;
 
 import java.util.List;
 
-import org.bukkit.ChatColor;
-import org.bukkit.entity.Phantom;
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
 
 import com.google.gson.JsonObject;
+
+import org.bukkit.ChatColor;
+import org.bukkit.entity.Phantom;
 
 import io.github.thebusybiscuit.mobcapturer.MobAdapter;
 
 public class PhantomAdapter implements MobAdapter<Phantom> {
 
+    @Nonnull
     @Override
-    public List<String> getLore(JsonObject json) {
+    public List<String> getLore(@Nonnull JsonObject json) {
         List<String> lore = MobAdapter.super.getLore(json);
 
         lore.add(ChatColor.GRAY + "Size: " + ChatColor.WHITE + (json.get("size").getAsInt() + 1));
@@ -20,6 +24,7 @@ public class PhantomAdapter implements MobAdapter<Phantom> {
         return lore;
     }
 
+    @ParametersAreNonnullByDefault
     @Override
     public void apply(Phantom entity, JsonObject json) {
         MobAdapter.super.apply(entity, json);
@@ -27,8 +32,9 @@ public class PhantomAdapter implements MobAdapter<Phantom> {
         entity.setSize(json.get("size").getAsInt());
     }
 
+    @Nonnull
     @Override
-    public JsonObject saveData(Phantom entity) {
+    public JsonObject saveData(@Nonnull Phantom entity) {
         JsonObject json = MobAdapter.super.saveData(entity);
 
         json.addProperty("size", entity.getSize());
@@ -36,6 +42,7 @@ public class PhantomAdapter implements MobAdapter<Phantom> {
         return json;
     }
 
+    @Nonnull
     @Override
     public Class<Phantom> getEntityClass() {
         return Phantom.class;

@@ -2,11 +2,14 @@ package io.github.thebusybiscuit.mobcapturer.mobs;
 
 import java.util.List;
 
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
+
+import com.google.gson.JsonObject;
+
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Panda;
 import org.bukkit.entity.Panda.Gene;
-
-import com.google.gson.JsonObject;
 
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 
@@ -16,8 +19,9 @@ public class PandaAdapter extends AnimalsAdapter<Panda> {
         super(Panda.class);
     }
 
+    @Nonnull
     @Override
-    public List<String> getLore(JsonObject json) {
+    public List<String> getLore(@Nonnull JsonObject json) {
         List<String> lore = super.getLore(json);
 
         lore.add(ChatColor.GRAY + "Main Gene: " + ChatColor.WHITE + ChatUtils.humanize(json.get("mainGene").getAsString()));
@@ -26,6 +30,7 @@ public class PandaAdapter extends AnimalsAdapter<Panda> {
         return lore;
     }
 
+    @ParametersAreNonnullByDefault
     @Override
     public void apply(Panda entity, JsonObject json) {
         super.apply(entity, json);
@@ -34,8 +39,9 @@ public class PandaAdapter extends AnimalsAdapter<Panda> {
         entity.setHiddenGene(Gene.valueOf(json.get("hiddenGene").getAsString()));
     }
 
+    @Nonnull
     @Override
-    public JsonObject saveData(Panda entity) {
+    public JsonObject saveData(@Nonnull Panda entity) {
         JsonObject json = super.saveData(entity);
 
         json.addProperty("mainGene", entity.getMainGene().name());

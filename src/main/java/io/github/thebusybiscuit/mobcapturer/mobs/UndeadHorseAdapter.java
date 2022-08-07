@@ -1,10 +1,12 @@
 package io.github.thebusybiscuit.mobcapturer.mobs;
 
+import javax.annotation.Nonnull;
+
 import org.bukkit.entity.AbstractHorse;
 
 public class UndeadHorseAdapter<T extends AbstractHorse> extends AbstractHorseAdapter<T> {
 
-    public UndeadHorseAdapter(Class<T> entityClass) {
+    public UndeadHorseAdapter(@Nonnull Class<T> entityClass) {
         super(entityClass);
     }
 

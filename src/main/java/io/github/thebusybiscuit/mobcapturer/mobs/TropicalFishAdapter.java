@@ -2,20 +2,24 @@ package io.github.thebusybiscuit.mobcapturer.mobs;
 
 import java.util.List;
 
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
+
+import com.google.gson.JsonObject;
+
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.entity.TropicalFish;
 import org.bukkit.entity.TropicalFish.Pattern;
-
-import com.google.gson.JsonObject;
 
 import io.github.thebusybiscuit.mobcapturer.MobAdapter;
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 
 public class TropicalFishAdapter implements MobAdapter<TropicalFish> {
 
+    @Nonnull
     @Override
-    public List<String> getLore(JsonObject json) {
+    public List<String> getLore(@Nonnull JsonObject json) {
         List<String> lore = MobAdapter.super.getLore(json);
 
         lore.add(ChatColor.GRAY + "Base Color: " + ChatColor.WHITE + ChatUtils.humanize(json.get("baseColor").getAsString()));
@@ -25,6 +29,7 @@ public class TropicalFishAdapter implements MobAdapter<TropicalFish> {
         return lore;
     }
 
+    @ParametersAreNonnullByDefault
     @Override
     public void apply(TropicalFish entity, JsonObject json) {
         MobAdapter.super.apply(entity, json);
@@ -34,8 +39,9 @@ public class TropicalFishAdapter implements MobAdapter<TropicalFish> {
         entity.setPatternColor(DyeColor.valueOf(json.get("patternColor").getAsString()));
     }
 
+    @Nonnull
     @Override
-    public JsonObject saveData(TropicalFish entity) {
+    public JsonObject saveData(@Nonnull TropicalFish entity) {
         JsonObject json = MobAdapter.super.saveData(entity);
 
         json.addProperty("baseColor", entity.getBodyColor().name());
@@ -45,6 +51,7 @@ public class TropicalFishAdapter implements MobAdapter<TropicalFish> {
         return json;
     }
 
+    @Nonnull
     @Override
     public Class<TropicalFish> getEntityClass() {
         return TropicalFish.class;

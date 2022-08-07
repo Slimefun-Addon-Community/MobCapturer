@@ -2,11 +2,14 @@ package io.github.thebusybiscuit.mobcapturer.mobs;
 
 import java.util.List;
 
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
+
+import com.google.gson.JsonObject;
+
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.entity.Wolf;
-
-import com.google.gson.JsonObject;
 
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 
@@ -16,8 +19,9 @@ public class WolfAdapter extends AbstractTameableAdapter<Wolf> {
         super(Wolf.class);
     }
 
+    @Nonnull
     @Override
-    public List<String> getLore(JsonObject json) {
+    public List<String> getLore(@Nonnull JsonObject json) {
         List<String> lore = super.getLore(json);
 
         if (!json.get("ownerUUID").isJsonNull()) {
@@ -30,6 +34,7 @@ public class WolfAdapter extends AbstractTameableAdapter<Wolf> {
         return lore;
     }
 
+    @ParametersAreNonnullByDefault
     @Override
     public void apply(Wolf entity, JsonObject json) {
         super.apply(entity, json);
@@ -39,8 +44,9 @@ public class WolfAdapter extends AbstractTameableAdapter<Wolf> {
         entity.setCollarColor(DyeColor.valueOf(json.get("collarColor").getAsString()));
     }
 
+    @Nonnull
     @Override
-    public JsonObject saveData(Wolf entity) {
+    public JsonObject saveData(@Nonnull Wolf entity) {
         JsonObject json = super.saveData(entity);
 
         json.addProperty("angry", entity.isAngry());

@@ -3,23 +3,27 @@ package io.github.thebusybiscuit.mobcapturer.mobs;
 import java.util.List;
 import java.util.UUID;
 
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
+
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Animals;
 import org.bukkit.entity.Tameable;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-
 class AbstractTameableAdapter<T extends Animals & Tameable> extends AnimalsAdapter<T> {
 
-    public AbstractTameableAdapter(Class<T> entityClass) {
+    public AbstractTameableAdapter(@Nonnull Class<T> entityClass) {
         super(entityClass);
     }
 
+    @Nonnull
     @Override
-    public List<String> getLore(JsonObject json) {
+    public List<String> getLore(@Nonnull JsonObject json) {
         List<String> lore = super.getLore(json);
 
         JsonElement element = json.get("ownerName");
@@ -31,8 +35,9 @@ class AbstractTameableAdapter<T extends Animals & Tameable> extends AnimalsAdapt
         return lore;
     }
 
+    @Nonnull
     @Override
-    public JsonObject saveData(T entity) {
+    public JsonObject saveData(@Nonnull T entity) {
         JsonObject json = super.saveData(entity);
 
         json.addProperty("ownerUUID", entity.getOwner() == null ? null : entity.getOwner().getUniqueId().toString());
@@ -41,6 +46,7 @@ class AbstractTameableAdapter<T extends Animals & Tameable> extends AnimalsAdapt
         return json;
     }
 
+    @ParametersAreNonnullByDefault
     @Override
     public void apply(T entity, JsonObject json) {
         super.apply(entity, json);

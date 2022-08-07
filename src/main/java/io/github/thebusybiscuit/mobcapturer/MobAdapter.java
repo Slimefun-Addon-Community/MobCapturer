@@ -6,6 +6,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 import org.bukkit.ChatColor;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
@@ -17,11 +25,6 @@ import org.bukkit.persistence.PersistentDataAdapterContext;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 
 import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
 
@@ -38,12 +41,14 @@ public interface MobAdapter<T extends LivingEntity> extends PersistentDataType<S
 
     /**
      * This returns the {@link Class} of the captured {@link Entity}.
-     * 
+     *
      * @return The {@link Class} of the {@link Entity} handled by this {@link MobAdapter}
      */
+    @Nonnull
     Class<T> getEntityClass();
 
-    default List<String> getLore(JsonObject json) {
+    @Nonnull
+    default List<String> getLore(@Nonnull JsonObject json) {
         List<String> lore = new LinkedList<>();
 
         lore.add("");
@@ -62,22 +67,29 @@ public interface MobAdapter<T extends LivingEntity> extends PersistentDataType<S
         return lore;
     }
 
+    @Nonnull
     default Class<String> getPrimitiveType() {
         return String.class;
     }
 
+    @Nonnull
     default Class<JsonObject> getComplexType() {
         return JsonObject.class;
     }
 
+    @ParametersAreNonnullByDefault
+    @Nonnull
     default String toPrimitive(JsonObject json, PersistentDataAdapterContext context) {
         return json.toString();
     }
 
+    @ParametersAreNonnullByDefault
+    @Nonnull
     default JsonObject fromPrimitive(String primitive, PersistentDataAdapterContext context) {
         return new JsonParser().parse(primitive).getAsJsonObject();
     }
 
+    @ParametersAreNonnullByDefault
     default void apply(T entity, JsonObject json) {
         // We need to apply Attributes before the health.
         JsonObject attributes = json.getAsJsonObject("_attributes");
@@ -151,7 +163,8 @@ public interface MobAdapter<T extends LivingEntity> extends PersistentDataType<S
         }
     }
 
-    default JsonObject saveData(T entity) {
+    @Nonnull
+    default JsonObject saveData(@Nonnull T entity) {
         JsonObject json = new JsonObject();
 
         json.addProperty("_type", entity.getType().toString());

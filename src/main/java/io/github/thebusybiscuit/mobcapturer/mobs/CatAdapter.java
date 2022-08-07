@@ -2,12 +2,15 @@ package io.github.thebusybiscuit.mobcapturer.mobs;
 
 import java.util.List;
 
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
+
+import com.google.gson.JsonObject;
+
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.entity.Cat;
 import org.bukkit.entity.Cat.Type;
-
-import com.google.gson.JsonObject;
 
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 
@@ -17,8 +20,9 @@ public class CatAdapter extends AbstractTameableAdapter<Cat> {
         super(Cat.class);
     }
 
+    @Nonnull
     @Override
-    public List<String> getLore(JsonObject json) {
+    public List<String> getLore(@Nonnull JsonObject json) {
         List<String> lore = super.getLore(json);
 
         lore.add(ChatColor.GRAY + "Variant: " + ChatColor.WHITE + ChatUtils.humanize(json.get("catType").getAsString()));
@@ -31,6 +35,7 @@ public class CatAdapter extends AbstractTameableAdapter<Cat> {
         return lore;
     }
 
+    @ParametersAreNonnullByDefault
     @Override
     public void apply(Cat entity, JsonObject json) {
         super.apply(entity, json);
@@ -40,8 +45,9 @@ public class CatAdapter extends AbstractTameableAdapter<Cat> {
         entity.setCollarColor(DyeColor.valueOf(json.get("collarColor").getAsString()));
     }
 
+    @Nonnull
     @Override
-    public JsonObject saveData(Cat entity) {
+    public JsonObject saveData(@Nonnull Cat entity) {
         JsonObject json = super.saveData(entity);
 
         json.addProperty("catType", entity.getCatType().name());

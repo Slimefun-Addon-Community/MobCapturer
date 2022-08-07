@@ -4,23 +4,27 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
+
+import com.google.gson.JsonObject;
+
 import org.bukkit.ChatColor;
 import org.bukkit.entity.AbstractHorse;
 import org.bukkit.inventory.ItemStack;
-
-import com.google.gson.JsonObject;
 
 import io.github.thebusybiscuit.mobcapturer.InventoryAdapter;
 import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
 
 class AbstractHorseAdapter<T extends AbstractHorse> extends AbstractTameableAdapter<T> implements InventoryAdapter<T> {
 
-    public AbstractHorseAdapter(Class<T> entityClass) {
+    public AbstractHorseAdapter(@Nonnull Class<T> entityClass) {
         super(entityClass);
     }
 
+    @Nonnull
     @Override
-    public List<String> getLore(JsonObject json) {
+    public List<String> getLore(@Nonnull JsonObject json) {
         List<String> lore = super.getLore(json);
 
         lore.add(ChatColor.GRAY + "Jump Strength: " + ChatColor.WHITE + NumberUtils.roundDecimalNumber(json.get("jumpStrength").getAsDouble()));
@@ -28,6 +32,7 @@ class AbstractHorseAdapter<T extends AbstractHorse> extends AbstractTameableAdap
         return lore;
     }
 
+    @ParametersAreNonnullByDefault
     @Override
     public void apply(T entity, JsonObject json) {
         super.apply(entity, json);
@@ -37,8 +42,9 @@ class AbstractHorseAdapter<T extends AbstractHorse> extends AbstractTameableAdap
         entity.setJumpStrength(json.get("jumpStrength").getAsDouble());
     }
 
+    @Nonnull
     @Override
-    public JsonObject saveData(T entity) {
+    public JsonObject saveData(@Nonnull T entity) {
         JsonObject json = super.saveData(entity);
 
         json.addProperty("maxDomestication", entity.getMaxDomestication());
@@ -48,13 +54,15 @@ class AbstractHorseAdapter<T extends AbstractHorse> extends AbstractTameableAdap
         return json;
     }
 
+    @ParametersAreNonnullByDefault
     @Override
     public void applyInventory(T entity, Map<String, ItemStack> inventory) {
         entity.getInventory().setSaddle(inventory.get("saddle"));
     }
 
+    @Nonnull
     @Override
-    public Map<String, ItemStack> saveInventory(T entity) {
+    public Map<String, ItemStack> saveInventory(@Nonnull T entity) {
         Map<String, ItemStack> inventory = new HashMap<>();
 
         inventory.put("saddle", entity.getInventory().getSaddle());

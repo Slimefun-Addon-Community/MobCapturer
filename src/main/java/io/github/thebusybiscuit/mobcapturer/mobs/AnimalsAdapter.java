@@ -2,10 +2,13 @@ package io.github.thebusybiscuit.mobcapturer.mobs;
 
 import java.util.List;
 
-import org.bukkit.ChatColor;
-import org.bukkit.entity.Animals;
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
 
 import com.google.gson.JsonObject;
+
+import org.bukkit.ChatColor;
+import org.bukkit.entity.Animals;
 
 import io.github.thebusybiscuit.mobcapturer.MobAdapter;
 
@@ -13,12 +16,13 @@ public class AnimalsAdapter<T extends Animals> implements MobAdapter<T> {
 
     private final Class<T> entityClass;
 
-    public AnimalsAdapter(Class<T> entityClass) {
+    public AnimalsAdapter(@Nonnull Class<T> entityClass) {
         this.entityClass = entityClass;
     }
 
+    @Nonnull
     @Override
-    public List<String> getLore(JsonObject json) {
+    public List<String> getLore(@Nonnull JsonObject json) {
         List<String> lore = MobAdapter.super.getLore(json);
 
         lore.add(ChatColor.GRAY + "Baby: " + ChatColor.WHITE + json.get("baby").getAsBoolean());
@@ -26,8 +30,9 @@ public class AnimalsAdapter<T extends Animals> implements MobAdapter<T> {
         return lore;
     }
 
+    @Nonnull
     @Override
-    public JsonObject saveData(T entity) {
+    public JsonObject saveData(@Nonnull T entity) {
         JsonObject json = MobAdapter.super.saveData(entity);
 
         json.addProperty("baby", !entity.isAdult());
@@ -39,6 +44,7 @@ public class AnimalsAdapter<T extends Animals> implements MobAdapter<T> {
         return json;
     }
 
+    @ParametersAreNonnullByDefault
     @Override
     public void apply(T entity, JsonObject json) {
         MobAdapter.super.apply(entity, json);
@@ -49,6 +55,7 @@ public class AnimalsAdapter<T extends Animals> implements MobAdapter<T> {
         entity.setBreed(json.get("_breedable").getAsBoolean());
     }
 
+    @Nonnull
     @Override
     public Class<T> getEntityClass() {
         return entityClass;

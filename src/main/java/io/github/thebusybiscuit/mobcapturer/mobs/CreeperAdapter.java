@@ -2,17 +2,21 @@ package io.github.thebusybiscuit.mobcapturer.mobs;
 
 import java.util.List;
 
-import org.bukkit.ChatColor;
-import org.bukkit.entity.Creeper;
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
 
 import com.google.gson.JsonObject;
+
+import org.bukkit.ChatColor;
+import org.bukkit.entity.Creeper;
 
 import io.github.thebusybiscuit.mobcapturer.MobAdapter;
 
 public class CreeperAdapter implements MobAdapter<Creeper> {
 
+    @Nonnull
     @Override
-    public List<String> getLore(JsonObject json) {
+    public List<String> getLore(@Nonnull JsonObject json) {
         List<String> lore = MobAdapter.super.getLore(json);
 
         lore.add(ChatColor.GRAY + "Powered: " + ChatColor.WHITE + json.get("powered").getAsBoolean());
@@ -20,6 +24,7 @@ public class CreeperAdapter implements MobAdapter<Creeper> {
         return lore;
     }
 
+    @ParametersAreNonnullByDefault
     @Override
     public void apply(Creeper entity, JsonObject json) {
         MobAdapter.super.apply(entity, json);
@@ -29,8 +34,9 @@ public class CreeperAdapter implements MobAdapter<Creeper> {
         entity.setMaxFuseTicks(json.get("maxFuseTicks").getAsInt());
     }
 
+    @Nonnull
     @Override
-    public JsonObject saveData(Creeper entity) {
+    public JsonObject saveData(@Nonnull Creeper entity) {
         JsonObject json = MobAdapter.super.saveData(entity);
 
         json.addProperty("powered", entity.isPowered());
@@ -40,6 +46,7 @@ public class CreeperAdapter implements MobAdapter<Creeper> {
         return json;
     }
 
+    @Nonnull
     @Override
     public Class<Creeper> getEntityClass() {
         return Creeper.class;
