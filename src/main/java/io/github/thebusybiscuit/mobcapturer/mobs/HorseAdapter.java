@@ -53,6 +53,7 @@ public class HorseAdapter extends AbstractHorseAdapter<Horse> {
         return json;
     }
 
+    @ParametersAreNonnullByDefault
     @Override
     public void applyInventory(Horse entity, Map<String, ItemStack> inventory) {
         super.applyInventory(entity, inventory);
