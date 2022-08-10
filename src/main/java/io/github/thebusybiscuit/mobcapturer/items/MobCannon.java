@@ -1,5 +1,8 @@
 package io.github.thebusybiscuit.mobcapturer.items;
 
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Snowball;
@@ -19,6 +22,7 @@ public class MobCannon extends SimpleSlimefunItem<ItemUseHandler> {
     private final MobCapturer plugin;
     private final MobPellet pellet;
 
+    @ParametersAreNonnullByDefault
     public MobCannon(MobCapturer plugin, ItemGroup itemGroup, SlimefunItemStack item, MobPellet pellet, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
 
@@ -27,6 +31,7 @@ public class MobCannon extends SimpleSlimefunItem<ItemUseHandler> {
     }
 
     @Override
+    @Nonnull
     public ItemUseHandler getItemHandler() {
         return e -> {
             if (consumeAmmo(e.getPlayer(), pellet)) {
@@ -36,6 +41,7 @@ public class MobCannon extends SimpleSlimefunItem<ItemUseHandler> {
         };
     }
 
+    @ParametersAreNonnullByDefault
     private boolean consumeAmmo(Player p, MobPellet pellet) {
         if (p.getGameMode() == GameMode.CREATIVE) {
             return true;

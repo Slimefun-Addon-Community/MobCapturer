@@ -1,9 +1,15 @@
 package io.github.thebusybiscuit.mobcapturer.mobs;
 
-import java.util.List;
-import java.util.UUID;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.UUID;
+
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
+
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -13,11 +19,8 @@ import org.bukkit.entity.Fox.Type;
 import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.ItemStack;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-
-import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 import io.github.thebusybiscuit.mobcapturer.InventoryAdapter;
+import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 
 public class FoxAdapter extends AnimalsAdapter<Fox> implements InventoryAdapter<Fox> {
 
@@ -25,8 +28,9 @@ public class FoxAdapter extends AnimalsAdapter<Fox> implements InventoryAdapter<
         super(Fox.class);
     }
 
+    @Nonnull
     @Override
-    public List<String> getLore(JsonObject json) {
+    public List<String> getLore(@Nonnull JsonObject json) {
         List<String> lore = super.getLore(json);
 
         lore.add(ChatColor.GRAY + "Variant: " + ChatColor.WHITE + ChatUtils.humanize(json.get("foxType").getAsString()));
@@ -52,6 +56,7 @@ public class FoxAdapter extends AnimalsAdapter<Fox> implements InventoryAdapter<
         return lore;
     }
 
+    @ParametersAreNonnullByDefault
     @Override
     public void apply(Fox entity, JsonObject json) {
         super.apply(entity, json);
@@ -74,8 +79,9 @@ public class FoxAdapter extends AnimalsAdapter<Fox> implements InventoryAdapter<
         }
     }
 
+    @Nonnull
     @Override
-    public JsonObject saveData(Fox entity) {
+    public JsonObject saveData(@Nonnull Fox entity) {
         JsonObject json = super.saveData(entity);
 
         json.addProperty("foxType", entity.getFoxType().name());
@@ -90,8 +96,9 @@ public class FoxAdapter extends AnimalsAdapter<Fox> implements InventoryAdapter<
         return json;
     }
 
+    @Nonnull
     @Override
-    public Map<String, ItemStack> saveInventory(Fox entity) {
+    public Map<String, ItemStack> saveInventory(@Nonnull Fox entity) {
         Map<String, ItemStack> inv = new HashMap<>();
 
         EntityEquipment equipment = entity.getEquipment();
@@ -103,6 +110,7 @@ public class FoxAdapter extends AnimalsAdapter<Fox> implements InventoryAdapter<
         return inv;
     }
 
+    @ParametersAreNonnullByDefault
     @Override
     public void applyInventory(Fox entity, Map<String, ItemStack> inventory) {
         EntityEquipment equipment = entity.getEquipment();

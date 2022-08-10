@@ -1,5 +1,9 @@
 package io.github.thebusybiscuit.mobcapturer;
 
+import java.util.Optional;
+
+import javax.annotation.Nonnull;
+
 import org.bukkit.Location;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -13,20 +17,19 @@ import org.bukkit.projectiles.ProjectileSource;
 
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
-import java.util.Optional;
 
 public class PelletListener implements Listener {
 
     private final MobCapturer plugin;
 
-    public PelletListener(MobCapturer plugin) {
+    public PelletListener(@Nonnull MobCapturer plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
 
         this.plugin = plugin;
     }
 
     @EventHandler (ignoreCancelled = true, priority = EventPriority.HIGH)
-    public void onProjectileHit(EntityDamageByEntityEvent e) {
+    public void onProjectileHit(@Nonnull EntityDamageByEntityEvent e) {
         if (e.getDamager() instanceof Snowball && e.getEntity() instanceof LivingEntity && e.getDamager().hasMetadata("mob_capturing_cannon")) {
             Snowball pellet = (Snowball) e.getDamager();
             ProjectileSource shooter = pellet.getShooter();

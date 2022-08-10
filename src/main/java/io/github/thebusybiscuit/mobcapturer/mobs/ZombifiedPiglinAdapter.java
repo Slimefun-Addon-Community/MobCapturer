@@ -1,10 +1,14 @@
 package io.github.thebusybiscuit.mobcapturer.mobs;
 
+import java.util.List;
+
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
+
 import com.google.gson.JsonObject;
+
 import org.bukkit.ChatColor;
 import org.bukkit.entity.PigZombie;
-
-import java.util.List;
 
 public class ZombifiedPiglinAdapter extends AbstractHumanoidAdapter<PigZombie> {
 
@@ -12,8 +16,9 @@ public class ZombifiedPiglinAdapter extends AbstractHumanoidAdapter<PigZombie> {
         super(PigZombie.class);
     }
 
+    @Nonnull
     @Override
-    public List<String> getLore(JsonObject json) {
+    public List<String> getLore(@Nonnull JsonObject json) {
         List<String> lore = super.getLore(json);
 
         lore.add(ChatColor.GRAY + "Anger: " + ChatColor.WHITE + json.get("anger").getAsString());
@@ -22,6 +27,7 @@ public class ZombifiedPiglinAdapter extends AbstractHumanoidAdapter<PigZombie> {
         return lore;
     }
 
+    @ParametersAreNonnullByDefault
     @Override
     public void apply(PigZombie entity, JsonObject json) {
         super.apply(entity, json);
@@ -30,8 +36,9 @@ public class ZombifiedPiglinAdapter extends AbstractHumanoidAdapter<PigZombie> {
         entity.setAge(json.get("age").getAsInt());
     }
 
+    @Nonnull
     @Override
-    public JsonObject saveData(PigZombie entity) {
+    public JsonObject saveData(@Nonnull PigZombie entity) {
         JsonObject json = super.saveData(entity);
 
         json.addProperty("anger", entity.getAnger());

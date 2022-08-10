@@ -1,13 +1,17 @@
 package io.github.thebusybiscuit.mobcapturer.mobs;
 
-import org.bukkit.entity.IronGolem;
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
 
 import com.google.gson.JsonObject;
+
+import org.bukkit.entity.IronGolem;
 
 import io.github.thebusybiscuit.mobcapturer.MobAdapter;
 
 public class IronGolemAdapter implements MobAdapter<IronGolem> {
 
+    @ParametersAreNonnullByDefault
     @Override
     public void apply(IronGolem entity, JsonObject json) {
         MobAdapter.super.apply(entity, json);
@@ -15,8 +19,9 @@ public class IronGolemAdapter implements MobAdapter<IronGolem> {
         entity.setPlayerCreated(json.get("playerMade").getAsBoolean());
     }
 
+    @Nonnull
     @Override
-    public JsonObject saveData(IronGolem entity) {
+    public JsonObject saveData(@Nonnull IronGolem entity) {
         JsonObject json = MobAdapter.super.saveData(entity);
 
         json.addProperty("playerMade", entity.isPlayerCreated());
@@ -24,6 +29,7 @@ public class IronGolemAdapter implements MobAdapter<IronGolem> {
         return json;
     }
 
+    @Nonnull
     @Override
     public Class<IronGolem> getEntityClass() {
         return IronGolem.class;

@@ -3,12 +3,15 @@ package io.github.thebusybiscuit.mobcapturer.mobs;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.bukkit.entity.Monster;
-import org.bukkit.inventory.EntityEquipment;
-import org.bukkit.inventory.ItemStack;
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+
+import org.bukkit.entity.Monster;
+import org.bukkit.inventory.EntityEquipment;
+import org.bukkit.inventory.ItemStack;
 
 import io.github.thebusybiscuit.mobcapturer.InventoryAdapter;
 import io.github.thebusybiscuit.mobcapturer.MobAdapter;
@@ -17,10 +20,11 @@ class AbstractHumanoidAdapter<T extends Monster> implements MobAdapter<T>, Inven
 
     private final Class<T> entityClass;
 
-    public AbstractHumanoidAdapter(Class<T> entityClass) {
+    public AbstractHumanoidAdapter(@Nonnull Class<T> entityClass) {
         this.entityClass = entityClass;
     }
 
+    @ParametersAreNonnullByDefault
     @Override
     public void apply(T entity, JsonObject json) {
         MobAdapter.super.apply(entity, json);
@@ -42,8 +46,9 @@ class AbstractHumanoidAdapter<T extends Monster> implements MobAdapter<T>, Inven
         }
     }
 
+    @Nonnull
     @Override
-    public JsonObject saveData(T entity) {
+    public JsonObject saveData(@Nonnull T entity) {
         JsonObject json = MobAdapter.super.saveData(entity);
 
         json.addProperty("canPickupItems", entity.getCanPickupItems());
@@ -62,6 +67,7 @@ class AbstractHumanoidAdapter<T extends Monster> implements MobAdapter<T>, Inven
         return json;
     }
 
+    @ParametersAreNonnullByDefault
     @Override
     public void applyInventory(T entity, Map<String, ItemStack> inventory) {
         EntityEquipment equipment = entity.getEquipment();
@@ -76,8 +82,9 @@ class AbstractHumanoidAdapter<T extends Monster> implements MobAdapter<T>, Inven
         }
     }
 
+    @Nonnull
     @Override
-    public Map<String, ItemStack> saveInventory(T entity) {
+    public Map<String, ItemStack> saveInventory(@Nonnull T entity) {
         Map<String, ItemStack> inv = new HashMap<>();
 
         EntityEquipment equipment = entity.getEquipment();
@@ -94,6 +101,7 @@ class AbstractHumanoidAdapter<T extends Monster> implements MobAdapter<T>, Inven
         return inv;
     }
 
+    @Nonnull
     @Override
     public Class<T> getEntityClass() {
         return entityClass;

@@ -1,11 +1,14 @@
 package io.github.thebusybiscuit.mobcapturer.mobs;
 
-import org.bukkit.ChatColor;
-import org.bukkit.entity.Piglin;
+import java.util.List;
+
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
 
 import com.google.gson.JsonObject;
 
-import java.util.List;
+import org.bukkit.ChatColor;
+import org.bukkit.entity.Piglin;
 
 public class PiglinAdapter extends AbstractHumanoidAdapter<Piglin> {
 
@@ -13,8 +16,9 @@ public class PiglinAdapter extends AbstractHumanoidAdapter<Piglin> {
         super(Piglin.class);
     }
 
+    @Nonnull
     @Override
-    public List<String> getLore(JsonObject json) {
+    public List<String> getLore(@Nonnull JsonObject json) {
         List<String> lore = super.getLore(json);
 
         lore.add(ChatColor.GRAY + "Baby: " + ChatColor.WHITE + json.get("baby").getAsBoolean());
@@ -22,6 +26,7 @@ public class PiglinAdapter extends AbstractHumanoidAdapter<Piglin> {
         return lore;
     }
 
+    @ParametersAreNonnullByDefault
     @Override
     public void apply(Piglin entity, JsonObject json) {
         super.apply(entity, json);
@@ -32,8 +37,9 @@ public class PiglinAdapter extends AbstractHumanoidAdapter<Piglin> {
         entity.setImmuneToZombification(json.get("immuneToZombification").getAsBoolean());
     }
 
+    @Nonnull
     @Override
-    public JsonObject saveData(Piglin entity) {
+    public JsonObject saveData(@Nonnull Piglin entity) {
         JsonObject json = super.saveData(entity);
 
         json.addProperty("age", entity.getAge());

@@ -2,13 +2,18 @@ package io.github.thebusybiscuit.mobcapturer;
 
 import java.util.Map;
 
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
+
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.ItemStack;
 
 public interface InventoryAdapter<T extends LivingEntity> {
 
+    @ParametersAreNonnullByDefault
     void applyInventory(T entity, Map<String, ItemStack> inventory);
 
-    Map<String, ItemStack> saveInventory(T entity);
+    @Nonnull
+    Map<String, ItemStack> saveInventory(@Nonnull T entity);
 
 }

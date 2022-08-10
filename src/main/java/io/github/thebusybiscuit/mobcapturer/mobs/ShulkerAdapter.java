@@ -2,20 +2,24 @@ package io.github.thebusybiscuit.mobcapturer.mobs;
 
 import java.util.List;
 
-import org.bukkit.ChatColor;
-import org.bukkit.DyeColor;
-import org.bukkit.entity.Shulker;
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+
+import org.bukkit.ChatColor;
+import org.bukkit.DyeColor;
+import org.bukkit.entity.Shulker;
 
 import io.github.thebusybiscuit.mobcapturer.MobAdapter;
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 
 public class ShulkerAdapter implements MobAdapter<Shulker> {
 
+    @Nonnull
     @Override
-    public List<String> getLore(JsonObject json) {
+    public List<String> getLore(@Nonnull JsonObject json) {
         List<String> lore = MobAdapter.super.getLore(json);
 
         JsonElement color = json.get("color");
@@ -27,6 +31,7 @@ public class ShulkerAdapter implements MobAdapter<Shulker> {
         return lore;
     }
 
+    @ParametersAreNonnullByDefault
     @Override
     public void apply(Shulker entity, JsonObject json) {
         MobAdapter.super.apply(entity, json);
@@ -37,8 +42,9 @@ public class ShulkerAdapter implements MobAdapter<Shulker> {
         }
     }
 
+    @Nonnull
     @Override
-    public JsonObject saveData(Shulker entity) {
+    public JsonObject saveData(@Nonnull Shulker entity) {
         JsonObject json = MobAdapter.super.saveData(entity);
 
         DyeColor color = entity.getColor();
@@ -47,6 +53,7 @@ public class ShulkerAdapter implements MobAdapter<Shulker> {
         return json;
     }
 
+    @Nonnull
     @Override
     public Class<Shulker> getEntityClass() {
         return Shulker.class;

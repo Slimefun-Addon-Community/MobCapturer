@@ -1,15 +1,19 @@
 package io.github.thebusybiscuit.mobcapturer.mobs;
 
-import org.bukkit.entity.Raider;
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
 
 import com.google.gson.JsonObject;
 
+import org.bukkit.entity.Raider;
+
 public class RaiderAdapter<T extends Raider> extends AbstractHumanoidAdapter<T> {
 
-    public RaiderAdapter(Class<T> entityClass) {
+    public RaiderAdapter(@Nonnull Class<T> entityClass) {
         super(entityClass);
     }
 
+    @ParametersAreNonnullByDefault
     @Override
     public void apply(T entity, JsonObject json) {
         super.apply(entity, json);
@@ -17,8 +21,9 @@ public class RaiderAdapter<T extends Raider> extends AbstractHumanoidAdapter<T> 
         entity.setCanJoinRaid(json.get("canJoinRaid").getAsBoolean());
     }
 
+    @Nonnull
     @Override
-    public JsonObject saveData(T entity) {
+    public JsonObject saveData(@Nonnull T entity) {
         JsonObject json = super.saveData(entity);
 
         json.addProperty("canJoinRaid", entity.isCanJoinRaid());

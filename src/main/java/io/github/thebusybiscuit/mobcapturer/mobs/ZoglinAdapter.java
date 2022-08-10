@@ -1,10 +1,14 @@
 package io.github.thebusybiscuit.mobcapturer.mobs;
 
+import java.util.List;
+
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
+
 import com.google.gson.JsonObject;
+
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Hoglin;
-
-import java.util.List;
 
 public class ZoglinAdapter extends AnimalsAdapter<Hoglin> {
 
@@ -12,8 +16,9 @@ public class ZoglinAdapter extends AnimalsAdapter<Hoglin> {
         super(Hoglin.class);
     }
 
+    @Nonnull
     @Override
-    public List<String> getLore(JsonObject json) {
+    public List<String> getLore(@Nonnull JsonObject json) {
         List<String> lore = super.getLore(json);
 
         lore.add(ChatColor.GRAY + "Baby: " + ChatColor.WHITE + json.get("baby").getAsBoolean());
@@ -21,6 +26,7 @@ public class ZoglinAdapter extends AnimalsAdapter<Hoglin> {
         return lore;
     }
 
+    @ParametersAreNonnullByDefault
     @Override
     public void apply(Hoglin entity, JsonObject json) {
         super.apply(entity, json);
@@ -28,8 +34,9 @@ public class ZoglinAdapter extends AnimalsAdapter<Hoglin> {
         entity.setAge(json.get("age").getAsInt());
     }
 
+    @Nonnull
     @Override
-    public JsonObject saveData(Hoglin entity) {
+    public JsonObject saveData(@Nonnull Hoglin entity) {
         JsonObject json = super.saveData(entity);
 
         json.addProperty("age", entity.getAge());

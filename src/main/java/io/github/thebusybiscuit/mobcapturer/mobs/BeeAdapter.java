@@ -1,8 +1,11 @@
 package io.github.thebusybiscuit.mobcapturer.mobs;
 
-import org.bukkit.entity.Bee;
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
 
 import com.google.gson.JsonObject;
+
+import org.bukkit.entity.Bee;
 
 public class BeeAdapter extends AnimalsAdapter<Bee> {
 
@@ -10,6 +13,7 @@ public class BeeAdapter extends AnimalsAdapter<Bee> {
         super(Bee.class);
     }
 
+    @ParametersAreNonnullByDefault
     @Override
     public void apply(Bee entity, JsonObject json) {
         super.apply(entity, json);
@@ -20,8 +24,9 @@ public class BeeAdapter extends AnimalsAdapter<Bee> {
         entity.setHasStung(json.get("stung").getAsBoolean());
     }
 
+    @Nonnull
     @Override
-    public JsonObject saveData(Bee entity) {
+    public JsonObject saveData(@Nonnull Bee entity) {
         JsonObject json = super.saveData(entity);
 
         json.addProperty("anger", entity.getAnger());

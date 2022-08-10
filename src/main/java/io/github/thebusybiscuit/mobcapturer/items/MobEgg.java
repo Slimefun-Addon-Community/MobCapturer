@@ -7,6 +7,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
+
+import com.google.gson.JsonObject;
 
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
@@ -19,8 +23,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
-
-import com.google.gson.JsonObject;
 
 import io.github.thebusybiscuit.mobcapturer.InventoryAdapter;
 import io.github.thebusybiscuit.mobcapturer.MobAdapter;
@@ -40,6 +42,7 @@ public class MobEgg<T extends LivingEntity> extends SimpleSlimefunItem<ItemUseHa
     private final NamespacedKey inventoryKey;
     private final MobAdapter<T> adapter;
 
+    @ParametersAreNonnullByDefault
     public MobEgg(ItemGroup itemGroup, SlimefunItemStack item, NamespacedKey dataKey, NamespacedKey inventoryKey, MobAdapter<T> adapter, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
 
@@ -49,7 +52,7 @@ public class MobEgg<T extends LivingEntity> extends SimpleSlimefunItem<ItemUseHa
     }
 
     @SuppressWarnings("unchecked")
-    public ItemStack getEggItem(T entity) {
+    public ItemStack getEggItem(@Nonnull T entity) {
         JsonObject json = adapter.saveData(entity);
 
         ItemStack item = getItem().clone();
@@ -75,6 +78,7 @@ public class MobEgg<T extends LivingEntity> extends SimpleSlimefunItem<ItemUseHa
 
     @SuppressWarnings("unchecked")
     @Override
+    @Nonnull
     public ItemUseHandler getItemHandler() {
         return e -> {
             e.cancel();
@@ -119,6 +123,7 @@ public class MobEgg<T extends LivingEntity> extends SimpleSlimefunItem<ItemUseHa
         };
     }
 
+    @ParametersAreNonnullByDefault
     protected boolean canPlaceMob(Player p, Location l) {
         return Slimefun.getProtectionManager().hasPermission(p, l, Interaction.PLACE_BLOCK);
     }
