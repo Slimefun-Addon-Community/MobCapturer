@@ -255,7 +255,7 @@ public class MobCapturer extends JavaPlugin implements SlimefunAddon {
     @Override
     @Nonnull
     public String getBugTrackerURL() {
-        return "https://github.com/TheBusyBiscuit/MobCapturer/issues";
+        return "https://github.com/Slimefun-Addon-Community/MobCapturer/issues";
     }
 
     @Override
