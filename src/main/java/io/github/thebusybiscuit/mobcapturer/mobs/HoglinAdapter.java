@@ -33,8 +33,8 @@ public class HoglinAdapter extends AnimalsAdapter<Hoglin> {
 
         entity.setAge(json.get("age").getAsInt());
         entity.setIsAbleToBeHunted(json.get("ableToBeHunted").getAsBoolean());
-        entity.setConversionTime(json.get("conversionTime").getAsInt());
         entity.setImmuneToZombification(json.get("immuneToZombification").getAsBoolean());
+        entity.setConversionTime(json.get("conversionTime").getAsInt());
     }
 
     @Nonnull
@@ -42,11 +42,16 @@ public class HoglinAdapter extends AnimalsAdapter<Hoglin> {
     public JsonObject saveData(@Nonnull Hoglin entity) {
         JsonObject json = super.saveData(entity);
 
+        int conversionTime = -1;
+        if (entity.isConverting()) {
+            conversionTime = entity.getConversionTime();
+        }
+
         json.addProperty("age", entity.getAge());
         json.addProperty("baby", !entity.isAdult());
         json.addProperty("ableToBeHunted", entity.isAbleToBeHunted());
-        json.addProperty("conversionTime", entity.getConversionTime());
         json.addProperty("immuneToZombification", entity.isImmuneToZombification());
+        json.addProperty("conversionTime", conversionTime);
 
         return json;
     }
