@@ -43,8 +43,8 @@ public class ZombieVillagerAdapter extends ZombieAdapter<ZombieVillager> {
         return json;
     }
 
-    @ParametersAreNonnullByDefault
     @Override
+    @ParametersAreNonnullByDefault
     public void apply(ZombieVillager entity, JsonObject json) {
         super.apply(entity, json);
 

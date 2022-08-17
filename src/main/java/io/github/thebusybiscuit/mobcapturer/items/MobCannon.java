@@ -30,8 +30,8 @@ public class MobCannon extends SimpleSlimefunItem<ItemUseHandler> {
         this.pellet = pellet;
     }
 
-    @Override
     @Nonnull
+    @Override
     public ItemUseHandler getItemHandler() {
         return e -> {
             if (consumeAmmo(e.getPlayer(), pellet)) {

@@ -32,8 +32,8 @@ class AbstractHorseAdapter<T extends AbstractHorse> extends AbstractTameableAdap
         return lore;
     }
 
-    @ParametersAreNonnullByDefault
     @Override
+    @ParametersAreNonnullByDefault
     public void apply(T entity, JsonObject json) {
         super.apply(entity, json);
 
@@ -54,8 +54,8 @@ class AbstractHorseAdapter<T extends AbstractHorse> extends AbstractTameableAdap
         return json;
     }
 
-    @ParametersAreNonnullByDefault
     @Override
+    @ParametersAreNonnullByDefault
     public void applyInventory(T entity, Map<String, ItemStack> inventory) {
         entity.getInventory().setSaddle(inventory.get("saddle"));
     }

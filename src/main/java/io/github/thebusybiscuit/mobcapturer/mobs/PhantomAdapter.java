@@ -24,8 +24,8 @@ public class PhantomAdapter implements MobAdapter<Phantom> {
         return lore;
     }
 
-    @ParametersAreNonnullByDefault
     @Override
+    @ParametersAreNonnullByDefault
     public void apply(Phantom entity, JsonObject json) {
         MobAdapter.super.apply(entity, json);
 

@@ -30,8 +30,8 @@ public class PandaAdapter extends AnimalsAdapter<Panda> {
         return lore;
     }
 
-    @ParametersAreNonnullByDefault
     @Override
+    @ParametersAreNonnullByDefault
     public void apply(Panda entity, JsonObject json) {
         super.apply(entity, json);
 

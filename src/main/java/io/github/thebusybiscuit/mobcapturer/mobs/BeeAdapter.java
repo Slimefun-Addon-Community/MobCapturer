@@ -13,8 +13,8 @@ public class BeeAdapter extends AnimalsAdapter<Bee> {
         super(Bee.class);
     }
 
-    @ParametersAreNonnullByDefault
     @Override
+    @ParametersAreNonnullByDefault
     public void apply(Bee entity, JsonObject json) {
         super.apply(entity, json);
 

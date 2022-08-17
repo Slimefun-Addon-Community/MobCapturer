@@ -31,8 +31,8 @@ public class ShulkerAdapter implements MobAdapter<Shulker> {
         return lore;
     }
 
-    @ParametersAreNonnullByDefault
     @Override
+    @ParametersAreNonnullByDefault
     public void apply(Shulker entity, JsonObject json) {
         MobAdapter.super.apply(entity, json);
 

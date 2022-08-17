@@ -29,8 +29,8 @@ public class MagicIllagerAdapter<T extends Spellcaster> extends RaiderAdapter<T>
         return lore;
     }
 
-    @ParametersAreNonnullByDefault
     @Override
+    @ParametersAreNonnullByDefault
     public void apply(T entity, JsonObject json) {
         super.apply(entity, json);
 

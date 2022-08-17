@@ -33,8 +33,8 @@ public class HorseAdapter extends AbstractHorseAdapter<Horse> {
         return lore;
     }
 
-    @ParametersAreNonnullByDefault
     @Override
+    @ParametersAreNonnullByDefault
     public void apply(Horse entity, JsonObject json) {
         super.apply(entity, json);
 
@@ -53,8 +53,8 @@ public class HorseAdapter extends AbstractHorseAdapter<Horse> {
         return json;
     }
 
-    @ParametersAreNonnullByDefault
     @Override
+    @ParametersAreNonnullByDefault
     public void applyInventory(Horse entity, Map<String, ItemStack> inventory) {
         super.applyInventory(entity, inventory);
 

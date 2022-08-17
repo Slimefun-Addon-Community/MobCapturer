@@ -11,8 +11,8 @@ import io.github.thebusybiscuit.mobcapturer.MobAdapter;
 
 public class IronGolemAdapter implements MobAdapter<IronGolem> {
 
-    @ParametersAreNonnullByDefault
     @Override
+    @ParametersAreNonnullByDefault
     public void apply(IronGolem entity, JsonObject json) {
         MobAdapter.super.apply(entity, json);
 

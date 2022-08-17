@@ -41,8 +41,8 @@ public class ZombieAdapter<T extends Zombie> extends AbstractHumanoidAdapter<T> 
         return json;
     }
 
-    @ParametersAreNonnullByDefault
     @Override
+    @ParametersAreNonnullByDefault
     public void apply(T entity, JsonObject json) {
         super.apply(entity, json);
 

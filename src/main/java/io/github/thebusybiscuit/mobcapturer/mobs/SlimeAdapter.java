@@ -30,8 +30,8 @@ public class SlimeAdapter<T extends Slime> implements MobAdapter<T> {
         return lore;
     }
 
-    @ParametersAreNonnullByDefault
     @Override
+    @ParametersAreNonnullByDefault
     public void apply(T entity, JsonObject json) {
         MobAdapter.super.apply(entity, json);
 

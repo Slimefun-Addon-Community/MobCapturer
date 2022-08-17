@@ -51,6 +51,7 @@ public class MobEgg<T extends LivingEntity> extends SimpleSlimefunItem<ItemUseHa
         this.adapter = adapter;
     }
 
+    @Nonnull
     @SuppressWarnings("unchecked")
     public ItemStack getEggItem(@Nonnull T entity) {
         JsonObject json = adapter.saveData(entity);
@@ -76,9 +77,9 @@ public class MobEgg<T extends LivingEntity> extends SimpleSlimefunItem<ItemUseHa
         return item;
     }
 
-    @SuppressWarnings("unchecked")
-    @Override
     @Nonnull
+    @Override
+    @SuppressWarnings("unchecked")
     public ItemUseHandler getItemHandler() {
         return e -> {
             e.cancel();

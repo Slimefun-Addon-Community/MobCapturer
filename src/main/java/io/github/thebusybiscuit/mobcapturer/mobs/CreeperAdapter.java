@@ -24,8 +24,8 @@ public class CreeperAdapter implements MobAdapter<Creeper> {
         return lore;
     }
 
-    @ParametersAreNonnullByDefault
     @Override
+    @ParametersAreNonnullByDefault
     public void apply(Creeper entity, JsonObject json) {
         MobAdapter.super.apply(entity, json);
 
