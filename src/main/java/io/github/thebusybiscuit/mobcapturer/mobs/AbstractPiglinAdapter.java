@@ -8,12 +8,12 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import com.google.gson.JsonObject;
 
 import org.bukkit.ChatColor;
-import org.bukkit.entity.Hoglin;
+import org.bukkit.entity.PiglinAbstract;
 
-public class HoglinAdapter extends AnimalsAdapter<Hoglin> {
+public class AbstractPiglinAdapter<T extends PiglinAbstract> extends AbstractHumanoidAdapter<T> {
 
-    public HoglinAdapter() {
-        super(Hoglin.class);
+    public AbstractPiglinAdapter(@Nonnull Class<T> entityClass) {
+        super(entityClass);
     }
 
     @Nonnull
@@ -28,18 +28,17 @@ public class HoglinAdapter extends AnimalsAdapter<Hoglin> {
 
     @ParametersAreNonnullByDefault
     @Override
-    public void apply(Hoglin entity, JsonObject json) {
+    public void apply(T entity, JsonObject json) {
         super.apply(entity, json);
 
         entity.setAge(json.get("age").getAsInt());
-        entity.setIsAbleToBeHunted(json.get("ableToBeHunted").getAsBoolean());
         entity.setImmuneToZombification(json.get("immuneToZombification").getAsBoolean());
         entity.setConversionTime(json.get("conversionTime").getAsInt());
     }
 
     @Nonnull
     @Override
-    public JsonObject saveData(@Nonnull Hoglin entity) {
+    public JsonObject saveData(@Nonnull T entity) {
         JsonObject json = super.saveData(entity);
 
         int conversionTime = -1;
@@ -49,11 +48,9 @@ public class HoglinAdapter extends AnimalsAdapter<Hoglin> {
 
         json.addProperty("age", entity.getAge());
         json.addProperty("baby", !entity.isAdult());
-        json.addProperty("ableToBeHunted", entity.isAbleToBeHunted());
         json.addProperty("immuneToZombification", entity.isImmuneToZombification());
         json.addProperty("conversionTime", conversionTime);
 
         return json;
     }
-
 }
