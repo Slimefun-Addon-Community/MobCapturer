@@ -6,6 +6,11 @@ import java.util.Optional;
 
 import javax.annotation.Nonnull;
 
+import io.github.thebusybiscuit.mobcapturer.mobs.AxolotlAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.GlowSquidAdapter;
+
+import io.github.thebusybiscuit.mobcapturer.mobs.GoatAdapter;
+
 import org.bstats.bukkit.Metrics;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -158,6 +163,10 @@ public class MobCapturer extends JavaPlugin implements SlimefunAddon {
         register("Panda", EntityType.PANDA, new PandaAdapter(), "1ab24611bb37ce3971fdbf01ba3f11bd2e4c72f5d40b6d8d8d536d69e695cd0c");
         register("Fox", EntityType.FOX, new FoxAdapter(), "db8c11abae08927c8ae413d22f2f556c954c7d8a4edf0aa3f4b86597fb7b1cec");
         register("Bee", EntityType.BEE, new BeeAdapter(), "208e55d3b4a865f4888174c02592a631d0a10475fa2686b490d465860fe8cf91");
+        if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_17)) {
+            register("Axolotl", EntityType.AXOLOTL, new AxolotlAdapter(), "62d90ad63dd826df02994abdcc6c2306163e1072d1b9e63ad4e7d7d1cf87cdf9");
+            register("Goat", EntityType.GOAT, new GoatAdapter(), "33f7fe31285bd2ca74516b07852e079447f524fd9cc0b7d4db003b165d5b4b4");
+        }
 
         // Mobs
         register("Slime", EntityType.SLIME, new SlimeAdapter<>(Slime.class), "9330af17f8512ed3b49e78bca7ef2d83f2dc1e598a8cb542ecc3b6becee9f57");
@@ -173,6 +182,9 @@ public class MobCapturer extends JavaPlugin implements SlimefunAddon {
         register("Guardian", EntityType.GUARDIAN, new StandardMobAdapter<>(Guardian.class), "fe119aaa4999648a75b978efafa97edab1cdca1ff1d8301ba61cdc2db1606e22");
         register("Elder Guardian", EntityType.ELDER_GUARDIAN, new StandardMobAdapter<>(ElderGuardian.class), "9a839d8256c81cf1db8da8ff3f7b80cce2f865b80c9f66aea5340e697ea3e219");
         register("Dolphin", EntityType.DOLPHIN, new StandardMobAdapter<>(Dolphin.class), "2480cd9577e2173e1c9de5e41318bd859696215a0a7de9242f01c01b8e6c06bf");
+        if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_17)) {
+            register("Glow Squid", EntityType.GLOW_SQUID, new GlowSquidAdapter(), "e5d31559261b3e79024751fe07b711c8feef51d56c03635226955805bc42894e");
+        }
 
         // Tameables
         register("Wolf", EntityType.WOLF, new WolfAdapter(), "4399c973d6496d1d258492c28d4c95956ac3a253762bf15f7644af1f5728dd");
