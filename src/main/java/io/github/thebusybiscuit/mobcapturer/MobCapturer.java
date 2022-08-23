@@ -7,9 +7,12 @@ import java.util.Optional;
 import javax.annotation.Nonnull;
 
 import io.github.thebusybiscuit.mobcapturer.mobs.AxolotlAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.FrogAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.GlowSquidAdapter;
 
 import io.github.thebusybiscuit.mobcapturer.mobs.GoatAdapter;
+
+import io.github.thebusybiscuit.mobcapturer.mobs.TadpoleAdapter;
 
 import org.bstats.bukkit.Metrics;
 import org.bukkit.ChatColor;
@@ -167,6 +170,9 @@ public class MobCapturer extends JavaPlugin implements SlimefunAddon {
             register("Axolotl", EntityType.AXOLOTL, new AxolotlAdapter(), "62d90ad63dd826df02994abdcc6c2306163e1072d1b9e63ad4e7d7d1cf87cdf9");
             register("Goat", EntityType.GOAT, new GoatAdapter(), "33f7fe31285bd2ca74516b07852e079447f524fd9cc0b7d4db003b165d5b4b4");
         }
+        if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_19)) {
+            register("Frog", EntityType.FROG, new FrogAdapter(), "62d90ad63dd826df02994abdcc6c2306163e1072d1b9e63ad4e7d7d1cf87cdf9"); // missing egg texture
+        }
 
         // Mobs
         register("Slime", EntityType.SLIME, new SlimeAdapter<>(Slime.class), "9330af17f8512ed3b49e78bca7ef2d83f2dc1e598a8cb542ecc3b6becee9f57");
@@ -227,6 +233,9 @@ public class MobCapturer extends JavaPlugin implements SlimefunAddon {
         register("Salmon", EntityType.SALMON, new StandardMobAdapter<>(Salmon.class), "5c46c568e8b5c55853a92869ea19c00b7720c328a2f16c5950b9e2e897fc27a1");
         register("Pufferfish", EntityType.PUFFERFISH, new PufferFishAdapter(), "5d5e7d191478efafe23a654de802760f42a0dd83dfc9817f87d460fcf32978df");
         register("Tropical Fish", EntityType.TROPICAL_FISH, new TropicalFishAdapter(), "2e4385d58fe46dd96422f31d35bbd1568e5819bbdb7a196c9f113424582cf977");
+        if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_19)) {
+            register("Tadpole", EntityType.TADPOLE, new TadpoleAdapter(), "33fcf39f9db88835249f90af1fad377b8c71107d903a4050a963fb4ac58b17c1"); // bucket texture, not egg
+        }
 
         // Horses
         register("Horse", EntityType.HORSE, new HorseAdapter(), "5c6d5abbf68ccb2386bf16af25ac38d8b77bb0e043152461bd97f3f630dbb8bc");
