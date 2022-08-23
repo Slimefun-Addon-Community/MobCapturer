@@ -7,16 +7,14 @@ import com.google.gson.JsonObject;
 
 import org.bukkit.entity.GlowSquid;
 
-public class GlowSquidAdapter extends StandardMobAdapter<GlowSquid> {
+import io.github.thebusybiscuit.mobcapturer.MobAdapter;
 
-    public GlowSquidAdapter() {
-        super(GlowSquid.class);
-    }
+public class GlowSquidAdapter implements MobAdapter<GlowSquid> {
 
     @Override
     @ParametersAreNonnullByDefault
     public void apply(GlowSquid entity, JsonObject json) {
-        super.apply(entity, json);
+        MobAdapter.super.apply(entity, json);
 
         entity.setDarkTicksRemaining(json.get("darkTicksRemaining").getAsInt());
     }
@@ -24,11 +22,17 @@ public class GlowSquidAdapter extends StandardMobAdapter<GlowSquid> {
     @Nonnull
     @Override
     public JsonObject saveData(@Nonnull GlowSquid entity) {
-        JsonObject json = super.saveData(entity);
+        JsonObject json = MobAdapter.super.saveData(entity);
 
         json.addProperty("darkTicksRemaining", entity.getDarkTicksRemaining());
 
         return json;
+    }
+
+    @Nonnull
+    @Override
+    public Class<GlowSquid> getEntityClass() {
+        return GlowSquid.class;
     }
 
 }
