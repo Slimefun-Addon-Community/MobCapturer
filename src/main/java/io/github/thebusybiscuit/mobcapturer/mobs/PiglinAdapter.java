@@ -13,8 +13,8 @@ public class PiglinAdapter extends AbstractPiglinAdapter<Piglin> {
         super(Piglin.class);
     }
 
-    @ParametersAreNonnullByDefault
     @Override
+    @ParametersAreNonnullByDefault
     public void apply(Piglin entity, JsonObject json) {
         super.apply(entity, json);
 

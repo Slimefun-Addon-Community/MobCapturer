@@ -26,8 +26,8 @@ public class HoglinAdapter extends AnimalsAdapter<Hoglin> {
         return lore;
     }
 
-    @ParametersAreNonnullByDefault
     @Override
+    @ParametersAreNonnullByDefault
     public void apply(Hoglin entity, JsonObject json) {
         super.apply(entity, json);
 

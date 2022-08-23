@@ -56,8 +56,8 @@ public class FoxAdapter extends AnimalsAdapter<Fox> implements InventoryAdapter<
         return lore;
     }
 
-    @ParametersAreNonnullByDefault
     @Override
+    @ParametersAreNonnullByDefault
     public void apply(Fox entity, JsonObject json) {
         super.apply(entity, json);
 
@@ -110,8 +110,8 @@ public class FoxAdapter extends AnimalsAdapter<Fox> implements InventoryAdapter<
         return inv;
     }
 
-    @ParametersAreNonnullByDefault
     @Override
+    @ParametersAreNonnullByDefault
     public void applyInventory(Fox entity, Map<String, ItemStack> inventory) {
         EntityEquipment equipment = entity.getEquipment();
 

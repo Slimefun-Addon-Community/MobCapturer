@@ -46,8 +46,8 @@ class AbstractTameableAdapter<T extends Animals & Tameable> extends AnimalsAdapt
         return json;
     }
 
-    @ParametersAreNonnullByDefault
     @Override
+    @ParametersAreNonnullByDefault
     public void apply(T entity, JsonObject json) {
         super.apply(entity, json);
 

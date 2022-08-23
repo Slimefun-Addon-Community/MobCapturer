@@ -29,8 +29,8 @@ public class MooshroomAdapter extends AnimalsAdapter<MushroomCow> {
         return lore;
     }
 
-    @ParametersAreNonnullByDefault
     @Override
+    @ParametersAreNonnullByDefault
     public void apply(MushroomCow entity, JsonObject json) {
         super.apply(entity, json);
 

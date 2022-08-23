@@ -29,8 +29,8 @@ public class TropicalFishAdapter implements MobAdapter<TropicalFish> {
         return lore;
     }
 
-    @ParametersAreNonnullByDefault
     @Override
+    @ParametersAreNonnullByDefault
     public void apply(TropicalFish entity, JsonObject json) {
         MobAdapter.super.apply(entity, json);
 

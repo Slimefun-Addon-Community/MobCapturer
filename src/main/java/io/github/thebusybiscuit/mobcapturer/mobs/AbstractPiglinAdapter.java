@@ -10,7 +10,7 @@ import com.google.gson.JsonObject;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.PiglinAbstract;
 
-public class AbstractPiglinAdapter<T extends PiglinAbstract> extends AbstractHumanoidAdapter<T> {
+class AbstractPiglinAdapter<T extends PiglinAbstract> extends AbstractHumanoidAdapter<T> {
 
     public AbstractPiglinAdapter(@Nonnull Class<T> entityClass) {
         super(entityClass);
@@ -26,8 +26,8 @@ public class AbstractPiglinAdapter<T extends PiglinAbstract> extends AbstractHum
         return lore;
     }
 
-    @ParametersAreNonnullByDefault
     @Override
+    @ParametersAreNonnullByDefault
     public void apply(T entity, JsonObject json) {
         super.apply(entity, json);
 

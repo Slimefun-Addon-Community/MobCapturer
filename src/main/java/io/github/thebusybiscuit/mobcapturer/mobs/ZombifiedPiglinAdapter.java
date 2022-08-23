@@ -27,8 +27,8 @@ public class ZombifiedPiglinAdapter extends AbstractHumanoidAdapter<PigZombie> {
         return lore;
     }
 
-    @ParametersAreNonnullByDefault
     @Override
+    @ParametersAreNonnullByDefault
     public void apply(PigZombie entity, JsonObject json) {
         super.apply(entity, json);
 

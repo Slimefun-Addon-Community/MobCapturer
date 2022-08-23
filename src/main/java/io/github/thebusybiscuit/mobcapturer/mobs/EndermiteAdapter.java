@@ -11,8 +11,8 @@ import io.github.thebusybiscuit.mobcapturer.MobAdapter;
 
 public class EndermiteAdapter implements MobAdapter<Endermite> {
 
-    @ParametersAreNonnullByDefault
     @Override
+    @ParametersAreNonnullByDefault
     public void apply(Endermite entity, JsonObject json) {
         MobAdapter.super.apply(entity, json);
 

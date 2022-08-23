@@ -13,8 +13,8 @@ public class RaiderAdapter<T extends Raider> extends AbstractHumanoidAdapter<T> 
         super(entityClass);
     }
 
-    @ParametersAreNonnullByDefault
     @Override
+    @ParametersAreNonnullByDefault
     public void apply(T entity, JsonObject json) {
         super.apply(entity, json);
 

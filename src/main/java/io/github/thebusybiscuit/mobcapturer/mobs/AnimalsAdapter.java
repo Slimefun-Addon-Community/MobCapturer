@@ -44,8 +44,8 @@ public class AnimalsAdapter<T extends Animals> implements MobAdapter<T> {
         return json;
     }
 
-    @ParametersAreNonnullByDefault
     @Override
+    @ParametersAreNonnullByDefault
     public void apply(T entity, JsonObject json) {
         MobAdapter.super.apply(entity, json);
 

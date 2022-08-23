@@ -11,8 +11,8 @@ import io.github.thebusybiscuit.mobcapturer.MobAdapter;
 
 public class SnowmanAdapter implements MobAdapter<Snowman> {
 
-    @ParametersAreNonnullByDefault
     @Override
+    @ParametersAreNonnullByDefault
     public void apply(Snowman entity, JsonObject json) {
         MobAdapter.super.apply(entity, json);
 

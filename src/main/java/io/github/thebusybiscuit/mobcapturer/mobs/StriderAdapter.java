@@ -13,8 +13,8 @@ public class StriderAdapter extends AnimalsAdapter<Strider> {
         super(Strider.class);
     }
 
-    @ParametersAreNonnullByDefault
     @Override
+    @ParametersAreNonnullByDefault
     public void apply(Strider entity, JsonObject json) {
         super.apply(entity, json);
 

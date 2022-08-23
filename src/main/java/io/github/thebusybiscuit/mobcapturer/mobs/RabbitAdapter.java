@@ -29,8 +29,8 @@ public class RabbitAdapter extends AnimalsAdapter<Rabbit> {
         return lore;
     }
 
-    @ParametersAreNonnullByDefault
     @Override
+    @ParametersAreNonnullByDefault
     public void apply(Rabbit entity, JsonObject json) {
         super.apply(entity, json);
 

@@ -28,8 +28,8 @@ public class PigAdapter extends AnimalsAdapter<Pig> {
         return lore;
     }
 
-    @ParametersAreNonnullByDefault
     @Override
+    @ParametersAreNonnullByDefault
     public void apply(Pig entity, JsonObject json) {
         super.apply(entity, json);
 

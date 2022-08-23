@@ -24,8 +24,8 @@ class AbstractHumanoidAdapter<T extends Monster> implements MobAdapter<T>, Inven
         this.entityClass = entityClass;
     }
 
-    @ParametersAreNonnullByDefault
     @Override
+    @ParametersAreNonnullByDefault
     public void apply(T entity, JsonObject json) {
         MobAdapter.super.apply(entity, json);
 
@@ -67,8 +67,8 @@ class AbstractHumanoidAdapter<T extends Monster> implements MobAdapter<T>, Inven
         return json;
     }
 
-    @ParametersAreNonnullByDefault
     @Override
+    @ParametersAreNonnullByDefault
     public void applyInventory(T entity, Map<String, ItemStack> inventory) {
         EntityEquipment equipment = entity.getEquipment();
 

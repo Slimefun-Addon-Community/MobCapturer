@@ -33,8 +33,8 @@ public class ParrotAdapter extends AbstractTameableAdapter<Parrot> {
         return lore;
     }
 
-    @ParametersAreNonnullByDefault
     @Override
+    @ParametersAreNonnullByDefault
     public void apply(Parrot entity, JsonObject json) {
         super.apply(entity, json);
 

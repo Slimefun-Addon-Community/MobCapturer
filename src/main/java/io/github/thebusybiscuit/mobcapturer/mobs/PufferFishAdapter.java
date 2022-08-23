@@ -24,8 +24,8 @@ public class PufferFishAdapter implements MobAdapter<PufferFish> {
         return lore;
     }
 
-    @ParametersAreNonnullByDefault
     @Override
+    @ParametersAreNonnullByDefault
     public void apply(PufferFish entity, JsonObject json) {
         MobAdapter.super.apply(entity, json);
 

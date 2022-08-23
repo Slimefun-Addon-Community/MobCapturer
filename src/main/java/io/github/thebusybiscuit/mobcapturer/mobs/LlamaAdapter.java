@@ -29,8 +29,8 @@ public class LlamaAdapter<T extends Llama> extends ChestedHorseAdapter<T> {
         return lore;
     }
 
-    @ParametersAreNonnullByDefault
     @Override
+    @ParametersAreNonnullByDefault
     public void apply(T entity, JsonObject json) {
         super.apply(entity, json);
 

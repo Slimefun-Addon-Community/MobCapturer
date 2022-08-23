@@ -35,8 +35,8 @@ public class CatAdapter extends AbstractTameableAdapter<Cat> {
         return lore;
     }
 
-    @ParametersAreNonnullByDefault
     @Override
+    @ParametersAreNonnullByDefault
     public void apply(Cat entity, JsonObject json) {
         super.apply(entity, json);
 
