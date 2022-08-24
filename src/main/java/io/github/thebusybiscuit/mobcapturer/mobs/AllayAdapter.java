@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import org.bukkit.entity.Allay;
@@ -14,6 +15,9 @@ import org.bukkit.inventory.ItemStack;
 
 import io.github.thebusybiscuit.mobcapturer.InventoryAdapter;
 import io.github.thebusybiscuit.mobcapturer.MobAdapter;
+import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import io.github.thebusybiscuit.slimefun4.libraries.paperlib.PaperLib;
 
 public class AllayAdapter implements MobAdapter<Allay>, InventoryAdapter<Allay> {
 
@@ -22,7 +26,12 @@ public class AllayAdapter implements MobAdapter<Allay>, InventoryAdapter<Allay> 
     public void apply(Allay entity, JsonObject json) {
         MobAdapter.super.apply(entity, json);
 
-        entity.setDuplicationCooldown(json.get("duplicationCooldown").getAsLong());
+        if (haveAllayMethods()) {
+            JsonElement duplicationCooldown = json.get("duplicationCooldown");
+            if (duplicationCooldown.isJsonObject()) {
+                entity.setDuplicationCooldown(duplicationCooldown.getAsLong());
+            }
+        }
     }
 
     @Nonnull
@@ -30,9 +39,19 @@ public class AllayAdapter implements MobAdapter<Allay>, InventoryAdapter<Allay> 
     public JsonObject saveData(@Nonnull Allay entity) {
         JsonObject json = MobAdapter.super.saveData(entity);
 
-        json.addProperty("duplicationCooldown", entity.getDuplicationCooldown());
+        if (haveAllayMethods()) {
+            json.addProperty("duplicationCooldown", entity.getDuplicationCooldown());
+        }
 
         return json;
+    }
+
+    private boolean haveAllayMethods() {
+        if (Slimefun.getMinecraftVersion() == MinecraftVersion.MINECRAFT_1_19) {
+            return PaperLib.getMinecraftPatchVersion() >= 2;
+        } else {
+            return true;
+        }
     }
 
     @Nonnull
