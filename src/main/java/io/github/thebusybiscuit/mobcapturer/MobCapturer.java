@@ -6,14 +6,6 @@ import java.util.Optional;
 
 import javax.annotation.Nonnull;
 
-import io.github.thebusybiscuit.mobcapturer.mobs.AxolotlAdapter;
-import io.github.thebusybiscuit.mobcapturer.mobs.FrogAdapter;
-import io.github.thebusybiscuit.mobcapturer.mobs.GlowSquidAdapter;
-
-import io.github.thebusybiscuit.mobcapturer.mobs.GoatAdapter;
-
-import io.github.thebusybiscuit.mobcapturer.mobs.TadpoleAdapter;
-
 import org.bstats.bukkit.Metrics;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -63,13 +55,18 @@ import org.bukkit.plugin.java.JavaPlugin;
 import io.github.thebusybiscuit.mobcapturer.items.MobCannon;
 import io.github.thebusybiscuit.mobcapturer.items.MobEgg;
 import io.github.thebusybiscuit.mobcapturer.items.MobPellet;
+import io.github.thebusybiscuit.mobcapturer.mobs.AllayAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.AnimalsAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.AxolotlAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.BeeAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.CatAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.ChestedHorseAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.CreeperAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.EndermiteAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.FoxAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.FrogAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.GlowSquidAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.GoatAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.HoglinAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.HorseAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.IronGolemAdapter;
@@ -92,6 +89,7 @@ import io.github.thebusybiscuit.mobcapturer.mobs.SlimeAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.SnowmanAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.StandardMobAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.StriderAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.TadpoleAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.TropicalFishAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.UndeadHorseAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.VexAdapter;
@@ -182,6 +180,9 @@ public class MobCapturer extends JavaPlugin implements SlimefunAddon {
         register("Phantom", EntityType.PHANTOM, new PhantomAdapter(), "9381dfeac8a050d330fde058bad5f5e6f228f28cd379761c1147e17c4ed605b");
         register("Silverfish", EntityType.SILVERFISH, new StandardMobAdapter<>(Silverfish.class), "d06310a8952b265c6e6bed4348239ddea8e5482c8c68be6fff981ba8056bf2e");
         register("Bat", EntityType.BAT, new StandardMobAdapter<>(Bat.class), "93c8aa3fde295fa9f9c27f734bdbab11d33a2e43e855accd7465352377413b");
+        if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_19)) {
+            register("Allay", EntityType.ALLAY, new AllayAdapter(), "33fcf39f9db88835249f90af1fad377b8c71107d903a4050a963fb4ac58b17c1"); // no texture yet
+        }
 
         // Water Mobs
         register("Squid", EntityType.SQUID, new StandardMobAdapter<>(Squid.class), "449088861fc1e14b605a5154d79fa7dd65e041a5c635d24744b3e152535");
