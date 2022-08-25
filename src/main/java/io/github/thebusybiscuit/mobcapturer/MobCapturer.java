@@ -45,6 +45,7 @@ import org.bukkit.entity.Stray;
 import org.bukkit.entity.TraderLlama;
 import org.bukkit.entity.Turtle;
 import org.bukkit.entity.Vindicator;
+import org.bukkit.entity.Warden;
 import org.bukkit.entity.Witch;
 import org.bukkit.entity.WitherSkeleton;
 import org.bukkit.entity.Zombie;
@@ -111,6 +112,7 @@ import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerHead;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerSkin;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.updater.GitHubBuildsUpdater;
+import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 
 public class MobCapturer extends JavaPlugin implements SlimefunAddon {
 
@@ -181,7 +183,8 @@ public class MobCapturer extends JavaPlugin implements SlimefunAddon {
         register("Silverfish", EntityType.SILVERFISH, new StandardMobAdapter<>(Silverfish.class), "d06310a8952b265c6e6bed4348239ddea8e5482c8c68be6fff981ba8056bf2e");
         register("Bat", EntityType.BAT, new StandardMobAdapter<>(Bat.class), "93c8aa3fde295fa9f9c27f734bdbab11d33a2e43e855accd7465352377413b");
         if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_19)) {
-            register("Allay", EntityType.ALLAY, new AllayAdapter(), "33fcf39f9db88835249f90af1fad377b8c71107d903a4050a963fb4ac58b17c1"); // no texture yet
+            register("Allay", EntityType.ALLAY, new AllayAdapter(), "40e1c7064af7dee68677efaa95f6e6e01430b006dd91638ea2a61849254488ec"); // not egg texture
+            register("Warden", EntityType.WARDEN, new StandardMobAdapter<>(Warden.class), "182d36b973e57e4c0fe28c371a7f11fc04a2a342a88a7e5e5d83edbcab61770e");
         }
 
         // Water Mobs
@@ -235,7 +238,7 @@ public class MobCapturer extends JavaPlugin implements SlimefunAddon {
         register("Pufferfish", EntityType.PUFFERFISH, new PufferFishAdapter(), "5d5e7d191478efafe23a654de802760f42a0dd83dfc9817f87d460fcf32978df");
         register("Tropical Fish", EntityType.TROPICAL_FISH, new TropicalFishAdapter(), "2e4385d58fe46dd96422f31d35bbd1568e5819bbdb7a196c9f113424582cf977");
         if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_19)) {
-            register("Tadpole", EntityType.TADPOLE, new TadpoleAdapter(), "33fcf39f9db88835249f90af1fad377b8c71107d903a4050a963fb4ac58b17c1"); // bucket texture, not egg
+            register("Tadpole", EntityType.TADPOLE, new TadpoleAdapter(), "33fcf39f9db88835249f90af1fad377b8c71107d903a4050a963fb4ac58b17c1"); // not egg texture, bucket of tadpole
         }
 
         // Horses
@@ -262,9 +265,20 @@ public class MobCapturer extends JavaPlugin implements SlimefunAddon {
     }
 
     public <T extends LivingEntity> void register(String name, EntityType type, MobAdapter<T> adapter, String eggTexture) {
-        SlimefunItemStack itemstack = new SlimefunItemStack("MOB_EGG_" + type.toString(), eggTexture, "&aMob Egg &7(" + name + ")", "", "&7Right Click this Item on a Block", "&7to release your captured Mob");
+        SlimefunItemStack itemstack = new SlimefunItemStack(
+            "MOB_EGG_" + type.toString(),
+            eggTexture,
+            "&aMob Egg &7(" + name + ")",
+            "",
+            "&7Right Click this Item on a Block",
+            "&7to release your captured Mob"
+        );
 
-        MobEgg<T> egg = new MobEgg<>(itemGroup, itemstack, dataKey, inventoryKey, adapter, recipeType, new ItemStack[]{null, null, null, null, new CustomItemStack(PlayerHead.getItemStack(PlayerSkin.fromHashCode(eggTexture)), ChatColor.WHITE + name), null, null, null, null});
+        MobEgg<T> egg = new MobEgg<>(itemGroup, itemstack, dataKey, inventoryKey, adapter, recipeType, new ItemStack[]{
+            null, null, null,
+            null, new CustomItemStack(SlimefunUtils.getCustomHead(eggTexture), ChatColor.WHITE + name), null,
+            null, null, null
+        });
 
         egg.register(this);
 
