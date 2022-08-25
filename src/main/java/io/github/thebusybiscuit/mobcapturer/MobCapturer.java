@@ -184,7 +184,6 @@ public class MobCapturer extends JavaPlugin implements SlimefunAddon {
         register("Bat", EntityType.BAT, new StandardMobAdapter<>(Bat.class), "93c8aa3fde295fa9f9c27f734bdbab11d33a2e43e855accd7465352377413b");
         if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_19)) {
             register("Allay", EntityType.ALLAY, new AllayAdapter(), "40e1c7064af7dee68677efaa95f6e6e01430b006dd91638ea2a61849254488ec"); // not egg texture
-            register("Warden", EntityType.WARDEN, new StandardMobAdapter<>(Warden.class), "182d36b973e57e4c0fe28c371a7f11fc04a2a342a88a7e5e5d83edbcab61770e");
         }
 
         // Water Mobs
