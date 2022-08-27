@@ -32,6 +32,11 @@ public class GoatAdapter extends AnimalsAdapter<Goat> {
         super.apply(entity, json);
 
         entity.setScreaming(json.get("screaming").getAsBoolean());
+
+        if (hasHornMethods() && json.has("hasLeftHorn")) {
+            entity.setLeftHorn(json.get("hasLeftHorn").getAsBoolean());
+            entity.setRightHorn(json.get("hasRightHorn").getAsBoolean());
+        }
     }
 
     @Nonnull
@@ -41,7 +46,21 @@ public class GoatAdapter extends AnimalsAdapter<Goat> {
 
         json.addProperty("screaming", entity.isScreaming());
 
+        if (hasHornMethods()) {
+            json.addProperty("hasLeftHorn", entity.hasLeftHorn());
+            json.addProperty("hasRightHorn", entity.hasRightHorn());
+        }
+
         return json;
+    }
+
+    private boolean hasHornMethods() {
+        try {
+            Goat.class.getMethod("hasLeftHorn");
+            return true;
+        } catch (NoSuchMethodException ex) {
+            return false;
+        }
     }
 
 }

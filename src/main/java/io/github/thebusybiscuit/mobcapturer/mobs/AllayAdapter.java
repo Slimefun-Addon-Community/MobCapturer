@@ -23,11 +23,8 @@ public class AllayAdapter implements MobAdapter<Allay>, InventoryAdapter<Allay> 
     public void apply(Allay entity, JsonObject json) {
         MobAdapter.super.apply(entity, json);
 
-        if (hasAllayMethods()) {
-            JsonElement duplicationCooldown = json.get("duplicationCooldown");
-            if (duplicationCooldown.isJsonObject()) {
-                entity.setDuplicationCooldown(duplicationCooldown.getAsLong());
-            }
+        if (hasAllayMethods() && json.has("duplicationCooldown")) {
+            entity.setDuplicationCooldown(json.get("duplicationCooldown").getAsLong());
         }
     }
 
