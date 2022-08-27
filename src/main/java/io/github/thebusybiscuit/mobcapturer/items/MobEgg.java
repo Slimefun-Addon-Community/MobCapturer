@@ -108,8 +108,8 @@ public class MobEgg<T extends LivingEntity> extends SimpleSlimefunItem<ItemUseHa
                                 for (String key : yaml.getKeys(true)) {
                                     Object obj = yaml.get(key);
 
-                                    if (obj instanceof ItemStack) {
-                                        inventory.put(key, (ItemStack) obj);
+                                    if (obj instanceof ItemStack item) {
+                                        inventory.put(key, item);
                                     }
                                 }
                             } catch (IOException x) {
