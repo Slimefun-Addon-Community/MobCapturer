@@ -45,7 +45,6 @@ import org.bukkit.entity.Stray;
 import org.bukkit.entity.TraderLlama;
 import org.bukkit.entity.Turtle;
 import org.bukkit.entity.Vindicator;
-import org.bukkit.entity.Warden;
 import org.bukkit.entity.Witch;
 import org.bukkit.entity.WitherSkeleton;
 import org.bukkit.entity.Zombie;

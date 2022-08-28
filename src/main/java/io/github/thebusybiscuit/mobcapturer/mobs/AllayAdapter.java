@@ -6,7 +6,6 @@ import java.util.Map;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import org.bukkit.entity.Allay;
