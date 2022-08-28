@@ -2,9 +2,9 @@ package io.github.thebusybiscuit.mobcapturer.mobs;
 
 import javax.annotation.Nonnull;
 
-import org.bukkit.entity.Skeleton;
+import org.bukkit.entity.AbstractSkeleton;
 
-public class SkeletonAdapter<T extends Skeleton> extends AbstractHumanoidAdapter<T> {
+public class SkeletonAdapter<T extends AbstractSkeleton> extends AbstractHumanoidAdapter<T> {
 
     public SkeletonAdapter(@Nonnull Class<T> entityClass) {
         super(entityClass);

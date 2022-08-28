@@ -55,13 +55,18 @@ import org.bukkit.plugin.java.JavaPlugin;
 import io.github.thebusybiscuit.mobcapturer.items.MobCannon;
 import io.github.thebusybiscuit.mobcapturer.items.MobEgg;
 import io.github.thebusybiscuit.mobcapturer.items.MobPellet;
+import io.github.thebusybiscuit.mobcapturer.mobs.AllayAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.AnimalsAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.AxolotlAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.BeeAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.CatAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.ChestedHorseAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.CreeperAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.EndermiteAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.FoxAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.FrogAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.GlowSquidAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.GoatAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.HoglinAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.HorseAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.IronGolemAdapter;
@@ -84,6 +89,7 @@ import io.github.thebusybiscuit.mobcapturer.mobs.SlimeAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.SnowmanAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.StandardMobAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.StriderAdapter;
+import io.github.thebusybiscuit.mobcapturer.mobs.TadpoleAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.TropicalFishAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.UndeadHorseAdapter;
 import io.github.thebusybiscuit.mobcapturer.mobs.VexAdapter;
@@ -105,6 +111,7 @@ import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerHead;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerSkin;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.updater.GitHubBuildsUpdater;
+import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 
 public class MobCapturer extends JavaPlugin implements SlimefunAddon {
 
@@ -158,6 +165,13 @@ public class MobCapturer extends JavaPlugin implements SlimefunAddon {
         register("Panda", EntityType.PANDA, new PandaAdapter(), "1ab24611bb37ce3971fdbf01ba3f11bd2e4c72f5d40b6d8d8d536d69e695cd0c");
         register("Fox", EntityType.FOX, new FoxAdapter(), "db8c11abae08927c8ae413d22f2f556c954c7d8a4edf0aa3f4b86597fb7b1cec");
         register("Bee", EntityType.BEE, new BeeAdapter(), "208e55d3b4a865f4888174c02592a631d0a10475fa2686b490d465860fe8cf91");
+        if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_17)) {
+            register("Axolotl", EntityType.AXOLOTL, new AxolotlAdapter(), "62d90ad63dd826df02994abdcc6c2306163e1072d1b9e63ad4e7d7d1cf87cdf9");
+            register("Goat", EntityType.GOAT, new GoatAdapter(), "33f7fe31285bd2ca74516b07852e079447f524fd9cc0b7d4db003b165d5b4b4");
+        }
+        if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_19)) {
+            register("Frog", EntityType.FROG, new FrogAdapter(), "d2c3b98ada19957f8d83a7d42faf81a290fae7d08dbf6c1f8992a1ada44b31"); // not egg texture
+        }
 
         // Mobs
         register("Slime", EntityType.SLIME, new SlimeAdapter<>(Slime.class), "9330af17f8512ed3b49e78bca7ef2d83f2dc1e598a8cb542ecc3b6becee9f57");
@@ -167,12 +181,18 @@ public class MobCapturer extends JavaPlugin implements SlimefunAddon {
         register("Phantom", EntityType.PHANTOM, new PhantomAdapter(), "9381dfeac8a050d330fde058bad5f5e6f228f28cd379761c1147e17c4ed605b");
         register("Silverfish", EntityType.SILVERFISH, new StandardMobAdapter<>(Silverfish.class), "d06310a8952b265c6e6bed4348239ddea8e5482c8c68be6fff981ba8056bf2e");
         register("Bat", EntityType.BAT, new StandardMobAdapter<>(Bat.class), "93c8aa3fde295fa9f9c27f734bdbab11d33a2e43e855accd7465352377413b");
+        if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_19)) {
+            register("Allay", EntityType.ALLAY, new AllayAdapter(), "40e1c7064af7dee68677efaa95f6e6e01430b006dd91638ea2a61849254488ec"); // not egg texture
+        }
 
         // Water Mobs
         register("Squid", EntityType.SQUID, new StandardMobAdapter<>(Squid.class), "449088861fc1e14b605a5154d79fa7dd65e041a5c635d24744b3e152535");
         register("Guardian", EntityType.GUARDIAN, new StandardMobAdapter<>(Guardian.class), "fe119aaa4999648a75b978efafa97edab1cdca1ff1d8301ba61cdc2db1606e22");
         register("Elder Guardian", EntityType.ELDER_GUARDIAN, new StandardMobAdapter<>(ElderGuardian.class), "9a839d8256c81cf1db8da8ff3f7b80cce2f865b80c9f66aea5340e697ea3e219");
         register("Dolphin", EntityType.DOLPHIN, new StandardMobAdapter<>(Dolphin.class), "2480cd9577e2173e1c9de5e41318bd859696215a0a7de9242f01c01b8e6c06bf");
+        if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_17)) {
+            register("Glow Squid", EntityType.GLOW_SQUID, new GlowSquidAdapter(), "e5d31559261b3e79024751fe07b711c8feef51d56c03635226955805bc42894e");
+        }
 
         // Tameables
         register("Wolf", EntityType.WOLF, new WolfAdapter(), "4399c973d6496d1d258492c28d4c95956ac3a253762bf15f7644af1f5728dd");
@@ -215,6 +235,9 @@ public class MobCapturer extends JavaPlugin implements SlimefunAddon {
         register("Salmon", EntityType.SALMON, new StandardMobAdapter<>(Salmon.class), "5c46c568e8b5c55853a92869ea19c00b7720c328a2f16c5950b9e2e897fc27a1");
         register("Pufferfish", EntityType.PUFFERFISH, new PufferFishAdapter(), "5d5e7d191478efafe23a654de802760f42a0dd83dfc9817f87d460fcf32978df");
         register("Tropical Fish", EntityType.TROPICAL_FISH, new TropicalFishAdapter(), "2e4385d58fe46dd96422f31d35bbd1568e5819bbdb7a196c9f113424582cf977");
+        if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_19)) {
+            register("Tadpole", EntityType.TADPOLE, new TadpoleAdapter(), "33fcf39f9db88835249f90af1fad377b8c71107d903a4050a963fb4ac58b17c1"); // not egg texture, bucket of tadpole
+        }
 
         // Horses
         register("Horse", EntityType.HORSE, new HorseAdapter(), "5c6d5abbf68ccb2386bf16af25ac38d8b77bb0e043152461bd97f3f630dbb8bc");
@@ -240,9 +263,20 @@ public class MobCapturer extends JavaPlugin implements SlimefunAddon {
     }
 
     public <T extends LivingEntity> void register(String name, EntityType type, MobAdapter<T> adapter, String eggTexture) {
-        SlimefunItemStack itemstack = new SlimefunItemStack("MOB_EGG_" + type.toString(), eggTexture, "&aMob Egg &7(" + name + ")", "", "&7Right Click this Item on a Block", "&7to release your captured Mob");
+        SlimefunItemStack itemstack = new SlimefunItemStack(
+            "MOB_EGG_" + type.toString(),
+            eggTexture,
+            "&aMob Egg &7(" + name + ")",
+            "",
+            "&7Right Click this Item on a Block",
+            "&7to release your captured Mob"
+        );
 
-        MobEgg<T> egg = new MobEgg<>(itemGroup, itemstack, dataKey, inventoryKey, adapter, recipeType, new ItemStack[]{null, null, null, null, new CustomItemStack(PlayerHead.getItemStack(PlayerSkin.fromHashCode(eggTexture)), ChatColor.WHITE + name), null, null, null, null});
+        MobEgg<T> egg = new MobEgg<>(itemGroup, itemstack, dataKey, inventoryKey, adapter, recipeType, new ItemStack[]{
+            null, null, null,
+            null, new CustomItemStack(SlimefunUtils.getCustomHead(eggTexture), ChatColor.WHITE + name), null,
+            null, null, null
+        });
 
         egg.register(this);
 

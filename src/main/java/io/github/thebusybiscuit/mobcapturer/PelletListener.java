@@ -13,7 +13,6 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.projectiles.ProjectileSource;
 
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
@@ -30,17 +29,18 @@ public class PelletListener implements Listener {
 
     @EventHandler (ignoreCancelled = true, priority = EventPriority.HIGH)
     public void onProjectileHit(@Nonnull EntityDamageByEntityEvent e) {
-        if (e.getDamager() instanceof Snowball pellet && e.getEntity() instanceof LivingEntity entity && e.getDamager().hasMetadata("mob_capturing_cannon")) {
-            ProjectileSource shooter = pellet.getShooter();
+        if (e.getDamager() instanceof Snowball pellet
+            && e.getEntity() instanceof LivingEntity entity
+            && pellet.hasMetadata("mob_capturing_cannon")
+            && pellet.getShooter() instanceof Player player
+            && canCapture(player, entity.getLocation())
+        ) {
+            Optional<ItemStack> optional = plugin.capture(entity);
 
-            if (shooter instanceof Player player && canCapture(player, e.getEntity().getLocation())) {
-                Optional<ItemStack> optional = plugin.capture(entity);
-
-                if (optional.isPresent()) {
-                    e.getDamager().removeMetadata("mob_capturing_cannon", plugin);
-                    e.getEntity().remove();
-                    e.getEntity().getWorld().dropItemNaturally(entity.getEyeLocation(), optional.get());
-                }
+            if (optional.isPresent()) {
+                pellet.removeMetadata("mob_capturing_cannon", plugin);
+                entity.remove();
+                entity.getWorld().dropItemNaturally(entity.getEyeLocation(), optional.get());
             }
         }
     }
