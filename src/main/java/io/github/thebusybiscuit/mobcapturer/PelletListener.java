@@ -13,7 +13,6 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.projectiles.ProjectileSource;
 
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
@@ -32,9 +31,9 @@ public class PelletListener implements Listener {
     public void onProjectileHit(@Nonnull EntityDamageByEntityEvent e) {
         if (e.getDamager() instanceof Snowball pellet
             && e.getEntity() instanceof LivingEntity entity
-            && e.getDamager().hasMetadata("mob_capturing_cannon")
+            && pellet.hasMetadata("mob_capturing_cannon")
             && pellet.getShooter() instanceof Player player
-            && canCapture(player, e.getEntity().getLocation())
+            && canCapture(player, entity.getLocation())
         ) {
             Optional<ItemStack> optional = plugin.capture(entity);
 

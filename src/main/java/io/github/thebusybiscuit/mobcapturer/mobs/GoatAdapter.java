@@ -10,6 +10,9 @@ import com.google.gson.JsonObject;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Goat;
 
+import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+
 public class GoatAdapter extends AnimalsAdapter<Goat> {
 
     public GoatAdapter() {
@@ -55,12 +58,7 @@ public class GoatAdapter extends AnimalsAdapter<Goat> {
     }
 
     private boolean hasHornMethods() {
-        try {
-            Goat.class.getMethod("hasLeftHorn");
-            return true;
-        } catch (NoSuchMethodException ex) {
-            return false;
-        }
+        return Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_19);
     }
 
 }
