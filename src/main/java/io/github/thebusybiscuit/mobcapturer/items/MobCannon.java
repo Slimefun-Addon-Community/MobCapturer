@@ -10,6 +10,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
 
 import io.github.thebusybiscuit.mobcapturer.MobCapturer;
+import io.github.thebusybiscuit.mobcapturer.setup.Items;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
@@ -19,36 +20,31 @@ import io.github.thebusybiscuit.slimefun4.libraries.dough.items.ItemUtils;
 
 public class MobCannon extends SimpleSlimefunItem<ItemUseHandler> {
 
-    private final MobCapturer plugin;
-    private final MobPellet pellet;
-
     @ParametersAreNonnullByDefault
-    public MobCannon(MobCapturer plugin, ItemGroup itemGroup, SlimefunItemStack item, MobPellet pellet, RecipeType recipeType, ItemStack[] recipe) {
+    public MobCannon(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
-
-        this.plugin = plugin;
-        this.pellet = pellet;
     }
 
     @Nonnull
     @Override
     public ItemUseHandler getItemHandler() {
         return e -> {
-            if (consumeAmmo(e.getPlayer(), pellet)) {
+            if (consumeAmmo(e.getPlayer())) {
                 Snowball projectile = e.getPlayer().launchProjectile(Snowball.class);
-                projectile.setMetadata("mob_capturing_cannon", new FixedMetadataValue(plugin, e.getPlayer().getUniqueId()));
+                projectile.setMetadata("mob_capturing_cannon", new FixedMetadataValue(MobCapturer.getInstance(),
+                    e.getPlayer().getUniqueId()));
             }
         };
     }
 
     @ParametersAreNonnullByDefault
-    private boolean consumeAmmo(Player p, MobPellet pellet) {
+    private boolean consumeAmmo(Player p) {
         if (p.getGameMode() == GameMode.CREATIVE) {
             return true;
         }
 
         for (ItemStack item : p.getInventory()) {
-            if (pellet.isItem(item)) {
+            if (Items.PELLET.getItem().isItem(item)) {
                 ItemUtils.consumeItem(item, false);
                 return true;
             }

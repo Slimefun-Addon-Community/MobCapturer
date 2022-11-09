@@ -3,6 +3,7 @@ package io.github.thebusybiscuit.mobcapturer;
 import java.util.Optional;
 
 import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
 
 import org.bukkit.Location;
 import org.bukkit.entity.LivingEntity;
@@ -14,6 +15,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
 
+import io.github.thebusybiscuit.mobcapturer.items.MobEgg;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
 
@@ -27,7 +29,7 @@ public class PelletListener implements Listener {
         this.plugin = plugin;
     }
 
-    @EventHandler (ignoreCancelled = true, priority = EventPriority.HIGH)
+    @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGH)
     public void onProjectileHit(@Nonnull EntityDamageByEntityEvent e) {
         if (e.getDamager() instanceof Snowball pellet
             && e.getEntity() instanceof LivingEntity entity
@@ -35,7 +37,7 @@ public class PelletListener implements Listener {
             && pellet.getShooter() instanceof Player player
             && canCapture(player, entity.getLocation())
         ) {
-            Optional<ItemStack> optional = plugin.capture(entity);
+            Optional<ItemStack> optional = capture(entity);
 
             if (optional.isPresent()) {
                 pellet.removeMetadata("mob_capturing_cannon", plugin);
@@ -45,8 +47,21 @@ public class PelletListener implements Listener {
         }
     }
 
+    @ParametersAreNonnullByDefault
     protected boolean canCapture(Player p, Location l) {
         return Slimefun.getProtectionManager().hasPermission(p, l, Interaction.ATTACK_ENTITY);
     }
 
+    @Nonnull
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    protected Optional<ItemStack> capture(@Nonnull LivingEntity entity) {
+        MobEgg egg = MobCapturer.getRegistry().getAdapters().get(entity.getType());
+
+        if (egg != null) {
+            ItemStack item = egg.getEggItem(entity);
+            return Optional.of(item);
+        } else {
+            return Optional.empty();
+        }
+    }
 }
