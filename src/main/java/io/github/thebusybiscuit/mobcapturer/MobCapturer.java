@@ -40,7 +40,7 @@ public class MobCapturer extends JavaPlugin implements SlimefunAddon {
             new GitHubBuildsUpdater(this, getFile(), "TheBusyBiscuit/MobCapturer/master").start();
         }
 
-        registry = new Registry();
+        registry = new Registry(cfg);
 
         Setup.setup();
 
