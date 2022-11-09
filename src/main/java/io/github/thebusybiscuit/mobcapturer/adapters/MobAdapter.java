@@ -31,10 +31,11 @@ import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
 /**
  * This is a simple Adapter that allows conversion between a {@link LivingEntity} and
  * a {@link JsonObject}.
- * <p>
+ *
  * It also requires the implementation of {@link PersistentDataType}.
  *
  * @author TheBusyBiscuit
+ *
  */
 public interface MobAdapter<T extends LivingEntity> extends PersistentDataType<String, JsonObject> {
 

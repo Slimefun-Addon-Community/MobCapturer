@@ -5,6 +5,8 @@ import java.util.Optional;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
+import io.github.thebusybiscuit.mobcapturer.items.MobEgg;
+
 import org.bukkit.Location;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -15,7 +17,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
 
-import io.github.thebusybiscuit.mobcapturer.items.MobEgg;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
 
@@ -29,7 +30,7 @@ public class PelletListener implements Listener {
         this.plugin = plugin;
     }
 
-    @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGH)
+    @EventHandler (ignoreCancelled = true, priority = EventPriority.HIGH)
     public void onProjectileHit(@Nonnull EntityDamageByEntityEvent e) {
         if (e.getDamager() instanceof Snowball pellet
             && e.getEntity() instanceof LivingEntity entity
@@ -53,7 +54,7 @@ public class PelletListener implements Listener {
     }
 
     @Nonnull
-    @SuppressWarnings({ "unchecked", "rawtypes" })
+    @SuppressWarnings({"unchecked", "rawtypes"})
     protected Optional<ItemStack> capture(@Nonnull LivingEntity entity) {
         MobEgg egg = MobCapturer.getRegistry().getAdapters().get(entity.getType());
 
