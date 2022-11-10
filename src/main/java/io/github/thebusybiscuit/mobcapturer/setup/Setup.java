@@ -110,7 +110,7 @@ public final class Setup {
         // items
         new MobPellet(
             ItemGroups.TOOLS,
-            Items.PELLET,
+            Items.MOB_CAPTURING_PELLET,
             RecipeType.ENHANCED_CRAFTING_TABLE,
             new ItemStack[] {
                 new ItemStack(Material.STRING), new ItemStack(Material.IRON_NUGGET), new ItemStack(Material.STRING),
@@ -121,7 +121,7 @@ public final class Setup {
 
         new MobCannon(
             ItemGroups.TOOLS,
-            Items.PELLET,
+            Items.MOB_CANNON,
             RecipeType.ENHANCED_CRAFTING_TABLE,
             new ItemStack[] {
                 null, SlimefunItems.STEEL_INGOT, SlimefunItems.HOOK,
@@ -133,7 +133,7 @@ public final class Setup {
         setupMobEggs();
 
         // researches
-        Researches.MOB_CAPTURING.addItems(Items.CANNON, Items.PELLET);
+        Researches.MOB_CAPTURING.addItems(Items.MOB_CANNON, Items.MOB_CAPTURING_PELLET);
         Researches.MOB_CAPTURING.register();
     }
 

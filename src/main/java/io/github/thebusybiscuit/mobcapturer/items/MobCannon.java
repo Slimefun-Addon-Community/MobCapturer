@@ -44,7 +44,7 @@ public class MobCannon extends SimpleSlimefunItem<ItemUseHandler> {
         }
 
         for (ItemStack item : p.getInventory()) {
-            if (Items.PELLET.getItem().isItem(item)) {
+            if (Items.MOB_CAPTURING_PELLET.getItem().isItem(item)) {
                 ItemUtils.consumeItem(item, false);
                 return true;
             }

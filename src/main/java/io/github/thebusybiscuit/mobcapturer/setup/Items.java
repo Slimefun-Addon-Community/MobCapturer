@@ -5,14 +5,14 @@ import org.bukkit.Material;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 
 public final class Items {
-    public static final SlimefunItemStack CANNON = new SlimefunItemStack(
+    public static final SlimefunItemStack MOB_CANNON = new SlimefunItemStack(
         "MOB_CANNON",
         Material.BLAZE_ROD,
         "&6Mob Capturing Cannon",
         "",
         "&eRight Click &7to shoot a &fMob Caging Pellet"
     );
-    public static final SlimefunItemStack PELLET = new SlimefunItemStack(
+    public static final SlimefunItemStack MOB_CAPTURING_PELLET = new SlimefunItemStack(
         "MOB_CAPTURING_PELLET",
         "983b30e9d135b05190eea2c3ac61e2ab55a2d81e1a58dbb26983a14082664",
         "&fMob Capturing Pellet",
