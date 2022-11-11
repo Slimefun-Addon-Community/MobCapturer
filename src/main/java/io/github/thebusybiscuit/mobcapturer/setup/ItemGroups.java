@@ -25,7 +25,7 @@ public final class ItemGroups {
             "&dTools"
         )
     );
-    public static SubItemGroup MOB_EGGS = new SubItemGroup(
+    public static final SubItemGroup MOB_EGGS = new SubItemGroup(
         new NamespacedKey(MobCapturer.getInstance(), "mob_eggs"),
         MAIN,
         new CustomItemStack(

@@ -33,6 +33,8 @@ public class MobCapturer extends JavaPlugin implements SlimefunAddon {
 
     @Override
     public void onEnable() {
+        setInstance(this);
+
         Config cfg = new Config(this);
         new Metrics(this, 6672);
 

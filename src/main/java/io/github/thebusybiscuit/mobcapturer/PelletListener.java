@@ -35,8 +35,7 @@ public class PelletListener implements Listener {
             && e.getEntity() instanceof LivingEntity entity
             && pellet.hasMetadata("mob_capturing_cannon")
             && pellet.getShooter() instanceof Player player
-            && canCapture(player, entity.getLocation())
-            && canCapture(entity)
+            && canCapture(player, entity)
         ) {
             Optional<ItemStack> optional = capture(entity);
 
@@ -49,16 +48,15 @@ public class PelletListener implements Listener {
     }
 
     @ParametersAreNonnullByDefault
-    protected boolean canCapture(Player p, Location l) {
-        return Slimefun.getProtectionManager().hasPermission(p, l, Interaction.ATTACK_ENTITY);
-    }
-
-    @ParametersAreNonnullByDefault
-    protected boolean canCapture(LivingEntity entity) {
-        if (MobCapturer.getRegistry().getConfig().getBoolean("options.capture-named-mobs")) {
-            return true;
+    protected boolean canCapture(Player p, LivingEntity entity) {
+        if (Slimefun.getProtectionManager().hasPermission(p, entity.getLocation(), Interaction.ATTACK_ENTITY)) {
+            if (MobCapturer.getRegistry().getConfig().getBoolean("options.capture-named-mobs")) {
+                return true;
+            } else {
+                return entity.getCustomName() == null;
+            }
         } else {
-            return entity.getCustomName() == null;
+            return false;
         }
     }
 
