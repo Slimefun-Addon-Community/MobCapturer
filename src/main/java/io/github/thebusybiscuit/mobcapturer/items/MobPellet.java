@@ -14,6 +14,11 @@ import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 
+/**
+ * The Mob capturing pellet is the ammo of Mob Cannon.
+ *
+ * @author TheBusyBiscuit
+ */
 public class MobPellet extends SimpleSlimefunItem<ItemUseHandler> implements NotPlaceable {
 
     @ParametersAreNonnullByDefault
