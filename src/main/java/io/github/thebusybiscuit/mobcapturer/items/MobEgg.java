@@ -13,7 +13,6 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import com.google.gson.JsonObject;
 
 import org.bukkit.Location;
-import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -24,8 +23,9 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
-import io.github.thebusybiscuit.mobcapturer.InventoryAdapter;
-import io.github.thebusybiscuit.mobcapturer.MobAdapter;
+import io.github.thebusybiscuit.mobcapturer.adapters.InventoryAdapter;
+import io.github.thebusybiscuit.mobcapturer.adapters.MobAdapter;
+import io.github.thebusybiscuit.mobcapturer.setup.Keys;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
@@ -36,18 +36,22 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunIte
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.ItemUtils;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
 
+/**
+ * The Mob Egg holds data of an entity, and will release the mob while right-clicking on a block.
+ *
+ * @param <T>
+ *     A {@link LivingEntity}.
+ *
+ * @author TheBusyBiscuit
+ */
 public class MobEgg<T extends LivingEntity> extends SimpleSlimefunItem<ItemUseHandler> implements NotPlaceable {
 
-    private final NamespacedKey dataKey;
-    private final NamespacedKey inventoryKey;
     private final MobAdapter<T> adapter;
 
     @ParametersAreNonnullByDefault
-    public MobEgg(ItemGroup itemGroup, SlimefunItemStack item, NamespacedKey dataKey, NamespacedKey inventoryKey, MobAdapter<T> adapter, RecipeType recipeType, ItemStack[] recipe) {
+    public MobEgg(ItemGroup itemGroup, SlimefunItemStack item, MobAdapter<T> adapter, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
 
-        this.dataKey = dataKey;
-        this.inventoryKey = inventoryKey;
         this.adapter = adapter;
     }
 
@@ -60,7 +64,7 @@ public class MobEgg<T extends LivingEntity> extends SimpleSlimefunItem<ItemUseHa
         ItemMeta meta = item.getItemMeta();
 
         meta.setLore(adapter.getLore(json));
-        meta.getPersistentDataContainer().set(dataKey, adapter, json);
+        meta.getPersistentDataContainer().set(Keys.DATA, adapter, json);
 
         if (adapter instanceof InventoryAdapter) {
             FileConfiguration yaml = new YamlConfiguration();
@@ -69,7 +73,7 @@ public class MobEgg<T extends LivingEntity> extends SimpleSlimefunItem<ItemUseHa
                 yaml.set(entry.getKey(), entry.getValue());
             }
 
-            meta.getPersistentDataContainer().set(inventoryKey, PersistentDataType.STRING, yaml.saveToString());
+            meta.getPersistentDataContainer().set(Keys.INVENTORY, PersistentDataType.STRING, yaml.saveToString());
         }
 
         item.setItemMeta(meta);
@@ -93,7 +97,7 @@ public class MobEgg<T extends LivingEntity> extends SimpleSlimefunItem<ItemUseHa
                     T entity = b.getWorld().spawn(b.getRelative(e.getClickedFace()).getLocation(), adapter.getEntityClass());
 
                     PersistentDataContainer container = e.getItem().getItemMeta().getPersistentDataContainer();
-                    JsonObject json = container.get(dataKey, adapter);
+                    JsonObject json = container.get(Keys.DATA, adapter);
                     ItemUtils.consumeItem(e.getItem(), false);
 
                     if (json != null) {
@@ -102,7 +106,7 @@ public class MobEgg<T extends LivingEntity> extends SimpleSlimefunItem<ItemUseHa
                         if (adapter instanceof InventoryAdapter) {
                             Map<String, ItemStack> inventory = new HashMap<>();
 
-                            try (Reader reader = new StringReader(container.get(inventoryKey, PersistentDataType.STRING))) {
+                            try (Reader reader = new StringReader(container.get(Keys.INVENTORY, PersistentDataType.STRING))) {
                                 FileConfiguration yaml = YamlConfiguration.loadConfiguration(reader);
 
                                 for (String key : yaml.getKeys(true)) {
