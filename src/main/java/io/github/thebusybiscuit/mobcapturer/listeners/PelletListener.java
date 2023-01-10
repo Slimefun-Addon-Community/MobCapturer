@@ -75,12 +75,12 @@ public class PelletListener implements Listener {
         }
 
         List<String> ignoredMobNames = MobCapturer.getRegistry().getConfig().getStringList("options.ignored-mobs");
-        if(ignoredMobNames.contains(entity.getCustomName())) {
+        if (ignoredMobNames.contains(entity.getCustomName())) {
             //filter out ignored mob names
             return false;
         }
 
-        if(MobCapturer.getRegistry().getConfig().getBoolean("options.capture-named-mobs")) {
+        if (MobCapturer.getRegistry().getConfig().getBoolean("options.capture-named-mobs")) {
             //check if the mob has a name, if not return false
             return entity.getCustomName() != null;
         }
