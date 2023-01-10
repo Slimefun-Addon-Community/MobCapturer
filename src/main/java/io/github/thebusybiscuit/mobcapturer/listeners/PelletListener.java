@@ -70,21 +70,21 @@ public class PelletListener implements Listener {
     protected boolean canCapture(Player p, LivingEntity entity) {
 
         if (!Slimefun.getProtectionManager().hasPermission(p, entity.getLocation(), Interaction.ATTACK_ENTITY)) {
-            //no permission check
+            // no permission check
             return false;
         }
 
         List<String> ignoredMobNames = MobCapturer.getRegistry().getConfig().getStringList("options.ignored-mobs");
         if (ignoredMobNames.contains(entity.getCustomName())) {
-            //filter out ignored mob names
+            // filter out ignored mob names
             return false;
         }
 
         if (MobCapturer.getRegistry().getConfig().getBoolean("options.capture-named-mobs")) {
-            //check if the mob has a name, if not return false
+            // check if the mob has a name, if not return false
             return entity.getCustomName() != null;
         }
-        //passed all fail checks
+        // passed all fail checks
         return true;
     }
 
