@@ -84,7 +84,6 @@ public class PelletListener implements Listener {
             // check if the mob has a name, if not return false
             return entity.getCustomName() != null;
         }
-        // passed all fail checks
         return true;
     }
 
