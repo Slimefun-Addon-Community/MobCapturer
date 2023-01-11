@@ -1,5 +1,6 @@
 package io.github.thebusybiscuit.mobcapturer.listeners;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.annotation.Nonnull;
@@ -67,15 +68,23 @@ public class PelletListener implements Listener {
      */
     @ParametersAreNonnullByDefault
     protected boolean canCapture(Player p, LivingEntity entity) {
-        if (Slimefun.getProtectionManager().hasPermission(p, entity.getLocation(), Interaction.ATTACK_ENTITY)) {
-            if (MobCapturer.getRegistry().getConfig().getBoolean("options.capture-named-mobs")) {
-                return true;
-            } else {
-                return entity.getCustomName() == null;
-            }
-        } else {
+
+        if (!Slimefun.getProtectionManager().hasPermission(p, entity.getLocation(), Interaction.ATTACK_ENTITY)) {
+            // no permission check
             return false;
         }
+
+        List<String> ignoredMobNames = MobCapturer.getRegistry().getConfig().getStringList("options.ignored-mobs");
+        if (ignoredMobNames.contains(entity.getCustomName())) {
+            // filter out ignored mob names
+            return false;
+        }
+
+        if (MobCapturer.getRegistry().getConfig().getBoolean("options.capture-named-mobs")) {
+            // check if the mob has a name, if not return false
+            return entity.getCustomName() != null;
+        }
+        return true;
     }
 
     /**
