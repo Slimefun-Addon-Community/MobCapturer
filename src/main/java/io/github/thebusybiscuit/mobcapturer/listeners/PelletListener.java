@@ -2,10 +2,12 @@ package io.github.thebusybiscuit.mobcapturer.listeners;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
+import org.bukkit.ChatColor;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Snowball;
@@ -75,14 +77,20 @@ public class PelletListener implements Listener {
         }
 
         List<String> ignoredMobNames = MobCapturer.getRegistry().getConfig().getStringList("options.ignored-mobs");
-        if (ignoredMobNames.contains(entity.getCustomName())) {
-            // filter out ignored mob names
-            return false;
+        if (ignoredMobNames.size() > 0){
+            String strippedEntityName = ChatColor.stripColor(entity.getCustomName());
+            List<String> strippedMatches = ignoredMobNames.stream()
+                .filter(mobName -> mobName.equalsIgnoreCase(strippedEntityName))
+                .toList();
+            if (strippedMatches.size() > 0){
+                return false;
+            }
         }
 
-        if (MobCapturer.getRegistry().getConfig().getBoolean("options.capture-named-mobs")) {
-            // check if the mob has a name, if not return false
-            return entity.getCustomName() == null;
+        if (!MobCapturer.getRegistry().getConfig().getBoolean("options.capture-named-mobs")) {
+            if (entity.getCustomName() != null){
+                return false;
+            }
         }
         return true;
     }
