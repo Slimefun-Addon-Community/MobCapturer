@@ -82,7 +82,7 @@ public class PelletListener implements Listener {
 
         if (MobCapturer.getRegistry().getConfig().getBoolean("options.capture-named-mobs")) {
             // check if the mob has a name, if not return false
-            return entity.getCustomName() != null;
+            return entity.getCustomName() == null;
         }
         return true;
     }
