@@ -85,7 +85,7 @@ public class PelletListener implements Listener {
         List<String> ignoredMobNames = MobCapturer.getRegistry().getConfig().getStringList("options.ignored-mobs");
         if (ignoredMobNames.size() > 0){
             String strippedEntityName = ChatColor.stripColor(entity.getCustomName());
-            for(String ignoredMobName: ignoredMobNames){
+            for (String ignoredMobName : ignoredMobNames) {
                 if (ignoredMobName.equalsIgnoreCase(strippedEntityName)) {
                     return false;
                 }
