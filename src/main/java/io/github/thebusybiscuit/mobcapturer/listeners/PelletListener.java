@@ -76,20 +76,19 @@ public class PelletListener implements Listener {
             return false;
         }
 
-        List<String> ignoredMobNames = MobCapturer.getRegistry().getConfig().getStringList("options.ignored-mobs");
-        if (ignoredMobNames.size() > 0){
-            String strippedEntityName = ChatColor.stripColor(entity.getCustomName());
-            List<String> strippedMatches = ignoredMobNames.stream()
-                .filter(mobName -> mobName.equalsIgnoreCase(strippedEntityName))
-                .toList();
-            if (strippedMatches.size() > 0){
+        if (!MobCapturer.getRegistry().getConfig().getBoolean("options.capture-named-mobs")) {
+            if (entity.getCustomName() != null){
                 return false;
             }
         }
 
-        if (!MobCapturer.getRegistry().getConfig().getBoolean("options.capture-named-mobs")) {
-            if (entity.getCustomName() != null){
-                return false;
+        List<String> ignoredMobNames = MobCapturer.getRegistry().getConfig().getStringList("options.ignored-mobs");
+        if (ignoredMobNames.size() > 0){
+            String strippedEntityName = ChatColor.stripColor(entity.getCustomName());
+            for(String ignoredMobName: ignoredMobNames){
+                if(ignoredMobName.equalsIgnoreCase(strippedEntityName)){
+                    return false;
+                }
             }
         }
         return true;
