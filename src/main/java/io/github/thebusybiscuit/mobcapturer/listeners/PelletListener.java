@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
+import org.bukkit.ChatColor;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Snowball;
@@ -74,15 +75,19 @@ public class PelletListener implements Listener {
             return false;
         }
 
-        List<String> ignoredMobNames = MobCapturer.getRegistry().getConfig().getStringList("options.ignored-mobs");
-        if (ignoredMobNames.contains(entity.getCustomName())) {
-            // filter out ignored mob names
-            return false;
+        if (!MobCapturer.getRegistry().getConfig().getBoolean("options.capture-named-mobs") 
+            && entity.getCustomName() != null) { 
+        	return false;
         }
 
-        if (MobCapturer.getRegistry().getConfig().getBoolean("options.capture-named-mobs")) {
-            // check if the mob has a name, if not return false
-            return entity.getCustomName() != null;
+        List<String> ignoredMobNames = MobCapturer.getRegistry().getConfig().getStringList("options.ignored-mobs");
+        if (ignoredMobNames.size() > 0){
+            String strippedEntityName = ChatColor.stripColor(entity.getCustomName());
+            for (String ignoredMobName : ignoredMobNames) {
+                if (ignoredMobName.equalsIgnoreCase(strippedEntityName)) {
+                    return false;
+                }
+            }
         }
         return true;
     }
