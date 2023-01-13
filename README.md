@@ -21,6 +21,14 @@ You can download MobCapturer right here: [Development Builds](https://thebusybis
   </a>
 </p>
 
+## :gear: config
+You can change the following settings in `config.yml`:
+
+- `options.auto-update`: Enable auto update from builds page. (default: `true`)
+- `options.capture-named-mobs`: Allow players to capture mobs with custom names. (default: `true`)
+- `options.ignored-mobs`: The list of mob names that these mobs should not be captured.   
+  Note: this list will be ignored when `options.capture-named-mobs` is set to `false`
+
 ## :headphones: Discord Server
 You can find Slimefun's community on Discord and connect with thousands of other members from the community.<br>
 The Slimefun Addon Community also has its own discord server for any of our projects too!
