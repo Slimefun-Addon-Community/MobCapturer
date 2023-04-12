@@ -6,6 +6,9 @@ import java.util.Optional;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
+import io.github.thebusybiscuit.mobcapturer.events.MobPreCaptureEvent;
+
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -69,27 +72,15 @@ public class PelletListener implements Listener {
      */
     @ParametersAreNonnullByDefault
     protected boolean canCapture(Player p, LivingEntity entity) {
-
+        // permission check
         if (!Slimefun.getProtectionManager().hasPermission(p, entity.getLocation(), Interaction.ATTACK_ENTITY)) {
-            // no permission check
             return false;
         }
 
-        if (!MobCapturer.getRegistry().getConfig().getBoolean("options.capture-named-mobs") 
-            && entity.getCustomName() != null) { 
-        	return false;
-        }
-
-        List<String> ignoredMobNames = MobCapturer.getRegistry().getConfig().getStringList("options.ignored-mobs");
-        if (ignoredMobNames.size() > 0){
-            String strippedEntityName = ChatColor.stripColor(entity.getCustomName());
-            for (String ignoredMobName : ignoredMobNames) {
-                if (ignoredMobName.equalsIgnoreCase(strippedEntityName)) {
-                    return false;
-                }
-            }
-        }
-        return true;
+        // event check
+        MobPreCaptureEvent preCaptureEvent = new MobPreCaptureEvent(p, entity);
+        Bukkit.getPluginManager().callEvent(preCaptureEvent);
+        return !preCaptureEvent.isCancelled();
     }
 
     /**

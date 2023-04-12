@@ -1,4 +1,9 @@
 options:
+  # Auto update
   auto-update: true
+  # Disabling this will only allow players to capture mobs without custom names.
   capture-named-mobs: true
+  # The list of names that should not be captured. Colors are removed.
+  # This only works if `capture-named-mobs` is set to `true`.
   ignored-mobs: []
+
