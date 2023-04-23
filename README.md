@@ -45,3 +45,9 @@ The Slimefun Addon Community also has its own discord server for any of our proj
 ## :balance_scale: Open Source / License
 This Project is open-source and licensed under the [MIT License](https://github.com/Slimefun-Addon-Community/MobCapturer/blob/master/LICENSE)<br>
 Pull Requests are welcome!
+
+## :gift: Thanks
+
+Thanks [minecraft-heads.com](https://minecraft-heads.com/) for providing permissions to use the heads from their websites.
+
+[![](https://minecraft-heads.com/images/banners/minecraft-heads_fullbanner_468x60.png)](https://minecraft-heads.com/)
