@@ -37,6 +37,11 @@ public class ZombifiedPiglinAdapter extends AbstractHumanoidAdapter<PigZombie> {
 
         entity.setAnger(json.get("anger").getAsInt());
         entity.setAge(json.get("age").getAsInt());
+        if (json.get("baby").getAsBoolean()) {
+            entity.setBaby();
+        } else {
+            entity.setAdult();
+        }
     }
 
     @Nonnull
