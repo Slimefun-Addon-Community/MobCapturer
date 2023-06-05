@@ -13,6 +13,10 @@ import org.bukkit.entity.Rabbit.Type;
 
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 
+/**
+ * This is an adapter for the {@link Rabbit}.
+ * It stores the entity's variant.
+ */
 public class RabbitAdapter extends AnimalsAdapter<Rabbit> {
 
     public RabbitAdapter() {

@@ -9,6 +9,9 @@ import org.bukkit.entity.Tadpole;
 
 import io.github.thebusybiscuit.mobcapturer.adapters.MobAdapter;
 
+/**
+ * This is an adapter for the {@link Tadpole}.
+ */
 public class TadpoleAdapter implements MobAdapter<Tadpole> {
 
     @Override

@@ -10,6 +10,9 @@ import com.google.gson.JsonObject;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Hoglin;
 
+/**
+ * This is an adapter for the {@link Hoglin}, specifically the unzombified variant.
+ */
 public class HoglinAdapter extends AnimalsAdapter<Hoglin> {
 
     public HoglinAdapter() {

@@ -7,6 +7,10 @@ import com.google.gson.JsonObject;
 
 import org.bukkit.entity.Bee;
 
+/**
+ * This is an adapter for the {@link Bee}.
+ * It stores the entity's nectar, stung, and anger status.
+ */
 public class BeeAdapter extends AnimalsAdapter<Bee> {
 
     public BeeAdapter() {

@@ -10,6 +10,10 @@ import com.google.gson.JsonObject;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.PiglinAbstract;
 
+/**
+ * A basic adapter for all {@link PiglinAbstract} entities in the game.
+ * Stores attributes common to both Piglins and Piglin Brutes.
+ */
 class AbstractPiglinAdapter<T extends PiglinAbstract> extends AbstractHumanoidAdapter<T> {
 
     public AbstractPiglinAdapter(@Nonnull Class<T> entityClass) {

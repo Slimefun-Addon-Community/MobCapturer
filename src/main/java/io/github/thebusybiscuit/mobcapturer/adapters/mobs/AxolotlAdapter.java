@@ -13,6 +13,10 @@ import org.bukkit.entity.Axolotl.Variant;
 
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 
+/**
+ * This is an adapter for the {@link Axolotl}.
+ * It stores the entity's variant.
+ */
 public class AxolotlAdapter extends AnimalsAdapter<Axolotl> {
 
     public AxolotlAdapter() {

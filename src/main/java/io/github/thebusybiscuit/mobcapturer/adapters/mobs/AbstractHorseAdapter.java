@@ -16,6 +16,10 @@ import org.bukkit.inventory.ItemStack;
 import io.github.thebusybiscuit.mobcapturer.adapters.InventoryAdapter;
 import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
 
+/**
+ * A basic adapter for all {@link AbstractHorse} entities in the game.
+ * Stores attributes common to horses, mules, donkeys, and llamas.
+ */
 class AbstractHorseAdapter<T extends AbstractHorse> extends AbstractTameableAdapter<T> implements InventoryAdapter<T> {
 
     public AbstractHorseAdapter(@Nonnull Class<T> entityClass) {

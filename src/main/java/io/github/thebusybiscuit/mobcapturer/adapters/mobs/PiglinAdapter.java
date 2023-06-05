@@ -7,6 +7,9 @@ import com.google.gson.JsonObject;
 
 import org.bukkit.entity.Piglin;
 
+/**
+ * This is an adapter for the {@link Piglin}, excluding Piglin Brutes.
+ */
 public class PiglinAdapter extends AbstractPiglinAdapter<Piglin> {
 
     public PiglinAdapter() {

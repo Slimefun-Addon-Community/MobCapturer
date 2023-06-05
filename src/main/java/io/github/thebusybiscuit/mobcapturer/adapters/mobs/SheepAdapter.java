@@ -13,6 +13,10 @@ import org.bukkit.entity.Sheep;
 
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 
+/**
+ * This is an adapter for the {@link Sheep}.
+ * It stores the entity's dye color.
+ */
 public class SheepAdapter extends AnimalsAdapter<Sheep> {
 
     public SheepAdapter() {

@@ -15,6 +15,9 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Animals;
 import org.bukkit.entity.Tameable;
 
+/**
+ * A basic adapter for all {@link Animals} that are {@link Tameable}.
+ */
 class AbstractTameableAdapter<T extends Animals & Tameable> extends AnimalsAdapter<T> {
 
     public AbstractTameableAdapter(@Nonnull Class<T> entityClass) {

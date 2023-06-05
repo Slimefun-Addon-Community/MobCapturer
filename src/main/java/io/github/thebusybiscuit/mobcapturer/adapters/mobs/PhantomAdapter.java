@@ -12,6 +12,10 @@ import org.bukkit.entity.Phantom;
 
 import io.github.thebusybiscuit.mobcapturer.adapters.MobAdapter;
 
+/**
+ * This is an adapter for the {@link Phantom}.
+ * It stores the size of the Phantom (all natural phantoms have a size of 0).
+ */
 public class PhantomAdapter implements MobAdapter<Phantom> {
 
     @Nonnull

@@ -7,6 +7,9 @@ import com.google.gson.JsonObject;
 
 import org.bukkit.entity.Raider;
 
+/**
+ * This is an adapter for Pillager raiders, including Pillagers, Vindicators and Ravagers.
+ */
 public class RaiderAdapter<T extends Raider> extends AbstractHumanoidAdapter<T> {
 
     public RaiderAdapter(@Nonnull Class<T> entityClass) {

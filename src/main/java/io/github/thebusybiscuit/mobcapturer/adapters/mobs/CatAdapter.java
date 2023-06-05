@@ -14,6 +14,10 @@ import org.bukkit.entity.Cat.Type;
 
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 
+/**
+ * This is an adapter for the {@link Cat}.
+ * It stores the entity's variant and collar color.
+ */
 public class CatAdapter extends AbstractTameableAdapter<Cat> {
 
     public CatAdapter() {

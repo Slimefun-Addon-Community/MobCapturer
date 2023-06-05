@@ -15,6 +15,10 @@ import org.bukkit.entity.TropicalFish.Pattern;
 import io.github.thebusybiscuit.mobcapturer.adapters.MobAdapter;
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 
+/**
+ * This is an adapter for the {@link TropicalFish}.
+ * It stores data about the {@link DyeColor} of the fish and its {@link Pattern}.
+ */
 public class TropicalFishAdapter implements MobAdapter<TropicalFish> {
 
     @Nonnull

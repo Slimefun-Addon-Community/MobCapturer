@@ -13,6 +13,10 @@ import org.bukkit.entity.Wolf;
 
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 
+/**
+ * This is an adapter for the {@link Wolf} and Dog.
+ * It stores the entity's variant and collar color.
+ */
 public class WolfAdapter extends AbstractTameableAdapter<Wolf> {
 
     public WolfAdapter() {

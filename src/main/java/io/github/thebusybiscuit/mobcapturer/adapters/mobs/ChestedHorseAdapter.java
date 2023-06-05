@@ -13,6 +13,11 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.ChestedHorse;
 import org.bukkit.inventory.ItemStack;
 
+/**
+ * This is an adapter for the {@link ChestedHorse}.
+ * This is used for Donkeys and Mules, and as a base for Llamas.
+ * It handles storing and loading the entity's inventory.
+ */
 public class ChestedHorseAdapter<T extends ChestedHorse> extends AbstractHorseAdapter<T> {
 
     public ChestedHorseAdapter(@Nonnull Class<T> entityClass) {

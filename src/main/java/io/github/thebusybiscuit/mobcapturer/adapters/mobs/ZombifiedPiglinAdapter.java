@@ -10,6 +10,9 @@ import com.google.gson.JsonObject;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.PigZombie;
 
+/**
+ * This is an adapter for the {@link PigZombie}.
+ */
 public class ZombifiedPiglinAdapter extends AbstractHumanoidAdapter<PigZombie> {
 
     public ZombifiedPiglinAdapter() {

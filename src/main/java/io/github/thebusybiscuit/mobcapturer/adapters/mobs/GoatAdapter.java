@@ -13,6 +13,10 @@ import org.bukkit.entity.Goat;
 import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 
+/**
+ * This is an adapter for the {@link Goat}.
+ * It stores whether the entity has horns, and whether it is screaming (???).
+ */
 public class GoatAdapter extends AnimalsAdapter<Goat> {
 
     public GoatAdapter() {

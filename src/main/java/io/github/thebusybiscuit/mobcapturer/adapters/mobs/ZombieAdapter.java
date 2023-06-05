@@ -10,6 +10,11 @@ import com.google.gson.JsonObject;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Zombie;
 
+/**
+ * This is an adapter for {@link Zombie}.
+ * 
+ * It is also used for the {@link org.bukkit.entity.Drowned} and {@link org.bukkit.entity.Husk}.
+ */
 public class ZombieAdapter<T extends Zombie> extends AbstractHumanoidAdapter<T> {
 
     public ZombieAdapter(Class<T> entityClass) {

@@ -13,6 +13,10 @@ import org.bukkit.entity.Spellcaster.Spell;
 
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 
+/**
+ * This is an adapter for the Evoker.
+ * It stores the spell the entity was last casting.
+ */
 public class MagicIllagerAdapter<T extends Spellcaster> extends RaiderAdapter<T> {
 
     public MagicIllagerAdapter(@Nonnull Class<T> entityClass) {

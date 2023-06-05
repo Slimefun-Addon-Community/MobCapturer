@@ -12,6 +12,10 @@ import org.bukkit.entity.PufferFish;
 
 import io.github.thebusybiscuit.mobcapturer.adapters.MobAdapter;
 
+/**
+ * This is an adapter for the {@link PufferFish}.
+ * It stores the puffiness of the PufferFish.
+ */
 public class PufferFishAdapter implements MobAdapter<PufferFish> {
 
     @Nonnull

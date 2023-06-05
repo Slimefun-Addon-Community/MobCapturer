@@ -13,6 +13,10 @@ import org.bukkit.entity.Parrot.Variant;
 
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 
+/**
+ * This is an adapter for the {@link Parrot}.
+ * It stores the entity's variant, and whether it was sitting when it was captured.
+ */
 public class ParrotAdapter extends AbstractTameableAdapter<Parrot> {
 
     public ParrotAdapter() {

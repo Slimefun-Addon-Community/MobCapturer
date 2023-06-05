@@ -13,6 +13,10 @@ import org.bukkit.entity.Frog.Variant;
 
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 
+/**
+ * This is an adapter for the {@link Frog}.
+ * It stores the entity's variant.
+ */
 public class FrogAdapter extends AnimalsAdapter<Frog> {
 
     public FrogAdapter() {

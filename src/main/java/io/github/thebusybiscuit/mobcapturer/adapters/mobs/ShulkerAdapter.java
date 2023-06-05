@@ -15,6 +15,10 @@ import org.bukkit.entity.Shulker;
 import io.github.thebusybiscuit.mobcapturer.adapters.MobAdapter;
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 
+/**
+ * This is an adapter for the {@link Shulker}.
+ * It stores the entity's color (which is apparently something that can be changed).
+ */
 public class ShulkerAdapter implements MobAdapter<Shulker> {
 
     @Nonnull

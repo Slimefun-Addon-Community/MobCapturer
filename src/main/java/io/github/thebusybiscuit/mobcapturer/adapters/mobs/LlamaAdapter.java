@@ -13,6 +13,10 @@ import org.bukkit.entity.Llama.Color;
 
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 
+/**
+ * This is an adapter for the {@link Llama}.
+ * It stores the color as well as its inventory.
+ */
 public class LlamaAdapter<T extends Llama> extends ChestedHorseAdapter<T> {
 
     public LlamaAdapter(@Nonnull Class<T> entityClass) {

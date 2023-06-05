@@ -15,6 +15,10 @@ import org.bukkit.inventory.ItemStack;
 import io.github.thebusybiscuit.mobcapturer.adapters.InventoryAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.MobAdapter;
 
+/**
+ * This is an adapter for the {@link Allay}.
+ * It stores the duplication cooldown, and the items in its inventory.
+ */
 public class AllayAdapter implements MobAdapter<Allay>, InventoryAdapter<Allay> {
 
     @Override

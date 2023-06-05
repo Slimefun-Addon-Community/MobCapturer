@@ -9,6 +9,10 @@ import org.bukkit.entity.Snowman;
 
 import io.github.thebusybiscuit.mobcapturer.adapters.MobAdapter;
 
+/**
+ * This is an adapter for the {@link Snowman}.
+ * It stores whether the snowman is derpy (missing its pumpkin) or not.
+ */
 public class SnowmanAdapter implements MobAdapter<Snowman> {
 
     @Override

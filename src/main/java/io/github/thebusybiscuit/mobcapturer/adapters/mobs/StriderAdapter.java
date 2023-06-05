@@ -7,6 +7,9 @@ import com.google.gson.JsonObject;
 
 import org.bukkit.entity.Strider;
 
+/**
+ * This is an adapter for the {@link Strider}.
+ */
 public class StriderAdapter extends AnimalsAdapter<Strider> {
 
     public StriderAdapter() {

@@ -10,6 +10,10 @@ import com.google.gson.JsonObject;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Pig;
 
+/**
+ * This is an adapter for the {@link Pig}.
+ * Stores whether the pig has a saddle or not.
+ */
 public class PigAdapter extends AnimalsAdapter<Pig> {
 
     public PigAdapter() {

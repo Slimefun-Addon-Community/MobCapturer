@@ -10,6 +10,9 @@ import com.google.gson.JsonObject;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Hoglin;
 
+/**
+ * This is an adapter for the {@link Zoglin}, a zombie variant of the {@link Hoglin}.
+ */
 public class ZoglinAdapter extends AnimalsAdapter<Hoglin> {
 
     public ZoglinAdapter() {

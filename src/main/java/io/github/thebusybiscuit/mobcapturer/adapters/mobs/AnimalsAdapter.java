@@ -12,6 +12,15 @@ import org.bukkit.entity.Animals;
 
 import io.github.thebusybiscuit.mobcapturer.adapters.MobAdapter;
 
+/**
+ * This is an adapter for all {@link Animals}.
+ * 
+ * It is used directly for entities like {@link org.bukkit.entity.Cow} or {@link org.bukkit.entity.Chicken},
+ * and extended by classes like {@link SheepAdapter} and {@link PigAdapter},
+ * as well as the {@link AbstractTameableAdapter} class, for entities like {@link org.bukkit.entity.Cat} and {@link org.bukkit.entity.Wolf}.
+ * 
+ * It stores the entity's age, ageLock, breedable and loveModeTicks.
+ */
 public class AnimalsAdapter<T extends Animals> implements MobAdapter<T> {
 
     private final Class<T> entityClass;

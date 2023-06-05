@@ -16,6 +16,10 @@ import org.bukkit.inventory.ItemStack;
 
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 
+/**
+ * This is an adapter for the {@link Horse}.
+ * It only stores info used by standard horses.
+ */
 public class HorseAdapter extends AbstractHorseAdapter<Horse> {
 
     public HorseAdapter() {

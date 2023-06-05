@@ -22,6 +22,10 @@ import org.bukkit.inventory.ItemStack;
 import io.github.thebusybiscuit.mobcapturer.adapters.InventoryAdapter;
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 
+/**
+ * This is an adapter for the {@link Fox}.
+ * It stores its current status and trusted players.
+ */
 public class FoxAdapter extends AnimalsAdapter<Fox> implements InventoryAdapter<Fox> {
 
     public FoxAdapter() {
@@ -119,5 +123,4 @@ public class FoxAdapter extends AnimalsAdapter<Fox> implements InventoryAdapter<
             equipment.setItemInMainHand(inventory.get("mainHand"));
         }
     }
-
 }

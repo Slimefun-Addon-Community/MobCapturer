@@ -9,6 +9,10 @@ import org.bukkit.entity.IronGolem;
 
 import io.github.thebusybiscuit.mobcapturer.adapters.MobAdapter;
 
+/**
+ * This is an adapter for the {@link IronGolem}.
+ * It stores whether the Golem was player-made (if true, it will never retaliate against the player)
+ */
 public class IronGolemAdapter implements MobAdapter<IronGolem> {
 
     @Override

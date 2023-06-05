@@ -12,6 +12,10 @@ import org.bukkit.entity.Slime;
 
 import io.github.thebusybiscuit.mobcapturer.adapters.MobAdapter;
 
+/**
+ * This is an adapter for the {@link Slime}.
+ * It stores the size of the Slime, and is used for both Slimes and Magma Cubes.
+ */
 public class SlimeAdapter<T extends Slime> implements MobAdapter<T> {
 
     private final Class<T> entityClass;

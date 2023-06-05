@@ -13,6 +13,10 @@ import org.bukkit.entity.MushroomCow.Variant;
 
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 
+/**
+ * This is an adapter for the {@link MushroomCow}.
+ * It stores the variant (brown or red)
+ */
 public class MooshroomAdapter extends AnimalsAdapter<MushroomCow> {
 
     public MooshroomAdapter() {

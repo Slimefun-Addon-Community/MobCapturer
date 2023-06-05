@@ -12,6 +12,9 @@ import org.bukkit.entity.Vex;
 
 import io.github.thebusybiscuit.mobcapturer.adapters.MobAdapter;
 
+/**
+ * This is an adapter for the {@link Vex}.
+ */
 public class VexAdapter implements MobAdapter<Vex> {
 
     @Nonnull

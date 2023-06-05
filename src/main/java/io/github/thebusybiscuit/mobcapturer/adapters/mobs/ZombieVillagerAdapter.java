@@ -16,6 +16,11 @@ import org.bukkit.entity.ZombieVillager;
 
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 
+/**
+ * This is an adapter for the {@link ZombieVillager}.
+ * It stores data about whether it is being converted and its progress.
+ * It also stores the original Villager's {@link Profession}, {@link Villager.Type}, and {@link MerchantRecipe}s.
+ */
 public class ZombieVillagerAdapter extends ZombieAdapter<ZombieVillager> {
 
     public ZombieVillagerAdapter() {
@@ -35,6 +40,7 @@ public class ZombieVillagerAdapter extends ZombieAdapter<ZombieVillager> {
     @Nonnull
     @Override
     public JsonObject saveData(@Nonnull ZombieVillager entity) {
+        // Age and IsBaby are saved by the ZombieAdapter
         JsonObject json = super.saveData(entity);
 
         json.addProperty("profession", entity.getVillagerProfession().name());

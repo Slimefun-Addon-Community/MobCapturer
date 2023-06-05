@@ -12,6 +12,10 @@ import org.bukkit.entity.Creeper;
 
 import io.github.thebusybiscuit.mobcapturer.adapters.MobAdapter;
 
+/**
+ * This is an adapter for the {@link Creeper}.
+ * It stores whether or not the creeper is charged.
+ */
 public class CreeperAdapter implements MobAdapter<Creeper> {
 
     @Nonnull

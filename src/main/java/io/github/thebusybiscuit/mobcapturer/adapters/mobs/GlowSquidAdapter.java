@@ -9,6 +9,9 @@ import org.bukkit.entity.GlowSquid;
 
 import io.github.thebusybiscuit.mobcapturer.adapters.MobAdapter;
 
+/**
+ * This is an adapter for the {@link GlowSquid}.
+ */
 public class GlowSquidAdapter implements MobAdapter<GlowSquid> {
 
     @Override

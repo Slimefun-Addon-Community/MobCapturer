@@ -13,6 +13,10 @@ import org.bukkit.entity.Panda.Gene;
 
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 
+/**
+ * This is the adapter for {@link Panda}s.
+ * It stores the Panda's main and hidden genes.
+ */
 public class PandaAdapter extends AnimalsAdapter<Panda> {
 
     public PandaAdapter() {
