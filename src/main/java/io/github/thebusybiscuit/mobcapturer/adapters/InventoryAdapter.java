@@ -10,6 +10,8 @@ import org.bukkit.inventory.ItemStack;
 
 /**
  * This is an interface used for adapting entities which have an inventory of items.
+ * 
+ * Use {@link EquipmentAdapter} for entities which have standard equipment slots (armor and hands).
  */
 public interface InventoryAdapter<T extends LivingEntity> {
 
