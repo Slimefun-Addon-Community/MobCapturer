@@ -1,4 +1,8 @@
 options:
   auto-update: true
   capture-named-mobs: true
-  ignored-mobs: []
+  strip-redundant-data: true
+  ignored-mob-names: []
+  ignored-mob-types:
+    - entity.minecraft.warden
+    - entity.minecraft.wither
