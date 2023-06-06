@@ -1,5 +1,6 @@
 package io.github.thebusybiscuit.mobcapturer.adapters;
 
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -26,12 +27,11 @@ import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import io.github.thebusybiscuit.mobcapturer.MobCapturer;
 import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
 
 /**
- * This is a simple Adapter that allows conversion between a {@link LivingEntity} and
- * a {@link JsonObject}.
- * <p>
+ * This is a simple Adapter that allows conversion between a {@link LivingEntity} and a {@link JsonObject}.
  * It also requires the implementation of {@link PersistentDataType}.
  *
  * @author TheBusyBiscuit
@@ -85,7 +85,7 @@ public interface MobAdapter<T extends LivingEntity> extends PersistentDataType<S
     @ParametersAreNonnullByDefault
     @Nonnull
     default JsonObject fromPrimitive(String primitive, PersistentDataAdapterContext context) {
-        return new JsonParser().parse(primitive).getAsJsonObject();
+        return JsonParser.parseString(primitive).getAsJsonObject();
     }
 
     @ParametersAreNonnullByDefault
@@ -192,6 +192,10 @@ public interface MobAdapter<T extends LivingEntity> extends PersistentDataType<S
                 JsonArray modifiers = new JsonArray();
 
                 for (AttributeModifier modifier : instance.getModifiers()) {
+                    if (!shouldSerialize(modifier)) {
+                        continue;
+                    }
+
                     JsonObject mod = new JsonObject();
 
                     mod.addProperty("uuid", modifier.getUniqueId().toString());
@@ -236,4 +240,15 @@ public interface MobAdapter<T extends LivingEntity> extends PersistentDataType<S
         return json;
     }
 
+    static final String[] ATTRIBUTE_MODIFIER_BLACKLIST = new String[]{"Random spawn bonus"};
+
+    static boolean shouldSerialize(AttributeModifier attributeModifier) {
+        if (MobCapturer.getRegistry().getConfig().getBoolean("options.strip-redundant-data")) {
+            String s = attributeModifier.getName();
+            // If the name is in the list, do not serialize it.
+            return !Arrays.stream(ATTRIBUTE_MODIFIER_BLACKLIST).anyMatch(v -> v.equals(s));
+        } else {
+            return true;
+        }
+    }
 }
