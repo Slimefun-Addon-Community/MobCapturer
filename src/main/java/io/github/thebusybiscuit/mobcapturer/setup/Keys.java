@@ -13,6 +13,7 @@ import io.github.thebusybiscuit.mobcapturer.MobCapturer;
 public final class Keys {
     public static final NamespacedKey DATA = new NamespacedKey(MobCapturer.getInstance(), "captured_mob");
     public static final NamespacedKey INVENTORY = new NamespacedKey(MobCapturer.getInstance(), "mob_inventory");
+    public static final NamespacedKey NBT = new NamespacedKey(MobCapturer.getInstance(), "mob_nbt");
     public static final String MOB_CAPTURING_PELLET = "mob_capturing_cannon";
 
     private Keys() {}
