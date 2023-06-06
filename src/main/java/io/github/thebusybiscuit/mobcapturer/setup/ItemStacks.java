@@ -1,11 +1,14 @@
 package io.github.thebusybiscuit.mobcapturer.setup;
 
+import java.util.List;
+
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 
+import io.github.thebusybiscuit.mobcapturer.MobCapturer;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.libraries.commons.lang.Validate;
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
@@ -41,13 +44,29 @@ public final class ItemStacks {
         Validate.notNull(type, "Entity type cannot be null");
         Validate.notNull(eggTexture, "Egg texture cannot be null");
 
+
+
         return new SlimefunItemStack(
             "MOB_EGG_" + type,
             eggTexture,
             "&aMob Egg &7(" + ChatUtils.humanize(type.toString()) + ")",
             "",
             "&7Right Click this Item on a Block",
-            "&7to release your captured Mob"
+            "&7to release your captured Mob",
+            canTypeBeCaptured(type) ? "" : "&cNOTE: This mob cannot be captured on this server."
         );
+    }
+
+    static boolean canTypeBeCaptured(EntityType type) {
+        List<String> ignoredMobTypes = MobCapturer.getRegistry().getConfig().getStringList("options.ignored-mob-types");
+        if (ignoredMobTypes.size() > 0) {
+            String entityTypeName = type.getTranslationKey();
+            for (String ignoredMobType : ignoredMobTypes) {
+                if (ignoredMobType.equalsIgnoreCase(entityTypeName)) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }
