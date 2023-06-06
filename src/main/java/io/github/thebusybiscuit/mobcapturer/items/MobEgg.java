@@ -12,6 +12,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 import com.google.gson.JsonObject;
 
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -25,6 +26,7 @@ import org.bukkit.persistence.PersistentDataType;
 
 import io.github.thebusybiscuit.mobcapturer.adapters.InventoryAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.MobAdapter;
+import io.github.thebusybiscuit.mobcapturer.adapters.NBTAdapter;
 import io.github.thebusybiscuit.mobcapturer.setup.Keys;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
@@ -74,6 +76,14 @@ public class MobEgg<T extends LivingEntity> extends SimpleSlimefunItem<ItemUseHa
             }
 
             meta.getPersistentDataContainer().set(Keys.INVENTORY, PersistentDataType.STRING, yaml.saveToString());
+
+            meta.setLore(((InventoryAdapter<T>) adapter).appendLoreWithInventory(meta.getLore(), entity));
+        }
+
+        if (adapter instanceof NBTAdapter) {
+            meta.getPersistentDataContainer().set(Keys.NBT, PersistentDataType.STRING, ((NBTAdapter<T>) adapter).saveNBTData(entity));
+            
+            meta.setLore(((NBTAdapter<T>) adapter).appendLoreWithNbt(meta.getLore(), entity));
         }
 
         item.setItemMeta(meta);
@@ -104,7 +114,7 @@ public class MobEgg<T extends LivingEntity> extends SimpleSlimefunItem<ItemUseHa
 
                     // Only consume the item if we are not in creative mode.
                     if (e.getPlayer().getGameMode() != GameMode.CREATIVE) {
-                    ItemUtils.consumeItem(e.getItem(), false);
+                        ItemUtils.consumeItem(e.getItem(), false);
                     }
 
                     if (json != null) {
@@ -128,6 +138,14 @@ public class MobEgg<T extends LivingEntity> extends SimpleSlimefunItem<ItemUseHa
                             }
 
                             ((InventoryAdapter<T>) adapter).applyInventory(entity, inventory);
+                        }
+
+                        if (adapter instanceof NBTAdapter) {
+                            String nbtString = container.get(Keys.NBT, PersistentDataType.STRING);
+
+                            if (nbtString != null) {
+                                ((NBTAdapter<T>) adapter).applyNBTData(entity, nbtString);
+                            }
                         }
                     }
                 }
