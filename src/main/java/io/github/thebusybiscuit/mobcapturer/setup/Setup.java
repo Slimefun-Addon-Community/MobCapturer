@@ -88,6 +88,7 @@ import io.github.thebusybiscuit.mobcapturer.adapters.mobs.UndeadHorseAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.VexAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.VillagerAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.WanderingTraderAdapter;
+import io.github.thebusybiscuit.mobcapturer.adapters.mobs.WardenAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.WolfAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.ZoglinAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.ZombieAdapter;
@@ -256,6 +257,9 @@ public final class Setup {
         registerMob(EntityType.HUSK, new ZombieAdapter<>(Husk.class), "40fd8d86e7057aae33f5d79dcb03685c88c8137cfcb2349bc874b9f87e934276");
         registerMob(EntityType.ZOMBIE_VILLAGER, new ZombieVillagerAdapter(), "364b4c94dda909ecc778db93572b847a5df51c4a49894d6a9df59b8df97842c5");
 
+        // Bosses
+        // Remember, you can use the config to disable capturing these.
+        registerMob(EntityType.WARDEN, new WardenAdapter(), "182d36b973e57e4c0fe28c371a7f11fc04a2a342a88a7e5e5d83edbcab61770e");
     }
 
     @ParametersAreNonnullByDefault
