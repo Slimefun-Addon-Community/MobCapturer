@@ -26,8 +26,10 @@ You can change the following settings in `config.yml`:
 
 - `options.auto-update`: Enable auto update from builds page. (default: `true`)
 - `options.capture-named-mobs`: Allow players to capture mobs with custom names. (default: `true`)
-- `options.ignored-mobs`: The list of mob names that these mobs should not be captured.   
+- `options.ignored-mob-names`: The list of mob names that these mobs should not be captured.   
   Note: this list will be ignored when `options.capture-named-mobs` is set to `false`
+- `options.ignored-mob-types`: The list of mob names that these mobs should not be captured.   
+  Note: this uses the language key of the mob, for example `entity.minecraft.wither`
 
 ## :headphones: Discord Server
 You can find Slimefun's community on Discord and connect with thousands of other members from the community.<br>
