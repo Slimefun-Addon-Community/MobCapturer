@@ -1,15 +1,13 @@
 package io.github.thebusybiscuit.mobcapturer.listeners;
 
-import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import io.github.thebusybiscuit.mobcapturer.events.MobPreCaptureEvent;
-
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Snowball;
@@ -20,10 +18,10 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
 
 import io.github.thebusybiscuit.mobcapturer.MobCapturer;
+import io.github.thebusybiscuit.mobcapturer.events.MobCaptureEvent;
 import io.github.thebusybiscuit.mobcapturer.items.MobEgg;
 import io.github.thebusybiscuit.mobcapturer.setup.Keys;
-import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.config.Config;
 
 /**
  * Listener for pellet hit.
@@ -55,7 +53,7 @@ public class PelletListener implements Listener {
             if (optional.isPresent()) {
                 pellet.removeMetadata(Keys.MOB_CAPTURING_PELLET, plugin);
                 entity.remove();
-                entity.getWorld().dropItemNaturally(entity.getEyeLocation(), optional.get());
+                dropEgg(player, optional.get(), entity.getLocation());
             }
         }
     }
@@ -72,15 +70,14 @@ public class PelletListener implements Listener {
      */
     @ParametersAreNonnullByDefault
     protected boolean canCapture(Player p, LivingEntity entity) {
-        // permission check
-        if (!Slimefun.getProtectionManager().hasPermission(p, entity.getLocation(), Interaction.ATTACK_ENTITY)) {
+        if (!MobCapturer.getRegistry().getAdapters().containsKey(entity.getType())) {
             return false;
         }
 
         // event check
-        MobPreCaptureEvent preCaptureEvent = new MobPreCaptureEvent(p, entity);
-        Bukkit.getPluginManager().callEvent(preCaptureEvent);
-        return !preCaptureEvent.isCancelled();
+        MobCaptureEvent captureEvent = new MobCaptureEvent(p, entity);
+        Bukkit.getPluginManager().callEvent(captureEvent);
+        return !captureEvent.isCancelled();
     }
 
     /**
@@ -101,6 +98,35 @@ public class PelletListener implements Listener {
             return Optional.of(item);
         } else {
             return Optional.empty();
+        }
+    }
+
+    /**
+     * If mob eggs to inventory is enabled,
+     * it will try to add the egg to the {@link Player}'s inventory.
+     * If the inventory is full, it will drop the egg {@link ItemStack} at the {@link Location} of {@link Player}.
+     * <p>
+     * If mob eggs to inventory is disabled, drop the egg to the entity's {@link Location}.
+     *
+     * @param p
+     *     The {@link Player} that is capturing the mob.
+     * @param item
+     *     The egg {@link ItemStack}.
+     * @param loc
+     *     The {@link Location} of the {@link LivingEntity}.
+     */
+    @ParametersAreNonnullByDefault
+    protected void dropEgg(Player p, ItemStack item, Location loc) {
+        Config config = MobCapturer.getRegistry().getConfig();
+        if (config.getBoolean("options.mob-eggs-to-inventory")) {
+            Map<Integer, ItemStack> remainingItems = p.getInventory().addItem(item);
+            if (!remainingItems.isEmpty()) {
+                for (ItemStack remainingItem : remainingItems.values()) {
+                    p.getWorld().dropItemNaturally(p.getLocation(), remainingItem);
+                }
+            }
+        } else {
+            loc.getWorld().dropItemNaturally(loc, item);
         }
     }
 }

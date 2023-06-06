@@ -2,11 +2,10 @@ package io.github.thebusybiscuit.mobcapturer;
 
 import javax.annotation.Nonnull;
 
-import io.github.thebusybiscuit.mobcapturer.listeners.MobCaptureListener;
-
 import org.bstats.bukkit.Metrics;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import io.github.thebusybiscuit.mobcapturer.listeners.MobCaptureListener;
 import io.github.thebusybiscuit.mobcapturer.listeners.PelletListener;
 import io.github.thebusybiscuit.mobcapturer.setup.Registry;
 import io.github.thebusybiscuit.mobcapturer.setup.Setup;

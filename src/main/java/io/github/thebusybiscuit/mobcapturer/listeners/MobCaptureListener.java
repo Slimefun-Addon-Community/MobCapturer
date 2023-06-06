@@ -6,13 +6,16 @@ import javax.annotation.Nonnull;
 
 import org.bukkit.ChatColor;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 
 import io.github.thebusybiscuit.mobcapturer.MobCapturer;
-import io.github.thebusybiscuit.mobcapturer.events.MobPreCaptureEvent;
+import io.github.thebusybiscuit.mobcapturer.events.MobCaptureEvent;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.config.Config;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
 
 /**
  * Listener for mob capturing.
@@ -30,9 +33,16 @@ public class MobCaptureListener implements Listener {
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
-    public void onMobCapture(@Nonnull MobPreCaptureEvent e) {
+    public void onMobCapture(@Nonnull MobCaptureEvent e) {
         Config config = MobCapturer.getRegistry().getConfig();
         LivingEntity entity = e.getEntity();
+        Player p = e.getPlayer();
+
+        // permission check
+        if (!Slimefun.getProtectionManager().hasPermission(p, entity.getLocation(), Interaction.ATTACK_ENTITY)) {
+            e.setCancelled(true);
+            return;
+        }
 
         // has custom name
         if (entity.getCustomName() != null) {
