@@ -54,6 +54,7 @@ import io.github.thebusybiscuit.mobcapturer.adapters.mobs.BeeAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.CatAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.ChestedHorseAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.CreeperAdapter;
+import io.github.thebusybiscuit.mobcapturer.adapters.mobs.EndermanAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.EndermiteAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.FoxAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.FrogAdapter;
@@ -207,11 +208,13 @@ public final class Setup {
         // Ender things
         registerMob(EntityType.SHULKER, new ShulkerAdapter(), "d04252216231b3f744c9ff4ace7084ae9f4164f8b384c65410848a19617af4d");
         registerMob(EntityType.ENDERMITE, new EndermiteAdapter(), "3beac501e97db1cc035287d068a8eb538e55ef802f5cca25683933a243136c");
+        registerMob(EntityType.ENDERMAN, new EndermanAdapter(), "37c0d010dd0e512ffea108d7c5fe69d576c31ec266c884b51ec0b28cc457");
 
         // Golems
         registerMob(EntityType.SNOWMAN, new SnowmanAdapter(), "2e4385d58fe46dd96422f31d35bbd1568e5819bbdb7a196c9f113424582cf977");
         registerMob(EntityType.IRON_GOLEM, new IronGolemAdapter(), "c442c228f099fdfc1c6b46dfc80b252d81f7fb1739deb16ee7a597c17f7c9");
 
+        // Villagers
         registerMob(EntityType.VILLAGER, new VillagerAdapter(), "f3b36425cbfa48e4684c8e1a71477919e0a46b613511a8436c775b15f5615");
         registerMob(EntityType.WANDERING_TRADER, new WanderingTraderAdapter(), "28c05628272f69432f6b03ef821e6b7a82bce80181152524268f7056fe6393f4");
 
