@@ -89,6 +89,7 @@ import io.github.thebusybiscuit.mobcapturer.adapters.mobs.VexAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.VillagerAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.WanderingTraderAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.WardenAdapter;
+import io.github.thebusybiscuit.mobcapturer.adapters.mobs.WitherAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.WolfAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.ZoglinAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.ZombieAdapter;
@@ -260,6 +261,10 @@ public final class Setup {
         // Bosses
         // Remember, you can use the config to disable capturing these.
         registerMob(EntityType.WARDEN, new WardenAdapter(), "182d36b973e57e4c0fe28c371a7f11fc04a2a342a88a7e5e5d83edbcab61770e");
+        registerMob(EntityType.WITHER, new WitherAdapter(), "337223d01906ab63af1a15988343b8637e85930b905c35125b545b398c59e1c5");
+
+        // The Ender Dragon is hardcoded to avoid snowballs.
+        // registerMob(EntityType.ENDER_DRAGON, new EnderDragonAdapter(), "e6ba9987f738e6d75d3b02c30d1480a360593ddb464bd1c81abb9d71d9e656c0");
     }
 
     @ParametersAreNonnullByDefault
