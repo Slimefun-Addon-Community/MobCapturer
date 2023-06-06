@@ -98,7 +98,11 @@ public class MobEgg<T extends LivingEntity> extends SimpleSlimefunItem<ItemUseHa
 
                     PersistentDataContainer container = e.getItem().getItemMeta().getPersistentDataContainer();
                     JsonObject json = container.get(Keys.DATA, adapter);
+
+                    // Only consume the item if we are not in creative mode.
+                    if (e.getPlayer().getGameMode() != GameMode.CREATIVE) {
                     ItemUtils.consumeItem(e.getItem(), false);
+                    }
 
                     if (json != null) {
                         adapter.apply(entity, json);

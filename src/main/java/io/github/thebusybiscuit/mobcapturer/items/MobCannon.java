@@ -52,7 +52,9 @@ public class MobCannon extends SimpleSlimefunItem<ItemUseHandler> {
 
         for (ItemStack item : p.getInventory()) {
             if (ItemStacks.MOB_CAPTURING_PELLET.getItem().isItem(item)) {
+                if (p.getGameMode() != GameMode.CREATIVE) {
                 ItemUtils.consumeItem(item, false);
+                }
                 return true;
             }
         }
