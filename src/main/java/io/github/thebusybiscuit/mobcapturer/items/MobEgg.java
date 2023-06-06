@@ -94,7 +94,10 @@ public class MobEgg<T extends LivingEntity> extends SimpleSlimefunItem<ItemUseHa
                 Block b = block.get();
 
                 if (canPlaceMob(e.getPlayer(), b.getRelative(e.getClickedFace()).getLocation())) {
-                    T entity = b.getWorld().spawn(b.getRelative(e.getClickedFace()).getLocation(), adapter.getEntityClass());
+                    Location l = b.getRelative(e.getClickedFace()).getLocation();
+                    l.add(0.5, 0, 0.5); // Spawn the mob in the center of the block
+                    
+                    T entity = b.getWorld().spawn(l, adapter.getEntityClass());
 
                     PersistentDataContainer container = e.getItem().getItemMeta().getPersistentDataContainer();
                     JsonObject json = container.get(Keys.DATA, adapter);
