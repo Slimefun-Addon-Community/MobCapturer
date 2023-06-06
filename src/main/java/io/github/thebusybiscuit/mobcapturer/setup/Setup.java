@@ -85,6 +85,7 @@ import io.github.thebusybiscuit.mobcapturer.adapters.mobs.TadpoleAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.TropicalFishAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.UndeadHorseAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.VexAdapter;
+import io.github.thebusybiscuit.mobcapturer.adapters.mobs.VillagerAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.WolfAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.ZoglinAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.ZombieAdapter;
@@ -210,6 +211,7 @@ public final class Setup {
         registerMob(EntityType.SNOWMAN, new SnowmanAdapter(), "2e4385d58fe46dd96422f31d35bbd1568e5819bbdb7a196c9f113424582cf977");
         registerMob(EntityType.IRON_GOLEM, new IronGolemAdapter(), "c442c228f099fdfc1c6b46dfc80b252d81f7fb1739deb16ee7a597c17f7c9");
 
+        registerMob(EntityType.VILLAGER, new VillagerAdapter(), "f3b36425cbfa48e4684c8e1a71477919e0a46b613511a8436c775b15f5615");
         // Illagers
         registerMob(EntityType.WITCH, new RaiderAdapter<>(Witch.class), "afbdceef773d959b49ddd9615f4269c176e23154d45752667428dc4e3fd4d");
         registerMob(EntityType.VINDICATOR, new RaiderAdapter<>(Vindicator.class), "8e8e3de7718a54553dd2fc5b2415a08b05f2339b772fe181b65c507fda4e34c1");
