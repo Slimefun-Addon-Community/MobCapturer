@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -14,10 +15,12 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.inventory.ItemStack;
 
 import io.github.thebusybiscuit.mobcapturer.MobCapturer;
 import io.github.thebusybiscuit.mobcapturer.items.MobEgg;
+import io.github.thebusybiscuit.mobcapturer.nms.entity.EntityUtil;
 import io.github.thebusybiscuit.mobcapturer.setup.Keys;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
@@ -39,8 +42,9 @@ public class PelletListener implements Listener {
         this.plugin = plugin;
     }
 
+    /*
     @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGH)
-    public void onProjectileHit(@Nonnull EntityDamageByEntityEvent e) {
+    public void onEntityDamageByEntity(@Nonnull EntityDamageByEntityEvent e) {
         if (e.getDamager() instanceof Snowball pellet
             && e.getEntity() instanceof LivingEntity entity
             && pellet.hasMetadata(Keys.MOB_CAPTURING_PELLET)
@@ -56,6 +60,26 @@ public class PelletListener implements Listener {
             }
         }
     }
+    */
+
+    @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGH)
+    public void onProjectileHit(@Nonnull ProjectileHitEvent e) {
+        if (e.getEntity() instanceof Snowball pellet
+            && e.getHitEntity() instanceof LivingEntity entity
+            && pellet.hasMetadata(Keys.MOB_CAPTURING_PELLET)
+            && pellet.getShooter() instanceof Player player
+            && canCapture(player, entity)
+        ) {
+            Optional<ItemStack> optional = capture(entity);
+
+            if (optional.isPresent()) {
+                pellet.removeMetadata(Keys.MOB_CAPTURING_PELLET, plugin);
+                entity.remove();
+                entity.getWorld().dropItemNaturally(entity.getEyeLocation(), optional.get());
+            }
+        }
+    }
+    
 
     /**
      * Check if {@link Player} can capture the specified {@link LivingEntity}.
@@ -80,8 +104,19 @@ public class PelletListener implements Listener {
         	return false;
         }
 
-        List<String> ignoredMobNames = MobCapturer.getRegistry().getConfig().getStringList("options.ignored-mobs");
-        if (ignoredMobNames.size() > 0){
+        List<String> ignoredMobTypes = MobCapturer.getRegistry().getConfig().getStringList("options.ignored-mob-types");
+        if (ignoredMobTypes.size() > 0) {
+            String entityTypeName = EntityUtil.getTypeName(entity);
+            Bukkit.getLogger().info("Comparing " + entityTypeName + " to " + ignoredMobTypes.toString());
+            for (String ignoredMobType : ignoredMobTypes) {
+                if (ignoredMobType.equalsIgnoreCase(entityTypeName)) {
+                    return false;
+                }
+            }
+        }
+
+        List<String> ignoredMobNames = MobCapturer.getRegistry().getConfig().getStringList("options.ignored-mob-names");
+        if (ignoredMobNames.size() > 0) {
             String strippedEntityName = ChatColor.stripColor(entity.getCustomName());
             for (String ignoredMobName : ignoredMobNames) {
                 if (ignoredMobName.equalsIgnoreCase(strippedEntityName)) {
