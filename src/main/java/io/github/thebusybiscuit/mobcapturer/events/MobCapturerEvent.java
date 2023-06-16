@@ -7,6 +7,12 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 
+/**
+ * This is an abstract event that has 2 fields: Player and LivingEntity.
+ * Every MobCapturer event extends this class.
+ *
+ * @author ybw0014
+ */
 public abstract class MobCapturerEvent extends Event {
     @Nonnull
     private final Player player;
