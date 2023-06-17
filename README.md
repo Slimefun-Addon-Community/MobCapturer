@@ -25,6 +25,7 @@ You can download MobCapturer right here: [Development Builds](https://thebusybis
 You can change the following settings in `config.yml`:
 
 - `options.auto-update`: Enable auto update from builds page. (default: `true`)
+- `options.mob-eggs-to-inventory`: Allow the mob egg to be added to the player's inventory directly. If the player's inventory is full, it will be dropped at player's location. (default: `false`)
 - `options.capture-named-mobs`: Allow players to capture mobs with custom names. (default: `true`)
 - `options.ignored-mobs`: The list of mob names that these mobs should not be captured.   
   Note: this list will be ignored when `options.capture-named-mobs` is set to `false`
