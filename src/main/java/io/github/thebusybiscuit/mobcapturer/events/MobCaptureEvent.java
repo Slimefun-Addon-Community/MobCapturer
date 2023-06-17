@@ -3,9 +3,12 @@ package io.github.thebusybiscuit.mobcapturer.events;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
+import com.google.common.base.Preconditions;
+
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
+import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
 import io.github.thebusybiscuit.mobcapturer.items.MobEgg;
@@ -18,15 +21,22 @@ import io.github.thebusybiscuit.mobcapturer.items.MobPellet;
  *
  * @author ybw0014
  */
-public class MobCaptureEvent extends MobCapturerEvent implements Cancellable {
+public class MobCaptureEvent extends Event implements Cancellable {
 
     private static final HandlerList HANDLER_LIST = new HandlerList();
+
+    private final Player player;
+    private final LivingEntity entity;
 
     private boolean cancelled;
 
     @ParametersAreNonnullByDefault
     public MobCaptureEvent(Player player, LivingEntity entity) {
-        super(player, entity);
+        Preconditions.checkArgument(player != null, "Player cannot be null");
+        Preconditions.checkArgument(entity != null, "LivingEntity cannot be null");
+
+        this.player = player;
+        this.entity = entity;
     }
 
     @Override
@@ -40,8 +50,23 @@ public class MobCaptureEvent extends MobCapturerEvent implements Cancellable {
     }
 
     @Nonnull
+    public Player getPlayer() {
+        return player;
+    }
+
+    @Nonnull
+    public LivingEntity getEntity() {
+        return entity;
+    }
+
+    @Nonnull
     @Override
     public HandlerList getHandlers() {
+        return HANDLER_LIST;
+    }
+
+    @Nonnull
+    public static HandlerList getHandlerList() {
         return HANDLER_LIST;
     }
 }
