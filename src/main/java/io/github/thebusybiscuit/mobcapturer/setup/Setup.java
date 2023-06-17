@@ -2,10 +2,6 @@ package io.github.thebusybiscuit.mobcapturer.setup;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import io.github.thebusybiscuit.mobcapturer.adapters.mobs.CamelAdapter;
-
-import io.github.thebusybiscuit.mobcapturer.adapters.mobs.SnifferAdapter;
-
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Bat;
@@ -56,6 +52,7 @@ import io.github.thebusybiscuit.mobcapturer.adapters.mobs.AllayAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.AnimalsAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.AxolotlAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.BeeAdapter;
+import io.github.thebusybiscuit.mobcapturer.adapters.mobs.CamelAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.CatAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.ChestedHorseAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.CreeperAdapter;
@@ -83,6 +80,7 @@ import io.github.thebusybiscuit.mobcapturer.adapters.mobs.SheepAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.ShulkerAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.SkeletonAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.SlimeAdapter;
+import io.github.thebusybiscuit.mobcapturer.adapters.mobs.SnifferAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.SnowmanAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.StandardMobAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.StriderAdapter;
