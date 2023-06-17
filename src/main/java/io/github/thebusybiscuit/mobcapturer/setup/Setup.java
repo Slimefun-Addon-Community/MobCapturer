@@ -2,10 +2,15 @@ package io.github.thebusybiscuit.mobcapturer.setup;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
+import io.github.thebusybiscuit.mobcapturer.adapters.mobs.CamelAdapter;
+
+import io.github.thebusybiscuit.mobcapturer.adapters.mobs.SnifferAdapter;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Bat;
 import org.bukkit.entity.Blaze;
+import org.bukkit.entity.Camel;
 import org.bukkit.entity.CaveSpider;
 import org.bukkit.entity.Chicken;
 import org.bukkit.entity.Cod;
@@ -144,7 +149,7 @@ public final class Setup {
     }
 
     private static void setupMobEggs() {
-        // Animals
+        //<editor-fold desc="Animals">
         // https://minecraft-heads.com/custom-heads/decoration/935-spawn-egg-cow
         registerMob(EntityType.COW, new AnimalsAdapter<>(Cow.class), "9419f15ff54dae5d040f9b9d8eb2a8989e676710922a0ca164da613ca61e9");
         // https://minecraft-heads.com/custom-heads/decoration/934-spawn-egg-chicken
@@ -177,8 +182,11 @@ public final class Setup {
             // https://minecraft-heads.com/custom-heads/decoration/56964-spawn-egg-frog
             registerMob(EntityType.FROG, new FrogAdapter(), "2d767bfee87d1d301084c74dadade50fc49263a465e4c1065549dbf8403f194c");
         }
-        // https://minecraft-heads.com/custom-heads/decoration/62266-sniffer-egg
-
+        if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_20)) {
+            // https://minecraft-heads.com/custom-heads/decoration/62266-sniffer-egg
+            registerMob(EntityType.SNIFFER, new SnifferAdapter(), "bae445d1392cb559a68b4f4401e1aa3ec5e7f9e89c0b62632bccf0ac3b41b4b");
+        }
+        //</editor-fold>
 
         //<editor-fold desc="Mobs">
         // https://minecraft-heads.com/custom-heads/decoration/961-spawn-egg-slime
@@ -255,13 +263,14 @@ public final class Setup {
         registerMob(EntityType.ENDERMITE, new EndermiteAdapter(), "3beac501e97db1cc035287d068a8eb538e55ef802f5cca25683933a243136c");
         //</editor-fold>
 
-        // Golems
+        //<editor-fold desc="Golems">
         // unknown source
         registerMob(EntityType.SNOWMAN, new SnowmanAdapter(), "2e4385d58fe46dd96422f31d35bbd1568e5819bbdb7a196c9f113424582cf977");
         // unknown source
         registerMob(EntityType.IRON_GOLEM, new IronGolemAdapter(), "c442c228f099fdfc1c6b46dfc80b252d81f7fb1739deb16ee7a597c17f7c9");
+        //</editor-fold>
 
-        // Illagers
+        //<editor-fold desc="Illagers">
         // https://minecraft-heads.com/custom-heads/decoration/963-spawn-egg-witch
         registerMob(EntityType.WITCH, new RaiderAdapter<>(Witch.class), "afbdceef773d959b49ddd9615f4269c176e23154d45752667428dc4e3fd4d");
         // https://minecraft-heads.com/custom-heads/decoration/23578-spawn-egg-vindicator
@@ -276,6 +285,7 @@ public final class Setup {
         registerMob(EntityType.ILLUSIONER, new MagicIllagerAdapter<>(Illusioner.class), "ff1eeb387d55b0886a69b6ec62a6e69706f32aba2547e10583060b976341f9be");
         // https://minecraft-heads.com/custom-heads/decoration/23708-spawn-egg-vex
         registerMob(EntityType.VEX, new VexAdapter(), "dc7eb861fd9999bf87a300e3ddd03c57313ddfba221d1c7d4bd62cef31446ca1");
+        //</editor-fold>
 
         //<editor-fold desc="Fish">
         // https://minecraft-heads.com/custom-heads/decoration/23711-spawn-egg-cod-fish
@@ -307,6 +317,10 @@ public final class Setup {
         registerMob(EntityType.LLAMA, new LlamaAdapter<>(Llama.class), "5cbc6bd92728d79cfa6d8f23cbae9d912f495920b9e95ef691a1967fef8a4453");
         // https://minecraft-heads.com/custom-heads/decoration/48537-spawn-egg-wandering-trader-llama
         registerMob(EntityType.TRADER_LLAMA, new LlamaAdapter<>(TraderLlama.class), "73ca3bfb6602a96a57369cbc85eba8bb53df796d0df3dbc3798fa3d8e9e30275");
+        if (Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_20)) {
+            // https://minecraft-heads.com/custom-heads/animals/58939-camel
+            registerMob(EntityType.CAMEL, new CamelAdapter<>(Camel.class), "74b8a333dfa92e7e5a95ad4ae2d84b1bafa33dc28c054925277f60e79dafc8c4"); // no egg texture
+        }
         //</editor-fold>
 
         //<editor-fold desc="Skeletons">
