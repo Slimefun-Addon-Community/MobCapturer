@@ -15,6 +15,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.inventory.ItemStack;
 
 import io.github.thebusybiscuit.mobcapturer.MobCapturer;
@@ -41,9 +42,9 @@ public class PelletListener implements Listener {
     }
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGH)
-    public void onProjectileHit(@Nonnull EntityDamageByEntityEvent e) {
-        if (e.getDamager() instanceof Snowball pellet
-            && e.getEntity() instanceof LivingEntity entity
+    public void onProjectileHit(@Nonnull ProjectileHitEvent e) {
+        if (e.getEntity() instanceof Snowball pellet
+            && e.getHitEntity() instanceof LivingEntity entity
             && pellet.hasMetadata(Keys.MOB_CAPTURING_PELLET)
             && pellet.getShooter() instanceof Player player
             && canCapture(player, entity)
