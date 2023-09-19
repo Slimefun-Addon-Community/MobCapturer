@@ -54,7 +54,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.4.1</version>
+                <version>3.5.0</version>
 
                 <configuration>
                     <minimizeJar>true</minimizeJar>
@@ -101,7 +101,7 @@
         <dependency>
             <groupId>com.github.Slimefun</groupId>
             <artifactId>Slimefun4</artifactId>
-            <version>a86446e236</version>
+            <version>RC-35</version>
             <scope>provided</scope>
             <exclusions>
                 <exclusion>

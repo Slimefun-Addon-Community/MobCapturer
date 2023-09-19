@@ -29,6 +29,7 @@ import io.github.thebusybiscuit.mobcapturer.setup.Keys;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import io.github.thebusybiscuit.slimefun4.core.attributes.DistinctiveItem;
 import io.github.thebusybiscuit.slimefun4.core.attributes.NotPlaceable;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
@@ -44,7 +45,7 @@ import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction
  *
  * @author TheBusyBiscuit
  */
-public class MobEgg<T extends LivingEntity> extends SimpleSlimefunItem<ItemUseHandler> implements NotPlaceable {
+public class MobEgg<T extends LivingEntity> extends SimpleSlimefunItem<ItemUseHandler> implements NotPlaceable, DistinctiveItem {
 
     private final MobAdapter<T> adapter;
 
@@ -135,4 +136,8 @@ public class MobEgg<T extends LivingEntity> extends SimpleSlimefunItem<ItemUseHa
         return Slimefun.getProtectionManager().hasPermission(p, l, Interaction.PLACE_BLOCK);
     }
 
+    @Override
+    public boolean canStack(@Nonnull ItemMeta sfItemMeta, @Nonnull ItemMeta itemMeta) {
+        return sfItemMeta.getPersistentDataContainer().equals(itemMeta.getPersistentDataContainer());
+    }
 }
