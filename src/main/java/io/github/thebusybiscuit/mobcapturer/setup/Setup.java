@@ -2,8 +2,6 @@ package io.github.thebusybiscuit.mobcapturer.setup;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import io.github.thebusybiscuit.mobcapturer.adapters.mobs.EndermanAdapter;
-
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Bat;
@@ -58,6 +56,7 @@ import io.github.thebusybiscuit.mobcapturer.adapters.mobs.CamelAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.CatAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.ChestedHorseAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.CreeperAdapter;
+import io.github.thebusybiscuit.mobcapturer.adapters.mobs.EndermanAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.EndermiteAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.FoxAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.FrogAdapter;
