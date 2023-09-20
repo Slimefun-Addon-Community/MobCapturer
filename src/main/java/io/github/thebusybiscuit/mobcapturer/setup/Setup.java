@@ -56,6 +56,7 @@ import io.github.thebusybiscuit.mobcapturer.adapters.mobs.CamelAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.CatAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.ChestedHorseAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.CreeperAdapter;
+import io.github.thebusybiscuit.mobcapturer.adapters.mobs.EndermanAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.EndermiteAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.FoxAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.FrogAdapter;
@@ -255,6 +256,8 @@ public final class Setup {
         //</editor-fold>
 
         //<editor-fold desc="Ender things">
+        // https://minecraft-heads.com/custom-heads/decoration/953-spawn-egg-enderman
+        registerMob(EntityType.ENDERMAN, new EndermanAdapter(), "37c0d010dd0e512ffea108d7c5fe69d576c31ec266c884b51ec0b28cc457");
         // https://minecraft-heads.com/custom-heads/decoration/23585-spawn-egg-shulker
         registerMob(EntityType.SHULKER, new ShulkerAdapter(), "d04252216231b3f744c9ff4ace7084ae9f4164f8b384c65410848a19617af4d");
         // https://minecraft-heads.com/custom-heads/decoration/954-spawn-egg-endermite
