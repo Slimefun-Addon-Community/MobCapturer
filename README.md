@@ -13,13 +13,8 @@ But the mobs that do work work extremely well!<br>
 The captured mobs will retain attributes, potion effects, fire ticks, custom names, their health and even entity-specific traits like wool colors and much more.
 
 ## :floppy_disk: Download MobCapturer
-You can download MobCapturer right here: [Development Builds](https://thebusybiscuit.github.io/builds/TheBusyBiscuit/MobCapturer/master/)
+You can download MobCapturer right here: [Dev Builds](https://blob.build/project/MobCapturer)
 
-<p align="center">
-  <a href="https://thebusybiscuit.github.io/builds/TheBusyBiscuit/MobCapturer/master/">
-    <img src="https://thebusybiscuit.github.io/builds/TheBusyBiscuit/MobCapturer/master/badge.svg" alt="Build Server"/>
-  </a>
-</p>
 
 ## :gear: config
 You can change the following settings in `config.yml`:

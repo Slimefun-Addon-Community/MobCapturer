@@ -11,7 +11,7 @@ import io.github.thebusybiscuit.mobcapturer.setup.Registry;
 import io.github.thebusybiscuit.mobcapturer.setup.Setup;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.config.Config;
-import io.github.thebusybiscuit.slimefun4.libraries.dough.updater.GitHubBuildsUpdater;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.updater.BlobBuildUpdater;
 
 /**
  * MobCapturer Slimefun addon
@@ -46,8 +46,8 @@ public class MobCapturer extends JavaPlugin implements SlimefunAddon {
         Config cfg = new Config(this);
         new Metrics(this, 6672);
 
-        if (cfg.getBoolean("options.auto-update") && getDescription().getVersion().startsWith("DEV - ")) {
-            new GitHubBuildsUpdater(this, getFile(), "TheBusyBiscuit/MobCapturer/master").start();
+        if (cfg.getBoolean("options.auto-update") && getDescription().getVersion().startsWith("Dev - ")) {
+            new BlobBuildUpdater(this, getFile(), "MobCapturer").start();
         }
 
         registry = new Registry(cfg);
