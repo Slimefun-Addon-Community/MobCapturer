@@ -109,16 +109,16 @@ import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import net.guizhanss.guizhanlib.minecraft.utils.MinecraftVersionUtil;
 import net.guizhanss.guizhanlib.minecraft.utils.compatibility.EntityTypeX;
 
+import lombok.experimental.UtilityClass;
+
 /**
  * Setup {@link MobCapturer}.
  *
  * @author TheBusyBiscuit
  * @author ybw0014
  */
+@UtilityClass
 public final class Setup {
-
-    private Setup() {
-    }
 
     public static void setup() {
         MobCapturer plugin = MobCapturer.getInstance();
