@@ -10,12 +10,15 @@ import io.github.thebusybiscuit.slimefun4.api.items.groups.NestedItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.groups.SubItemGroup;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 
+import lombok.experimental.UtilityClass;
+
 /**
  * All the {@link ItemGroup}s in MobCapturer.
  *
  * @author TheBusyBiscuit
  * @author ybw0014
  */
+@UtilityClass
 public final class ItemGroups {
 
     public static final NestedItemGroup MAIN = new NestedItemGroup(
@@ -42,7 +45,4 @@ public final class ItemGroups {
             "&aMob Eggs"
         )
     );
-
-    private ItemGroups() {
-    }
 }
