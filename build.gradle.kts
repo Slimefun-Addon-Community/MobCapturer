@@ -2,7 +2,8 @@ plugins {
     id("java")
     id("maven-publish")
     id("io.freefair.lombok") version "8.7.1"
-    id("com.github.johnrengelman.shadow") version "8.1.1"
+    // id("com.github.johnrengelman.shadow") version "8.1.1"
+    id("io.github.goooler.shadow") version "8.1.8" // use forked shadow plugin until official version supports java 21
     id("net.minecrell.plugin-yml.bukkit") version "0.6.0"
 }
 

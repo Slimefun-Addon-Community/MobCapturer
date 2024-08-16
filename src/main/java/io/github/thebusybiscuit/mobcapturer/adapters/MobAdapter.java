@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -18,7 +17,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.attribute.AttributeModifier;
-import org.bukkit.attribute.AttributeModifier.Operation;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.persistence.PersistentDataAdapterContext;
@@ -26,6 +24,7 @@ import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import io.github.thebusybiscuit.mobcapturer.utils.JsonUtils;
 import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
 
 /**
@@ -85,7 +84,7 @@ public interface MobAdapter<T extends LivingEntity> extends PersistentDataType<S
     @ParametersAreNonnullByDefault
     @Nonnull
     default JsonObject fromPrimitive(String primitive, PersistentDataAdapterContext context) {
-        return new JsonParser().parse(primitive).getAsJsonObject();
+        return JsonParser.parseString(primitive).getAsJsonObject();
     }
 
     @ParametersAreNonnullByDefault
@@ -109,12 +108,8 @@ public interface MobAdapter<T extends LivingEntity> extends PersistentDataType<S
                 for (JsonElement modifier : modifiers) {
                     JsonObject obj = modifier.getAsJsonObject();
 
-                    String uuid = obj.get("uuid").getAsString();
-                    String name = obj.get("name").getAsString();
-                    double amount = obj.get("amount").getAsDouble();
-                    int operation = obj.get("operation").getAsInt();
+                    AttributeModifier mod = AttributeModifier.deserialize(JsonUtils.toMap(obj));
 
-                    AttributeModifier mod = new AttributeModifier(UUID.fromString(uuid), name, amount, Operation.values()[operation]);
                     instance.addModifier(mod);
                 }
             }

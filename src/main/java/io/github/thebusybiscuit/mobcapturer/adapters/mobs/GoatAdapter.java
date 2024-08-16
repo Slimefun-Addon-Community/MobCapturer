@@ -10,8 +10,7 @@ import com.google.gson.JsonObject;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Goat;
 
-import io.github.thebusybiscuit.slimefun4.api.MinecraftVersion;
-import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import net.guizhanss.guizhanlib.minecraft.utils.MinecraftVersionUtil;
 
 public class GoatAdapter extends AnimalsAdapter<Goat> {
 
@@ -58,7 +57,7 @@ public class GoatAdapter extends AnimalsAdapter<Goat> {
     }
 
     private boolean hasHornMethods() {
-        return Slimefun.getMinecraftVersion().isAtLeast(MinecraftVersion.MINECRAFT_1_19);
+        return MinecraftVersionUtil.isAtLeast(19);
     }
 
 }
