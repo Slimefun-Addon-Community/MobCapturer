@@ -13,6 +13,7 @@ import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
  * @author ybw0014
  */
 public final class RecipeTypes {
+
     public static final RecipeType MOB_CAPTURING = new RecipeType(
         new NamespacedKey(MobCapturer.getInstance(), "mob_capturing"),
         new CustomItemStack(
@@ -23,5 +24,6 @@ public final class RecipeTypes {
         )
     );
 
-    private RecipeTypes() {}
+    private RecipeTypes() {
+    }
 }

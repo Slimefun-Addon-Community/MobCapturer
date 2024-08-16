@@ -39,6 +39,11 @@ public class MobCaptureEvent extends Event implements Cancellable {
         this.entity = entity;
     }
 
+    @Nonnull
+    public static HandlerList getHandlerList() {
+        return HANDLER_LIST;
+    }
+
     @Override
     public boolean isCancelled() {
         return this.cancelled;
@@ -62,11 +67,6 @@ public class MobCaptureEvent extends Event implements Cancellable {
     @Nonnull
     @Override
     public HandlerList getHandlers() {
-        return HANDLER_LIST;
-    }
-
-    @Nonnull
-    public static HandlerList getHandlerList() {
         return HANDLER_LIST;
     }
 }

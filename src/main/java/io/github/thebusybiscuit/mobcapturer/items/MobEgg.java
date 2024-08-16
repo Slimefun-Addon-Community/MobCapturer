@@ -40,9 +40,7 @@ import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction
 /**
  * The Mob Egg holds data of an entity, and will release the mob while right-clicking on a block.
  *
- * @param <T>
- *     A {@link LivingEntity}.
- *
+ * @param <T> A {@link LivingEntity}.
  * @author TheBusyBiscuit
  */
 public class MobEgg<T extends LivingEntity> extends SimpleSlimefunItem<ItemUseHandler> implements NotPlaceable, DistinctiveItem {

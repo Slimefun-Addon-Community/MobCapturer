@@ -1,16 +1,14 @@
 package io.github.thebusybiscuit.mobcapturer.setup;
 
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
-
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 
 import io.github.thebusybiscuit.mobcapturer.MobCapturer;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.items.groups.NestedItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.groups.SubItemGroup;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
-import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 
 /**
  * All the {@link ItemGroup}s in MobCapturer.
@@ -19,6 +17,7 @@ import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
  * @author ybw0014
  */
 public final class ItemGroups {
+
     public static final NestedItemGroup MAIN = new NestedItemGroup(
         new NamespacedKey(MobCapturer.getInstance(), "mob_capturer"),
         new SlimefunItemStack(
@@ -44,5 +43,6 @@ public final class ItemGroups {
         )
     );
 
-    private ItemGroups() {}
+    private ItemGroups() {
+    }
 }

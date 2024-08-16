@@ -17,6 +17,7 @@ import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
  * @author ybw0014
  */
 public final class ItemStacks {
+
     public static final SlimefunItemStack MOB_CANNON = new SlimefunItemStack(
         "MOB_CANNON",
         Material.BLAZE_ROD,
@@ -33,7 +34,8 @@ public final class ItemStacks {
         "&7Ammunition for your &6Mob Capturing Cannon"
     );
 
-    private ItemStacks() {}
+    private ItemStacks() {
+    }
 
     @Nonnull
     @ParametersAreNonnullByDefault

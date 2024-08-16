@@ -193,11 +193,11 @@ public interface MobAdapter<T extends LivingEntity> extends PersistentDataType<S
 
                 for (AttributeModifier modifier : instance.getModifiers()) {
                     JsonObject mod = new JsonObject();
+                    Map<String, Object> serializedMod = modifier.serialize();
 
-                    mod.addProperty("uuid", modifier.getUniqueId().toString());
-                    mod.addProperty("name", modifier.getName());
-                    mod.addProperty("operation", modifier.getOperation().ordinal());
-                    mod.addProperty("amount", modifier.getAmount());
+                    for (var entry : serializedMod.entrySet()) {
+                        mod.addProperty(entry.getKey(), entry.getValue().toString());
+                    }
 
                     modifiers.add(mod);
                 }

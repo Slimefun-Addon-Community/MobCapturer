@@ -112,33 +112,17 @@ import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
  * @author ybw0014
  */
 public final class Setup {
-    private Setup() {}
+
+    private Setup() {
+    }
 
     public static void setup() {
         MobCapturer plugin = MobCapturer.getInstance();
 
         // items
-        new MobPellet(
-            ItemGroups.TOOLS,
-            ItemStacks.MOB_CAPTURING_PELLET,
-            RecipeType.ENHANCED_CRAFTING_TABLE,
-            new ItemStack[] {
-                new ItemStack(Material.STRING), new ItemStack(Material.IRON_NUGGET), new ItemStack(Material.STRING),
-                SlimefunItems.MAGIC_LUMP_2, new ItemStack(Material.EGG), SlimefunItems.MAGIC_LUMP_2,
-                new ItemStack(Material.STRING), new ItemStack(Material.IRON_NUGGET), new ItemStack(Material.STRING)
-            }
-        ).register(plugin);
+        new MobPellet(ItemGroups.TOOLS, ItemStacks.MOB_CAPTURING_PELLET, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {new ItemStack(Material.STRING), new ItemStack(Material.IRON_NUGGET), new ItemStack(Material.STRING), SlimefunItems.MAGIC_LUMP_2, new ItemStack(Material.EGG), SlimefunItems.MAGIC_LUMP_2, new ItemStack(Material.STRING), new ItemStack(Material.IRON_NUGGET), new ItemStack(Material.STRING)}).register(plugin);
 
-        new MobCannon(
-            ItemGroups.TOOLS,
-            ItemStacks.MOB_CANNON,
-            RecipeType.ENHANCED_CRAFTING_TABLE,
-            new ItemStack[] {
-                null, SlimefunItems.STEEL_INGOT, SlimefunItems.HOOK,
-                SlimefunItems.STEEL_INGOT, SlimefunItems.POWER_CRYSTAL, SlimefunItems.STEEL_INGOT,
-                SlimefunItems.ADVANCED_CIRCUIT_BOARD, SlimefunItems.STEEL_INGOT, null
-            }
-        ).register(plugin);
+        new MobCannon(ItemGroups.TOOLS, ItemStacks.MOB_CANNON, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {null, SlimefunItems.STEEL_INGOT, SlimefunItems.HOOK, SlimefunItems.STEEL_INGOT, SlimefunItems.POWER_CRYSTAL, SlimefunItems.STEEL_INGOT, SlimefunItems.ADVANCED_CIRCUIT_BOARD, SlimefunItems.STEEL_INGOT, null}).register(plugin);
 
         setupMobEggs();
 
@@ -148,7 +132,7 @@ public final class Setup {
     }
 
     private static void setupMobEggs() {
-        //<editor-fold desc="Animals">
+        // <editor-fold desc="Animals">
         // https://minecraft-heads.com/custom-heads/decoration/935-spawn-egg-cow
         registerMob(EntityType.COW, new AnimalsAdapter<>(Cow.class), "9419f15ff54dae5d040f9b9d8eb2a8989e676710922a0ca164da613ca61e9");
         // https://minecraft-heads.com/custom-heads/decoration/934-spawn-egg-chicken
@@ -185,9 +169,9 @@ public final class Setup {
             // https://minecraft-heads.com/custom-heads/decoration/62266-sniffer-egg
             registerMob(EntityType.SNIFFER, new SnifferAdapter(), "bae445d1392cb559a68b4f4401e1aa3ec5e7f9e89c0b62632bccf0ac3b41b4b");
         }
-        //</editor-fold>
+        // </editor-fold>
 
-        //<editor-fold desc="Mobs">
+        // <editor-fold desc="Mobs">
         // https://minecraft-heads.com/custom-heads/decoration/961-spawn-egg-slime
         registerMob(EntityType.SLIME, new SlimeAdapter<>(Slime.class), "9330af17f8512ed3b49e78bca7ef2d83f2dc1e598a8cb542ecc3b6becee9f57");
         // https://minecraft-heads.com/custom-heads/decoration/962-spawn-egg-spider
@@ -206,9 +190,9 @@ public final class Setup {
             // https://minecraft-heads.com/custom-heads/decoration/56963-spawn-egg-allay
             registerMob(EntityType.ALLAY, new AllayAdapter(), "6c3f114efbd908284c7aadd81993769057361dd756bf5e7883b8e0b1cea446e7");
         }
-        //</editor-fold>
+        // </editor-fold>
 
-        //<editor-fold desc="Water Mobs">
+        // <editor-fold desc="Water Mobs">
         // https://minecraft-heads.com/custom-heads/decoration/942-spawn-egg-squid
         registerMob(EntityType.SQUID, new StandardMobAdapter<>(Squid.class), "449088861fc1e14b605a5154d79fa7dd65e041a5c635d24744b3e152535");
         // https://minecraft-heads.com/custom-heads/decoration/957-spawn-egg-guardian
@@ -221,9 +205,9 @@ public final class Setup {
             // https://minecraft-heads.com/custom-heads/decoration/48544-spawn-egg-glow-squid
             registerMob(EntityType.GLOW_SQUID, new GlowSquidAdapter(), "e5d31559261b3e79024751fe07b711c8feef51d56c03635226955805bc42894e");
         }
-        //</editor-fold>
+        // </editor-fold>
 
-        //<editor-fold desc="Tameables">
+        // <editor-fold desc="Tameables">
         // https://minecraft-heads.com/custom-heads/decoration/944-spawn-egg-wolf
         registerMob(EntityType.WOLF, new WolfAdapter(), "4399c973d6496d1d258492c28d4c95956ac3a253762bf15f7644af1f5728dd");
         // https://minecraft-heads.com/custom-heads/decoration/938-spawn-egg-ocelot
@@ -232,9 +216,9 @@ public final class Setup {
         registerMob(EntityType.CAT, new CatAdapter(), "f2154e385f9ccb187b53cf290fe9a24f98c7d583c368986c7806c312c3f29d79");
         // https://minecraft-heads.com/custom-heads/decoration/23588-spawn-egg-parrot
         registerMob(EntityType.PARROT, new ParrotAdapter(), "6eabd8fffc0371877e88ffc3cd0315200534dd2fcc6034588000736fb80033e5");
-        //</editor-fold>
+        // </editor-fold>
 
-        //<editor-fold desc="Nether">
+        // <editor-fold desc="Nether">
         // https://minecraft-heads.com/custom-heads/decoration/945-spawn-egg-blaze
         registerMob(EntityType.BLAZE, new StandardMobAdapter<>(Blaze.class), "533acae6e075a578ccfc7dc2d5a15dbccfa8f59c609f9703889ef54c742c56");
         // https://minecraft-heads.com/custom-heads/decoration/958-spawn-egg-magma-cube
@@ -253,7 +237,7 @@ public final class Setup {
         registerMob(EntityType.ZOGLIN, new ZoglinAdapter(), "debc97935d49df69911c008145b9c2d8906a11b0aa38effd8d50fe7b9682a7a0");
         // https://minecraft-heads.com/custom-heads/decoration/48539-spawn-egg-strider
         registerMob(EntityType.STRIDER, new StriderAdapter(), "3820f04b3f177c0463a05697766f3bdaf6fa28f1ac163572e27fde7c78afe7be");
-        //</editor-fold>
+        // </editor-fold>
 
         //<editor-fold desc="Ender things">
         // https://minecraft-heads.com/custom-heads/decoration/953-spawn-egg-enderman
@@ -262,16 +246,16 @@ public final class Setup {
         registerMob(EntityType.SHULKER, new ShulkerAdapter(), "d04252216231b3f744c9ff4ace7084ae9f4164f8b384c65410848a19617af4d");
         // https://minecraft-heads.com/custom-heads/decoration/954-spawn-egg-endermite
         registerMob(EntityType.ENDERMITE, new EndermiteAdapter(), "3beac501e97db1cc035287d068a8eb538e55ef802f5cca25683933a243136c");
-        //</editor-fold>
+        // </editor-fold>
 
         //<editor-fold desc="Golems">
         // unknown source
         registerMob(EntityType.SNOWMAN, new SnowmanAdapter(), "2e4385d58fe46dd96422f31d35bbd1568e5819bbdb7a196c9f113424582cf977");
         // unknown source
         registerMob(EntityType.IRON_GOLEM, new IronGolemAdapter(), "c442c228f099fdfc1c6b46dfc80b252d81f7fb1739deb16ee7a597c17f7c9");
-        //</editor-fold>
+        // </editor-fold>
 
-        //<editor-fold desc="Illagers">
+        // <editor-fold desc="Illagers">
         // https://minecraft-heads.com/custom-heads/decoration/963-spawn-egg-witch
         registerMob(EntityType.WITCH, new RaiderAdapter<>(Witch.class), "afbdceef773d959b49ddd9615f4269c176e23154d45752667428dc4e3fd4d");
         // https://minecraft-heads.com/custom-heads/decoration/23578-spawn-egg-vindicator
@@ -286,9 +270,9 @@ public final class Setup {
         registerMob(EntityType.ILLUSIONER, new MagicIllagerAdapter<>(Illusioner.class), "ff1eeb387d55b0886a69b6ec62a6e69706f32aba2547e10583060b976341f9be");
         // https://minecraft-heads.com/custom-heads/decoration/23708-spawn-egg-vex
         registerMob(EntityType.VEX, new VexAdapter(), "dc7eb861fd9999bf87a300e3ddd03c57313ddfba221d1c7d4bd62cef31446ca1");
-        //</editor-fold>
+        // </editor-fold>
 
-        //<editor-fold desc="Fish">
+        // <editor-fold desc="Fish">
         // https://minecraft-heads.com/custom-heads/decoration/23711-spawn-egg-cod-fish
         registerMob(EntityType.COD, new StandardMobAdapter<>(Cod.class), "bd29b25579f9d3a67b612ae8ef96b31feca6c9e7e6c70ac81156d778cbe7db9d");
         // https://minecraft-heads.com/custom-heads/decoration/23586-spawn-egg-salmon
@@ -301,9 +285,9 @@ public final class Setup {
             // https://minecraft-heads.com/custom-heads/decoration/56962-spawn-egg-tadpole
             registerMob(EntityType.TADPOLE, new TadpoleAdapter(), "d1f04d08180a7a5cc63055587a2ecde5ac86f9f48f0e3b0ee3a986638877aeef"); // not egg texture, bucket of tadpole
         }
-        //</editor-fold>
+        // </editor-fold>
 
-        //<editor-fold desc="Horses">
+        // <editor-fold desc="Horses">
         // https://minecraft-heads.com/custom-heads/decoration/936-spawn-egg-horse
         registerMob(EntityType.HORSE, new HorseAdapter(), "5c6d5abbf68ccb2386bf16af25ac38d8b77bb0e043152461bd97f3f630dbb8bc");
         // https://minecraft-heads.com/custom-heads/decoration/23905-spawn-egg-donkey
@@ -322,18 +306,18 @@ public final class Setup {
             // https://minecraft-heads.com/custom-heads/animals/58939-camel
             registerMob(EntityType.CAMEL, new CamelAdapter<>(Camel.class), "74b8a333dfa92e7e5a95ad4ae2d84b1bafa33dc28c054925277f60e79dafc8c4"); // no egg texture
         }
-        //</editor-fold>
+        // </editor-fold>
 
-        //<editor-fold desc="Skeletons">
+        // <editor-fold desc="Skeletons">
         // https://minecraft-heads.com/custom-heads/decoration/960-spawn-egg-skeleton
         registerMob(EntityType.SKELETON, new SkeletonAdapter<>(Skeleton.class), "377055cadacbb0f8f35c1d18acc2ed86e0bcc6d73dda71e4c59f7ea28b7b27b6");
         // https://minecraft-heads.com/custom-heads/decoration/23707-spawn-egg-wither-skeleton
         registerMob(EntityType.WITHER_SKELETON, new SkeletonAdapter<>(WitherSkeleton.class), "337223d01906ab63af1a15988343b8637e85930b905c35125b545b398c59e1c5");
         // https://minecraft-heads.com/custom-heads/decoration/23705-spawn-egg-stray
         registerMob(EntityType.STRAY, new SkeletonAdapter<>(Stray.class), "5b45aae241779f0617ffaff468f3f2cf666d2f8a803002f9ae1ba0f14ed79fdd");
-        //</editor-fold>
+        // </editor-fold>
 
-        //<editor-fold desc="Zombies">
+        // <editor-fold desc="Zombies">
         // https://minecraft-heads.com/custom-heads/decoration/964-spawn-egg-zombie
         registerMob(EntityType.ZOMBIE, new ZombieAdapter<>(Zombie.class), "77f844bfea25429d45e1fcf96ef6654dfaaa6fc902dc1b6b68c0abc1343447");
         // https://minecraft-heads.com/custom-heads/decoration/23590-spawn-egg-drowned
@@ -342,14 +326,14 @@ public final class Setup {
         registerMob(EntityType.HUSK, new ZombieAdapter<>(Husk.class), "40fd8d86e7057aae33f5d79dcb03685c88c8137cfcb2349bc874b9f87e934276");
         // https://minecraft-heads.com/custom-heads/decoration/23583-spawn-egg-zombie-villager
         registerMob(EntityType.ZOMBIE_VILLAGER, new ZombieVillagerAdapter(), "364b4c94dda909ecc778db93572b847a5df51c4a49894d6a9df59b8df97842c5");
-        //</editor-fold>
+        // </editor-fold>
     }
 
     @ParametersAreNonnullByDefault
-    private static <T extends LivingEntity> void registerMob(EntityType type, MobAdapter<T> adapter,
-                                                             String eggTexture) {
+    private static <T extends LivingEntity> void registerMob(EntityType type, MobAdapter<T> adapter, String eggTexture) {
         String name = ChatUtils.humanize(type.name());
 
+        // @formatter:off
         MobEgg<T> egg = new MobEgg<>(
             ItemGroups.MOB_EGGS,
             ItemStacks.buildMobEgg(type, eggTexture),
@@ -361,6 +345,7 @@ public final class Setup {
                 null, null, null
             }
         );
+        // @formatter:on
 
         egg.register(MobCapturer.getInstance());
 
