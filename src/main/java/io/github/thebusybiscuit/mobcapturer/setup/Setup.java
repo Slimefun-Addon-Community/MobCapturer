@@ -124,9 +124,29 @@ public final class Setup {
         MobCapturer plugin = MobCapturer.getInstance();
 
         // items
-        new MobPellet(ItemGroups.TOOLS, ItemStacks.MOB_CAPTURING_PELLET, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {new ItemStack(Material.STRING), new ItemStack(Material.IRON_NUGGET), new ItemStack(Material.STRING), SlimefunItems.MAGIC_LUMP_2, new ItemStack(Material.EGG), SlimefunItems.MAGIC_LUMP_2, new ItemStack(Material.STRING), new ItemStack(Material.IRON_NUGGET), new ItemStack(Material.STRING)}).register(plugin);
+        // @formatter:off
+        new MobPellet(
+            ItemGroups.TOOLS,
+            ItemStacks.MOB_CAPTURING_PELLET,
+            RecipeType.ENHANCED_CRAFTING_TABLE,
+            new ItemStack[] {
+                new ItemStack(Material.STRING), new ItemStack(Material.IRON_NUGGET), new ItemStack(Material.STRING),
+                SlimefunItems.MAGIC_LUMP_2, new ItemStack(Material.EGG), SlimefunItems.MAGIC_LUMP_2,
+                new ItemStack(Material.STRING), new ItemStack(Material.IRON_NUGGET), new ItemStack(Material.STRING)
+            }
+        ).register(plugin);
 
-        new MobCannon(ItemGroups.TOOLS, ItemStacks.MOB_CANNON, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {null, SlimefunItems.STEEL_INGOT, SlimefunItems.HOOK, SlimefunItems.STEEL_INGOT, SlimefunItems.POWER_CRYSTAL, SlimefunItems.STEEL_INGOT, SlimefunItems.ADVANCED_CIRCUIT_BOARD, SlimefunItems.STEEL_INGOT, null}).register(plugin);
+        new MobCannon(
+            ItemGroups.TOOLS,
+            ItemStacks.MOB_CANNON,
+            RecipeType.ENHANCED_CRAFTING_TABLE,
+            new ItemStack[] {
+                null, SlimefunItems.STEEL_INGOT, SlimefunItems.HOOK,
+                SlimefunItems.STEEL_INGOT, SlimefunItems.POWER_CRYSTAL, SlimefunItems.STEEL_INGOT,
+                SlimefunItems.ADVANCED_CIRCUIT_BOARD, SlimefunItems.STEEL_INGOT, null
+            }
+        ).register(plugin);
+        // @formatter:on
 
         setupMobEggs();
 
