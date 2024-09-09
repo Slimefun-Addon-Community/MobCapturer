@@ -2,8 +2,7 @@ plugins {
     id("java")
     id("maven-publish")
     id("io.freefair.lombok") version "8.7.1"
-    // id("com.github.johnrengelman.shadow") version "8.1.1"
-    id("io.github.goooler.shadow") version "8.1.8" // use forked shadow plugin until official version supports java 21
+    id("com.gradleup.shadow") version "8.3.0"
     id("net.minecrell.plugin-yml.bukkit") version "0.6.0"
 }
 
@@ -18,7 +17,7 @@ repositories {
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.21-R0.1-SNAPSHOT")
     compileOnly("com.github.Slimefun:Slimefun4:RC-37")
-    implementation("org.bstats:bstats-bukkit:3.0.2")
+    implementation("org.bstats:bstats-bukkit:3.0.3")
     implementation("com.google.code.findbugs:jsr305:3.0.2")
     implementation("net.guizhanss:guizhanlib-all:2.0.0-SNAPSHOT")
 }

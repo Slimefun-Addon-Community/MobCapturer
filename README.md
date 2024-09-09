@@ -15,6 +15,10 @@ The captured mobs will retain attributes, potion effects, fire ticks, custom nam
 ## :floppy_disk: Download MobCapturer
 You can download MobCapturer right here: [Dev Builds](https://blob.build/project/MobCapturer)
 
+### Requirements
+
+- Java 21+
+- Minecraft 1.18+
 
 ## :gear: config
 You can change the following settings in `config.yml`:
