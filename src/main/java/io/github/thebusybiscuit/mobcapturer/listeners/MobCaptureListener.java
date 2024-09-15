@@ -24,12 +24,8 @@ import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction
  */
 public class MobCaptureListener implements Listener {
 
-    private final MobCapturer plugin;
-
     public MobCaptureListener(@Nonnull MobCapturer plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
-
-        this.plugin = plugin;
     }
 
     @EventHandler(priority = EventPriority.LOWEST)

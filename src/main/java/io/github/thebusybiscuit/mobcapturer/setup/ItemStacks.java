@@ -10,13 +10,17 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.libraries.commons.lang.Validate;
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 
+import lombok.experimental.UtilityClass;
+
 /**
  * All the {@link SlimefunItemStack}s in MobCapturer.
  *
  * @author TheBusyBiscuit
  * @author ybw0014
  */
+@UtilityClass
 public final class ItemStacks {
+
     public static final SlimefunItemStack MOB_CANNON = new SlimefunItemStack(
         "MOB_CANNON",
         Material.BLAZE_ROD,
@@ -32,8 +36,6 @@ public final class ItemStacks {
         "&7These Pellets are used as",
         "&7Ammunition for your &6Mob Capturing Cannon"
     );
-
-    private ItemStacks() {}
 
     @Nonnull
     @ParametersAreNonnullByDefault

@@ -14,7 +14,6 @@ import org.bukkit.entity.Snowball;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -62,11 +61,8 @@ public class PelletListener implements Listener {
     /**
      * Check if {@link Player} can capture the specified {@link LivingEntity}.
      *
-     * @param p
-     *     The {@link Player} to be checked.
-     * @param entity
-     *     The specified {@link LivingEntity}.
-     *
+     * @param p      The {@link Player} to be checked.
+     * @param entity The specified {@link LivingEntity}.
      * @return If {@link Player} can capture the specified {@link LivingEntity}.
      */
     @ParametersAreNonnullByDefault
@@ -84,13 +80,11 @@ public class PelletListener implements Listener {
     /**
      * Capture the specified {@link LivingEntity}.
      *
-     * @param entity
-     *     The specified {@link LivingEntity}.
-     *
+     * @param entity The specified {@link LivingEntity}.
      * @return The egg {@link ItemStack}.
      */
     @Nonnull
-    @SuppressWarnings({ "unchecked", "rawtypes" })
+    @SuppressWarnings({"unchecked", "rawtypes"})
     protected Optional<ItemStack> capture(@Nonnull LivingEntity entity) {
         MobEgg egg = MobCapturer.getRegistry().getAdapters().get(entity.getType());
 
@@ -109,12 +103,9 @@ public class PelletListener implements Listener {
      * <p>
      * If mob eggs to inventory is disabled, drop the egg to the entity's {@link Location}.
      *
-     * @param p
-     *     The {@link Player} that is capturing the mob.
-     * @param item
-     *     The egg {@link ItemStack}.
-     * @param loc
-     *     The {@link Location} of the {@link LivingEntity}.
+     * @param p    The {@link Player} that is capturing the mob.
+     * @param item The egg {@link ItemStack}.
+     * @param loc  The {@link Location} of the {@link LivingEntity}.
      */
     @ParametersAreNonnullByDefault
     protected void dropEgg(Player p, ItemStack item, Location loc) {

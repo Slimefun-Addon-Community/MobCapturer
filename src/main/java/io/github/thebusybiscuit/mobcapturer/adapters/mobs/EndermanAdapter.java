@@ -1,18 +1,18 @@
 package io.github.thebusybiscuit.mobcapturer.adapters.mobs;
 
-import com.google.gson.JsonObject;
+import java.util.List;
 
-import io.github.thebusybiscuit.mobcapturer.adapters.MobAdapter;
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
+
+import com.google.gson.JsonObject;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.Enderman;
 
-import javax.annotation.Nonnull;
-import javax.annotation.ParametersAreNonnullByDefault;
-
-import java.util.List;
+import io.github.thebusybiscuit.mobcapturer.adapters.MobAdapter;
 
 public class EndermanAdapter implements MobAdapter<Enderman> {
 
