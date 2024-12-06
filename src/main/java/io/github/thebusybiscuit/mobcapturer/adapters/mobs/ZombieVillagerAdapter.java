@@ -11,9 +11,9 @@ import com.google.gson.JsonObject;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.entity.Villager.Profession;
 import org.bukkit.entity.ZombieVillager;
 
+import io.github.thebusybiscuit.mobcapturer.utils.compatibility.VillagerProfessionX;
 import io.github.thebusybiscuit.slimefun4.utils.ChatUtils;
 
 public class ZombieVillagerAdapter extends ZombieAdapter<ZombieVillager> {
@@ -37,7 +37,7 @@ public class ZombieVillagerAdapter extends ZombieAdapter<ZombieVillager> {
     public JsonObject saveData(@Nonnull ZombieVillager entity) {
         JsonObject json = super.saveData(entity);
 
-        json.addProperty("profession", entity.getVillagerProfession().name());
+        json.addProperty("profession", VillagerProfessionX.getFromZombieVillager(entity));
         json.addProperty("conversionPlayer", entity.getConversionPlayer() == null ? null : entity.getConversionPlayer().getUniqueId().toString());
 
         return json;
@@ -48,7 +48,11 @@ public class ZombieVillagerAdapter extends ZombieAdapter<ZombieVillager> {
     public void apply(ZombieVillager entity, JsonObject json) {
         super.apply(entity, json);
 
-        entity.setVillagerProfession(Profession.valueOf(json.get("profession").getAsString()));
+        var profession = json.get("profession").getAsString();
+
+        if (!profession.equals("Unknown")) {
+            VillagerProfessionX.setToZombieVillager(entity, profession);
+        }
 
         JsonElement player = json.get("conversionPlayer");
 
