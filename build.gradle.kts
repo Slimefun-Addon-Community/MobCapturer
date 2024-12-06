@@ -9,7 +9,7 @@ plugins {
 repositories {
     mavenLocal()
     mavenCentral()
-    maven("https://s01.oss.sonatype.org/content/repositories/snapshots/")
+    maven("https://s01.oss.sonatype.org/content/groups/public/")
     maven("https://repo.papermc.io/repository/maven-public/")
     maven("https://jitpack.io")
 }
@@ -19,7 +19,7 @@ dependencies {
     compileOnly("com.github.Slimefun:Slimefun4:RC-37")
     implementation("org.bstats:bstats-bukkit:3.0.3")
     implementation("com.google.code.findbugs:jsr305:3.0.2")
-    implementation("net.guizhanss:guizhanlib-all:2.0.0-SNAPSHOT")
+    implementation("net.guizhanss:guizhanlib-all:2.2.0-SNAPSHOT")
 }
 
 group = "io.github.thebusybiscuit"
