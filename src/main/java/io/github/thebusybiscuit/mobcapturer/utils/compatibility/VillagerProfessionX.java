@@ -1,17 +1,14 @@
 package io.github.thebusybiscuit.mobcapturer.utils.compatibility;
 
-import io.github.thebusybiscuit.mobcapturer.MobCapturer;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Locale;
 
-import lombok.experimental.UtilityClass;
+import javax.annotation.Nonnull;
 
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.ZombieVillager;
 
-import javax.annotation.Nonnull;
-
-import java.lang.reflect.InvocationTargetException;
-import java.util.Locale;
-import java.util.logging.Level;
+import lombok.experimental.UtilityClass;
 
 // TODO: This needs to be changed since 1.22 the enum methods will be removed
 @UtilityClass
@@ -28,7 +25,6 @@ public final class VillagerProfessionX {
             var nsKey = (NamespacedKey) getKeyMethod.invoke(prof);
             return nsKey.getKey().toUpperCase(Locale.ROOT);
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-            MobCapturer.getInstance().getLogger().log(Level.SEVERE, e, () -> "An error occurred while trying to get the profession of a ZombieVillager");
             return "Unknown";
         }
     }
