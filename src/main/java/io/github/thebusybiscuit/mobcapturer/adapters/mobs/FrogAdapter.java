@@ -7,6 +7,8 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 import com.google.gson.JsonObject;
 
+import io.github.thebusybiscuit.mobcapturer.utils.compatibility.FrogVariantX;
+
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Frog;
 import org.bukkit.entity.Frog.Variant;
@@ -34,7 +36,7 @@ public class FrogAdapter extends AnimalsAdapter<Frog> {
     public void apply(Frog entity, JsonObject json) {
         super.apply(entity, json);
 
-        entity.setVariant(Variant.valueOf(json.get("variant").getAsString()));
+        FrogVariantX.set(entity, json.get("variant").getAsString());
     }
 
     @Nonnull
@@ -42,7 +44,7 @@ public class FrogAdapter extends AnimalsAdapter<Frog> {
     public JsonObject saveData(@Nonnull Frog entity) {
         JsonObject json = super.saveData(entity);
 
-        json.addProperty("variant", entity.getVariant().name());
+        json.addProperty("variant", FrogVariantX.get(entity));
 
         return json;
     }

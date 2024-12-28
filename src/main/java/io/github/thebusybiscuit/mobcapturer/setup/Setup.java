@@ -18,6 +18,7 @@ import org.bukkit.entity.Dolphin;
 import org.bukkit.entity.Donkey;
 import org.bukkit.entity.Drowned;
 import org.bukkit.entity.ElderGuardian;
+import org.bukkit.entity.Endermite;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Evoker;
 import org.bukkit.entity.Ghast;
@@ -60,7 +61,6 @@ import io.github.thebusybiscuit.mobcapturer.adapters.mobs.CatAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.ChestedHorseAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.CreeperAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.EndermanAdapter;
-import io.github.thebusybiscuit.mobcapturer.adapters.mobs.EndermiteAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.FoxAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.FrogAdapter;
 import io.github.thebusybiscuit.mobcapturer.adapters.mobs.GlowSquidAdapter;
@@ -275,7 +275,7 @@ public final class Setup {
         // https://minecraft-heads.com/custom-heads/decoration/23585-spawn-egg-shulker
         registerMob(EntityType.SHULKER, new ShulkerAdapter(), "d04252216231b3f744c9ff4ace7084ae9f4164f8b384c65410848a19617af4d");
         // https://minecraft-heads.com/custom-heads/decoration/954-spawn-egg-endermite
-        registerMob(EntityType.ENDERMITE, new EndermiteAdapter(), "3beac501e97db1cc035287d068a8eb538e55ef802f5cca25683933a243136c");
+        registerMob(EntityType.ENDERMITE, new StandardMobAdapter<>(Endermite.class), "3beac501e97db1cc035287d068a8eb538e55ef802f5cca25683933a243136c");
         // </editor-fold>
 
         // <editor-fold desc="Golems">
