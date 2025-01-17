@@ -7,7 +7,6 @@ import lombok.experimental.UtilityClass;
  * Other plugins should not use this class.
  */
 @UtilityClass
-@SuppressWarnings("unchecked")
 public final class ReflectionUtils {
 
     public static Object invoke(Object instance, String methodName, Object... args) {

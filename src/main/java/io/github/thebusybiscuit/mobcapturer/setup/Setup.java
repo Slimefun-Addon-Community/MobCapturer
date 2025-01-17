@@ -14,6 +14,7 @@ import org.bukkit.entity.CaveSpider;
 import org.bukkit.entity.Chicken;
 import org.bukkit.entity.Cod;
 import org.bukkit.entity.Cow;
+import org.bukkit.entity.Creaking;
 import org.bukkit.entity.Dolphin;
 import org.bukkit.entity.Donkey;
 import org.bukkit.entity.Drowned;
@@ -192,9 +193,8 @@ public final class Setup {
             registerMob(EntityType.SNIFFER, new SnifferAdapter(), "a9946dda3e6162dfaf37921bab6bd31b87a3000624848b65eca1efe73167c960");
         }
         if (MinecraftVersionUtil.isAtLeast(20, 5)) {
-            // https://minecraft-heads.com/custom-heads/head/74256-armadillo
-            // TODO: use a spawn egg texture when available
-            registerMob(EntityType.ARMADILLO, new AnimalsAdapter<>(Armadillo.class), "c9c1e96ce985725e22ed6ccf0f4c4810c729a2538b97bda06faeb3b92799c878");
+            // https://minecraft-heads.com/custom-heads/head/109893-spawn-egg-armadillo
+            registerMob(EntityType.ARMADILLO, new AnimalsAdapter<>(Armadillo.class), "2c8abc4e6fc02333ae72a8526fb41e87a348e31cf09f398d36a4398786605abd");
         }
         // </editor-fold>
 
@@ -218,9 +218,12 @@ public final class Setup {
             registerMob(EntityType.ALLAY, new AllayAdapter(), "6c3f114efbd908284c7aadd81993769057361dd756bf5e7883b8e0b1cea446e7");
         }
         if (MinecraftVersionUtil.isAtLeast(21)) {
-            // https://minecraft-heads.com/custom-heads/head/68476-breeze
-            // TODO: use a spawn egg texture when available
-            registerMob(EntityType.BREEZE, new StandardMobAdapter<>(Breeze.class), "cd6e602f76f80c0657b5aed64e267eeea702b31e6dae86346c8506f2535ced02");
+            // https://minecraft-heads.com/custom-heads/head/109899-spawn-egg-breeze
+            registerMob(EntityType.BREEZE, new StandardMobAdapter<>(Breeze.class), "38eef639b9c151ee810adf488f29f74b9077dcc8c4816e27a34a6491fce04677");
+        }
+        if (MinecraftVersionUtil.isAtLeast(21, 4)) {
+            // https://minecraft-heads.com/index.php/custom-heads/head/111645-creaking
+            registerMob(EntityType.CREAKING, new StandardMobAdapter<>(Creaking.class), "a575bac234cf86b124d3cc870bd6b737d27679673a616faf2e996f9949c6153f");
         }
         // </editor-fold>
 
