@@ -15,11 +15,11 @@ repositories {
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:1.21-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:1.21.4-R0.1-SNAPSHOT")
     compileOnly("com.github.Slimefun:Slimefun4:RC-37")
-    implementation("org.bstats:bstats-bukkit:3.0.3")
+    implementation("org.bstats:bstats-bukkit:3.1.0")
     implementation("com.google.code.findbugs:jsr305:3.0.2")
-    implementation("net.guizhanss:guizhanlib-all:2.2.0-SNAPSHOT")
+    implementation("net.guizhanss:guizhanlib-all:2.2.0")
 }
 
 group = "io.github.thebusybiscuit"
@@ -27,7 +27,8 @@ version = "UNOFFICIAL"
 description = "MobCapturer"
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_21
+    disableAutoTargetJvm()
+    sourceCompatibility = JavaVersion.VERSION_17
 }
 
 publishing {
