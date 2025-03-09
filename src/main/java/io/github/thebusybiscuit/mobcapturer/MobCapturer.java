@@ -2,6 +2,8 @@ package io.github.thebusybiscuit.mobcapturer;
 
 import javax.annotation.Nonnull;
 
+import net.guizhanss.guizhanlib.minecraft.utils.MinecraftVersionUtil;
+
 import org.bstats.bukkit.Metrics;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -43,11 +45,21 @@ public class MobCapturer extends JavaPlugin implements SlimefunAddon {
     public void onEnable() {
         setInstance(this);
 
+        if (MinecraftVersionUtil.isAtLeast(21, 3)) {
+            getLogger().severe("MobCapturer is not compatible with Minecraft 1.21.3 or higher yet.");
+            getServer().getPluginManager().disablePlugin(this);
+            return;
+        }
+
         Config cfg = new Config(this);
         new Metrics(this, 6672);
 
-        if (cfg.getBoolean("options.auto-update") && getPluginVersion().startsWith("Dev")) {
-            new BlobBuildUpdater(this, getFile(), "MobCapturer").start();
+        if (cfg.getBoolean("options.auto-update")) {
+            if (getPluginVersion().startsWith("Dev")) {
+                new BlobBuildUpdater(this, getFile(), "MobCapturer").start();
+            } else if (getPluginVersion().startsWith("Experimental")) {
+                new BlobBuildUpdater(this, getFile(), "MobCapturer", "Experimental").start();
+            }
         }
 
         registry = new Registry(cfg);
