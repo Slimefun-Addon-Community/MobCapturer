@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - experimental
 
 jobs:
   build:
@@ -28,10 +29,22 @@ jobs:
       - name: Rename jar file
         run: mv build/libs/MobCapturer-*.jar build/libs/MobCapturer.jar
 
-      - name: Upload to Blob Builds
+      - name: Upload to Blob Builds (Dev)
         uses: WalshyDev/blob-builds/gh-action@main
+        if: github.ref == 'refs/heads/master'
         with:
           project: MobCapturer
+          releaseChannel: Dev
+          file: ./build/libs/MobCapturer.jar
+          apiToken: ${{ secrets.BLOB_BUILDS_API_TOKEN }}
+          releaseNotes: ${{ github.event.head_commit.message }}
+
+      - name: Upload to Blob Builds (Experimetal)
+        uses: WalshyDev/blob-builds/gh-action@main
+        if: github.ref == 'refs/heads/experimental'
+        with:
+          project: MobCapturer
+          releaseChannel: Experimental
           file: ./build/libs/MobCapturer.jar
           apiToken: ${{ secrets.BLOB_BUILDS_API_TOKEN }}
           releaseNotes: ${{ github.event.head_commit.message }}
