@@ -17,8 +17,9 @@ You can download MobCapturer right here: [Dev Builds](https://blob.build/project
 
 ### Requirements
 
-- Java 21+
-- Minecraft 1.18+
+- Java 17+
+- Minecraft 1.18-1.21.1
+- Slimefun [Experimental Build](https://blob.build/project/Slimefun4/Experimental)
 
 ## :gear: config
 You can change the following settings in `config.yml`:
