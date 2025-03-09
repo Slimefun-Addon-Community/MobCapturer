@@ -20,8 +20,8 @@ public final class RecipeTypes {
     // @formatter:off
     public static final RecipeType MOB_CAPTURING = new RecipeType(
         new NamespacedKey(MobCapturer.getInstance(), "mob_capturing"),
-        new CustomItemStack(
-            ItemStacks.MOB_CANNON,
+        CustomItemStack.create(
+            ItemStacks.MOB_CANNON.item(),
             "&6Mob Capturing Cannon",
             "&7Use a &6Mob Capturing Cannon",
             "&7to catch the given Mob."

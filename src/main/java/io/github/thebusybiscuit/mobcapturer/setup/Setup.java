@@ -14,7 +14,6 @@ import org.bukkit.entity.CaveSpider;
 import org.bukkit.entity.Chicken;
 import org.bukkit.entity.Cod;
 import org.bukkit.entity.Cow;
-import org.bukkit.entity.Creaking;
 import org.bukkit.entity.Dolphin;
 import org.bukkit.entity.Donkey;
 import org.bukkit.entity.Drowned;
@@ -132,7 +131,7 @@ public final class Setup {
             RecipeType.ENHANCED_CRAFTING_TABLE,
             new ItemStack[] {
                 new ItemStack(Material.STRING), new ItemStack(Material.IRON_NUGGET), new ItemStack(Material.STRING),
-                SlimefunItems.MAGIC_LUMP_2, new ItemStack(Material.EGG), SlimefunItems.MAGIC_LUMP_2,
+                SlimefunItems.MAGIC_LUMP_2.item(), new ItemStack(Material.EGG), SlimefunItems.MAGIC_LUMP_2.item(),
                 new ItemStack(Material.STRING), new ItemStack(Material.IRON_NUGGET), new ItemStack(Material.STRING)
             }
         ).register(plugin);
@@ -142,9 +141,9 @@ public final class Setup {
             ItemStacks.MOB_CANNON,
             RecipeType.ENHANCED_CRAFTING_TABLE,
             new ItemStack[] {
-                null, SlimefunItems.STEEL_INGOT, SlimefunItems.HOOK,
-                SlimefunItems.STEEL_INGOT, SlimefunItems.POWER_CRYSTAL, SlimefunItems.STEEL_INGOT,
-                SlimefunItems.ADVANCED_CIRCUIT_BOARD, SlimefunItems.STEEL_INGOT, null
+                null, SlimefunItems.STEEL_INGOT.item(), SlimefunItems.HOOK.item(),
+                SlimefunItems.STEEL_INGOT.item(), SlimefunItems.POWER_CRYSTAL.item(), SlimefunItems.STEEL_INGOT.item(),
+                SlimefunItems.ADVANCED_CIRCUIT_BOARD.item(), SlimefunItems.STEEL_INGOT.item(), null
             }
         ).register(plugin);
         // @formatter:on
@@ -152,7 +151,7 @@ public final class Setup {
         setupMobEggs();
 
         // researches
-        Researches.MOB_CAPTURING.addItems(ItemStacks.MOB_CANNON, ItemStacks.MOB_CAPTURING_PELLET);
+        Researches.MOB_CAPTURING.addItems(ItemStacks.MOB_CANNON.item(), ItemStacks.MOB_CAPTURING_PELLET.item());
         Researches.MOB_CAPTURING.register();
     }
 
@@ -221,10 +220,10 @@ public final class Setup {
             // https://minecraft-heads.com/custom-heads/head/109899-spawn-egg-breeze
             registerMob(EntityType.BREEZE, new StandardMobAdapter<>(Breeze.class), "38eef639b9c151ee810adf488f29f74b9077dcc8c4816e27a34a6491fce04677");
         }
-        if (MinecraftVersionUtil.isAtLeast(21, 4)) {
-            // https://minecraft-heads.com/index.php/custom-heads/head/111645-creaking
-            registerMob(EntityType.CREAKING, new StandardMobAdapter<>(Creaking.class), "a575bac234cf86b124d3cc870bd6b737d27679673a616faf2e996f9949c6153f");
-        }
+//        if (MinecraftVersionUtil.isAtLeast(21, 4)) {
+//            // https://minecraft-heads.com/index.php/custom-heads/head/111645-creaking
+//            registerMob(EntityType.CREAKING, new StandardMobAdapter<>(Creaking.class), "a575bac234cf86b124d3cc870bd6b737d27679673a616faf2e996f9949c6153f");
+//        }
         // </editor-fold>
 
         // <editor-fold desc="Water Mobs">
@@ -379,7 +378,7 @@ public final class Setup {
             RecipeTypes.MOB_CAPTURING,
             new ItemStack[] {
                 null, null, null,
-                null, new CustomItemStack(SlimefunUtils.getCustomHead(eggTexture), ChatColor.WHITE + name), null,
+                null, CustomItemStack.create(SlimefunUtils.getCustomHead(eggTexture), ChatColor.WHITE + name), null,
                 null, null, null
             }
         );

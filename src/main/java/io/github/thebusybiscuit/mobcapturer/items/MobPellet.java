@@ -23,7 +23,7 @@ public class MobPellet extends SimpleSlimefunItem<ItemUseHandler> implements Not
 
     @ParametersAreNonnullByDefault
     public MobPellet(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
-        super(itemGroup, item, recipeType, recipe, new CustomItemStack(item, 2));
+        super(itemGroup, item, recipeType, recipe, CustomItemStack.create(item.item(), 2));
     }
 
     @Nonnull
