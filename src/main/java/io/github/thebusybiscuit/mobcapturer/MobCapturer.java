@@ -45,11 +45,11 @@ public class MobCapturer extends JavaPlugin implements SlimefunAddon {
     public void onEnable() {
         setInstance(this);
 
-        if (MinecraftVersionUtil.isAtLeast(21, 3)) {
-            getLogger().severe("MobCapturer is not compatible with Minecraft 1.21.3 or higher yet.");
-            getServer().getPluginManager().disablePlugin(this);
-            return;
-        }
+//        if (MinecraftVersionUtil.isAtLeast(21, 3)) {
+//            getLogger().severe("MobCapturer is not compatible with Minecraft 1.21.3 or higher yet.");
+//            getServer().getPluginManager().disablePlugin(this);
+//            return;
+//        }
 
         Config cfg = new Config(this);
         new Metrics(this, 6672);
