@@ -14,6 +14,7 @@ import org.bukkit.entity.CaveSpider;
 import org.bukkit.entity.Chicken;
 import org.bukkit.entity.Cod;
 import org.bukkit.entity.Cow;
+import org.bukkit.entity.Creaking;
 import org.bukkit.entity.Dolphin;
 import org.bukkit.entity.Donkey;
 import org.bukkit.entity.Drowned;
@@ -220,10 +221,11 @@ public final class Setup {
             // https://minecraft-heads.com/custom-heads/head/109899-spawn-egg-breeze
             registerMob(EntityType.BREEZE, new StandardMobAdapter<>(Breeze.class), "38eef639b9c151ee810adf488f29f74b9077dcc8c4816e27a34a6491fce04677");
         }
-//        if (MinecraftVersionUtil.isAtLeast(21, 4)) {
-//            // https://minecraft-heads.com/index.php/custom-heads/head/111645-creaking
-//            registerMob(EntityType.CREAKING, new StandardMobAdapter<>(Creaking.class), "a575bac234cf86b124d3cc870bd6b737d27679673a616faf2e996f9949c6153f");
-//        }
+        if (MinecraftVersionUtil.isAtLeast(21, 4)) {
+            // https://minecraft-heads.com/index.php/custom-heads/head/111645-creaking
+            // TODO: spawn egg texture for creaking
+            registerMob(EntityType.CREAKING, new StandardMobAdapter<>(Creaking.class), "a575bac234cf86b124d3cc870bd6b737d27679673a616faf2e996f9949c6153f");
+        }
         // </editor-fold>
 
         // <editor-fold desc="Water Mobs">
@@ -348,9 +350,8 @@ public final class Setup {
         // https://minecraft-heads.com/custom-heads/decoration/23705-spawn-egg-stray
         registerMob(EntityType.STRAY, new SkeletonAdapter<>(Stray.class), "5b45aae241779f0617ffaff468f3f2cf666d2f8a803002f9ae1ba0f14ed79fdd");
         if (MinecraftVersionUtil.isAtLeast(21)) {
-            // https://minecraft-heads.com/custom-heads/head/87691-bogged
-            //  TODO: use a spawn egg texture when available
-            registerMob(EntityType.BOGGED, new SkeletonAdapter<>(Bogged.class), "a3b9003ba2d05562c75119b8a62185c67130e9282f7acbac4bc2824c21eb95d9");
+            // https://minecraft-heads.com/custom-heads/head/109898-spawn-egg-bogged
+            registerMob(EntityType.BOGGED, new SkeletonAdapter<>(Bogged.class), "64722ae02b77d1288f7afee8b8c752796923f9b9840ff47d98d2a470a3d990fb");
         }
         // </editor-fold>
 
