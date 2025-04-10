@@ -25,6 +25,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import io.github.thebusybiscuit.mobcapturer.utils.JsonUtils;
+import io.github.thebusybiscuit.mobcapturer.utils.compatibility.AttributeX;
 import io.github.thebusybiscuit.slimefun4.utils.NumberUtils;
 
 /**
@@ -175,32 +176,7 @@ public interface MobAdapter<T extends LivingEntity> extends PersistentDataType<S
         json.addProperty("_gravity", entity.hasGravity());
         json.addProperty("_fireTicks", entity.getFireTicks());
 
-        JsonObject attributes = new JsonObject();
-
-        for (Attribute attribute : Attribute.values()) {
-            AttributeInstance instance = entity.getAttribute(attribute);
-
-            if (instance != null) {
-                JsonObject obj = new JsonObject();
-                obj.addProperty("base", instance.getBaseValue());
-
-                JsonArray modifiers = new JsonArray();
-
-                for (AttributeModifier modifier : instance.getModifiers()) {
-                    JsonObject mod = new JsonObject();
-                    Map<String, Object> serializedMod = modifier.serialize();
-
-                    for (var entry : serializedMod.entrySet()) {
-                        mod.addProperty(entry.getKey(), entry.getValue().toString());
-                    }
-
-                    modifiers.add(mod);
-                }
-
-                obj.add("modifiers", modifiers);
-                attributes.add(attribute.toString(), obj);
-            }
-        }
+        JsonObject attributes = AttributeX.serializeAttributesFromEntity(entity);
 
         json.add("_attributes", attributes);
 

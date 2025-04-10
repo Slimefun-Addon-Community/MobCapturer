@@ -1,5 +1,9 @@
 package io.github.thebusybiscuit.mobcapturer.utils;
 
+import java.lang.reflect.InvocationTargetException;
+
+import javax.annotation.Nullable;
+
 import lombok.experimental.UtilityClass;
 
 /**
@@ -9,13 +13,22 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public final class ReflectionUtils {
 
+    @Nullable
     public static Object invoke(Object instance, String methodName, Object... args) {
         Class<?> currentClass = instance.getClass();
+        Class<?>[] paramTypes = new Class<?>[args.length];
+        for (int i = 0; i < args.length; i++) {
+            paramTypes[i] = (args[i] != null) ? args[i].getClass() : Object.class;
+        }
         while (currentClass != null) {
             try {
-                return currentClass.getDeclaredMethod(methodName).invoke(instance, args);
-            } catch (Exception x) {
+                var method = currentClass.getDeclaredMethod(methodName, paramTypes);
+                method.setAccessible(true);
+                return method.invoke(instance, args);
+            } catch (NoSuchMethodException ex) {
                 currentClass = currentClass.getSuperclass();
+            } catch (IllegalAccessException | InvocationTargetException ex) {
+                return null;
             }
         }
         return null;

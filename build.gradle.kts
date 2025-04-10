@@ -4,6 +4,7 @@ plugins {
     id("io.freefair.lombok") version "8.7.1"
     id("com.gradleup.shadow") version "8.3.0"
     id("net.minecrell.plugin-yml.bukkit") version "0.6.0"
+    id("xyz.jpenilla.run-paper") version "2.3.1"
 }
 
 repositories {
@@ -15,11 +16,11 @@ repositories {
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:1.21.1-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:1.21.4-R0.1-SNAPSHOT")
     compileOnly("com.github.slimefun:Slimefun4:3ea21da4fe")
     implementation("org.bstats:bstats-bukkit:3.1.0")
     implementation("com.google.code.findbugs:jsr305:3.0.2")
-    implementation("net.guizhanss:guizhanlib-all:2.2.0")
+    implementation("net.guizhanss:guizhanlib-all:2.3.0")
 }
 
 group = "io.github.thebusybiscuit"
@@ -64,4 +65,17 @@ bukkit {
     description = "A Slimefun Addon that adds a tool that allows you to capture mobs"
     website = "https://github.com/Slimefun-Addon-Community/MobCapturer"
     depend = listOf("Slimefun")
+}
+
+tasks.runServer {
+    downloadPlugins {
+        // Slimefun
+        url("https://blob.build/dl/Slimefun4/Experimental/latest")
+        // SlimeHUD
+        url("https://blob.build/dl/SlimeHUD/Dev/latest")
+        // GuizhanCraft for testing convenient
+        url("https://blob.build/dl/GuizhanCraft/Dev/latest")
+    }
+    jvmArgs("-Dcom.mojang.eula.agree=true")
+    minecraftVersion("1.20.6")
 }
