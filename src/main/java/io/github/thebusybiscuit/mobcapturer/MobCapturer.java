@@ -2,10 +2,6 @@ package io.github.thebusybiscuit.mobcapturer;
 
 import javax.annotation.Nonnull;
 
-import io.github.thebusybiscuit.mobcapturer.utils.compatibility.AttributeX;
-
-import net.guizhanss.guizhanlib.minecraft.utils.MinecraftVersionUtil;
-
 import org.bstats.bukkit.Metrics;
 import org.bukkit.plugin.java.JavaPlugin;
 
