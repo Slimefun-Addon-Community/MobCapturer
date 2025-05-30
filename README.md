@@ -19,6 +19,7 @@ You can download MobCapturer right here: [Dev Builds](https://blob.build/project
 
 - Java 21+
 - Minecraft 1.18+
+- Paper or its forks
 
 ## :gear: config
 You can change the following settings in `config.yml`:
